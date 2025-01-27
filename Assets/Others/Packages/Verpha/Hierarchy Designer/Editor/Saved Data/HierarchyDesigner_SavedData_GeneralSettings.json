@@ -15,7 +15,9 @@
     "ExcludeTransformForGameObjectComponentIcons": true,
     "ExcludeCanvasRendererForGameObjectComponentIcons": true,
     "MaximumComponentIconsAmount": 10,
-    "ExcludedTags": [],
+    "ExcludedTags": [
+        "Untagged"
+    ],
     "ExcludedLayers": [
         "Default"
     ]
