@@ -15,9 +15,9 @@ namespace UI
         #endregion
         
         #region Fields
-        
-        public event EventHandler OnCodeChanged;
+
         private string connectionCode = "";
+        private EventHandler OnCodeSubmitEvent;
         
         #endregion
 
@@ -29,17 +29,26 @@ namespace UI
         {
             // Ensure the input field updates text in uppercase without causing an infinite loop.
             ConnectionCodeInputField.onValueChanged.AddListener(OnInputFieldChanged);
-            //On click on mobile, the keyboard will appear
-            ConnectionCodeInputField.onSelect.AddListener((string value) =>
+            
+            // On submit, try to connect to the server.
+            ConnectionCodeInputField.onSubmit.AddListener( () =>
             {
-                //Spawns the keyboard
-                TouchScreenKeyboard.Open(value);
+                OnSubmit();
+            });
+            
+            // add listener on submit that calls OnSubmit and invokes OnCodeSubmitEvent
+            ConnectionCodeInputField.onSubmit.AddListener((string codeText) =>
+            {
+                // Call the OnSubmit method.
+                OnSubmit(codeText);
+                
+                // Invoke the event.
+                OnCodeSubmitEvent?.Invoke(this, EventArgs.Empty);
             });
         }
 
         private void Start()
         {
-            OnCodeChanged += EditConnectionCode_OnCodeChanged;
         }
         
         #endregion
@@ -56,15 +65,21 @@ namespace UI
 
                 // Update the input field text if necessary to reflect the transformation.
                 ConnectionCodeInputField.text = upperValue;
-
-                // Fire the event to notify listeners.
-                OnCodeChanged?.Invoke(this, EventArgs.Empty);
+                
             }
         }
-
-        private void EditConnectionCode_OnCodeChanged(object sender, EventArgs e)
+        
+        /// <summary>
+        /// Bunch of checks to ensure the code is valid then tries to connect to the server.
+        /// </summary>
+        /// <param name="code">The code to join the server</param>
+        private void OnSubmit(string code)
         {
-            // Handle the event if needed.
+            // If code is not 6 characters long, return.
+            if (code.Length != 6) return;
+            
+            // 
+            
         }
 
         public string GetCode()

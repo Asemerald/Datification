@@ -119,14 +119,14 @@ namespace Network
                 // Join an existing Relay allocation
                 JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
-                string host = joinAllocation.RelayServer.IpV4; 
-                ushort port = (ushort)joinAllocation.RelayServer.Port; 
-                byte[] joinAllocationId = joinAllocation.AllocationIdBytes; 
-                byte[] connectionData = joinAllocation.ConnectionData; 
-                byte[] hostConnectionData = joinAllocation.HostConnectionData; 
+                string host = joinAllocation.RelayServer.IpV4;
+                ushort port = (ushort)joinAllocation.RelayServer.Port;
+                byte[] joinAllocationId = joinAllocation.AllocationIdBytes;
+                byte[] connectionData = joinAllocation.ConnectionData;
+                byte[] hostConnectionData = joinAllocation.HostConnectionData;
                 byte[] key = joinAllocation.Key;
                 bool isSecure = false;
-            
+
                 foreach (var endpoint in joinAllocation.ServerEndpoints)
                 {
                     if (endpoint.ConnectionType == "dtls")
@@ -136,16 +136,33 @@ namespace Network
                         isSecure = endpoint.Secure;
                     }
                 }
-            
-                NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(host, port, joinAllocationId, connectionData, hostConnectionData, key, isSecure));
+
+                NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(host,
+                    port, joinAllocationId, connectionData, hostConnectionData, key, isSecure));
                 NetworkManager.Singleton.StartClient();
                 VivoxManager.Instance.JoinChannelAsync(joinCode);
             }
-            catch (Exception e)
+            catch (RelayServiceException e)
             {
-                Debug.LogError($"Failed to join Relay: {e}");
-                //TODO Display a message to the user and allow to re enter the code
+                // Handle not found by creating a new Relay
+                switch (e.Reason)
+                {
+                    case RelayExceptionReason.JoinCodeNotFound:
+                        await CreateRelayAsync();
+                        break;
+
+                    case RelayExceptionReason.AllocationNotFound:
+                        await CreateRelayAsync();
+                        break;
+
+                    // Handle other specific error codes as needed
+                    default:
+                        Debug.LogError($"Failed to join Relay: {e}");
+                        //TODO Display a message to the user and allow them to re-enter the code
+                        break;
+                }
             }
+
         }
         
     }

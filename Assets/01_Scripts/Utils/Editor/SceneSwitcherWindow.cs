@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace Editor
+namespace Utils.Editor
 {
     public class SceneSwitcherWindow : EditorWindow
     {

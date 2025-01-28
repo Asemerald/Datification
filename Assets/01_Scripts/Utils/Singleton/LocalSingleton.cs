@@ -11,5 +11,15 @@ namespace Utils
                 return BaseInstance;
             }
         }
+        
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+        
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
     }
 }
