@@ -1,6 +1,10 @@
-﻿namespace _01_Scripts.Network
+﻿using Unity;
+using UnityEngine;
+using Utils;
+
+namespace Network
 {
-    public class RelayManager
+    public class RelayManager : PersistentNetworkSingleton<RelayManager>
     {
         
     }
