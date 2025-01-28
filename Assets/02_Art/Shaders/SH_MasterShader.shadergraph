@@ -5,6 +5,9 @@
     "m_Properties": [
         {
             "m_Id": "e35d574dc5d64b068a11ae998bdeaf6f"
+        },
+        {
+            "m_Id": "0c483d450d1941bdb641425526b2ce82"
         }
     ],
     "m_Keywords": [],
@@ -222,6 +225,36 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "0c483d450d1941bdb641425526b2ce82",
+    "m_Guid": {
+        "m_GuidSerialized": "54addc3c-15bd-40d0-a8d4-a261d8174b37"
+    },
+    "m_Name": "Metallic",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Metallic",
+    "m_DefaultReferenceName": "_Metallic",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "179a5ba17d99442c87b58ad1460e7f6e",
     "m_Group": {
@@ -298,10 +331,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -911.9999389648438,
-            "y": -166.0,
-            "width": 207.99993896484376,
-            "height": 434.9999694824219
+            "x": -933.9999389648438,
+            "y": -244.00001525878907,
+            "width": 208.0,
+            "height": 435.0
         }
     },
     "m_Slots": [
@@ -879,6 +912,9 @@
     "m_ChildObjectList": [
         {
             "m_Id": "e35d574dc5d64b068a11ae998bdeaf6f"
+        },
+        {
+            "m_Id": "0c483d450d1941bdb641425526b2ce82"
         }
     ]
 }
