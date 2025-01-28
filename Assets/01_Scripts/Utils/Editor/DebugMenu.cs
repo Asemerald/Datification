@@ -23,3 +23,5 @@ public class DebugMenu : BaseSingleton<DebugMenu>
         Menu.SetChecked("Debug/Show Singletons Debugs", BaseSingleton<MonoBehaviour>.SHOW_DEBUG);
     }
 }
+
+// Ça marche pas sa mère TODO

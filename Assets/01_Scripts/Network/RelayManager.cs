@@ -24,7 +24,7 @@ namespace Network
         
         #region Variables
         
-        //
+        public string JoinCode { get; private set; }
         
         #endregion
 
@@ -51,8 +51,7 @@ namespace Network
         /// <summary>
         /// Crée un serveur relay pour la partie et retourne le code de connexion
         /// </summary>
-        /// <returns>Le code de connexion</returns>
-        public async Task<string> CreateRelayAsync()
+        public async Task CreateRelayAsync()
         {
             try
             {
@@ -92,7 +91,7 @@ namespace Network
                 NetworkManager.Singleton.StartHost();
                 VivoxManager.Instance.JoinChannelAsync(joinCode);
                 
-                return joinCode;
+                JoinCode = joinCode;
             }
             catch (RelayServiceException e)
             {
@@ -106,11 +105,16 @@ namespace Network
         #endregion
         
         /// <summary>
-        /// Ça se connect au serveur relay du Host pour rejoindre la partie en passant le code de connexion
+        /// Attempts to join a relay using the provided join code.
         /// </summary>
-        /// <param name="joinCode"> Le code a renseigner</param>
-        /// 
-        public async void JoinRelayAsync(string joinCode)
+        /// <param name="joinCode">The relay room code.</param>
+        /// <returns>
+        /// <para>0 = Success</para>
+        /// <para>1 = No room found</para>
+        /// <para>2 = Other error</para>
+        /// </returns>
+
+        public async Task<int> JoinRelayAsync(string joinCode)
         {
             try
             {
@@ -141,6 +145,7 @@ namespace Network
                     port, joinAllocationId, connectionData, hostConnectionData, key, isSecure));
                 NetworkManager.Singleton.StartClient();
                 VivoxManager.Instance.JoinChannelAsync(joinCode);
+                return 0;
             }
             catch (RelayServiceException e)
             {
@@ -148,18 +153,15 @@ namespace Network
                 switch (e.Reason)
                 {
                     case RelayExceptionReason.JoinCodeNotFound:
-                        await CreateRelayAsync();
-                        break;
+                        return 1;
 
                     case RelayExceptionReason.AllocationNotFound:
-                        await CreateRelayAsync();
-                        break;
+                        return 1;
 
                     // Handle other specific error codes as needed
                     default:
                         Debug.LogError($"Failed to join Relay: {e}");
-                        //TODO Display a message to the user and allow them to re-enter the code
-                        break;
+                        return 2;
                 }
             }
 

@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using Utils;
+using Utils.Event;
 
 namespace UI
 {
@@ -17,7 +18,8 @@ namespace UI
         #region Fields
 
         private string connectionCode = "";
-        private EventHandler OnCodeSubmitEvent;
+        public event EventHandler<StringEventArgs> OnCodeSubmitEvent;
+
         
         #endregion
 
@@ -30,21 +32,8 @@ namespace UI
             // Ensure the input field updates text in uppercase without causing an infinite loop.
             ConnectionCodeInputField.onValueChanged.AddListener(OnInputFieldChanged);
             
-            // On submit, try to connect to the server.
-            ConnectionCodeInputField.onSubmit.AddListener( () =>
-            {
-                OnSubmit();
-            });
-            
-            // add listener on submit that calls OnSubmit and invokes OnCodeSubmitEvent
-            ConnectionCodeInputField.onSubmit.AddListener((string codeText) =>
-            {
-                // Call the OnSubmit method.
-                OnSubmit(codeText);
-                
-                // Invoke the event.
-                OnCodeSubmitEvent?.Invoke(this, EventArgs.Empty);
-            });
+            // Ensure the input field submits the code when the user presses enter.
+            ConnectionCodeInputField.onSubmit.AddListener(OnSubmit);
         }
 
         private void Start()
@@ -70,15 +59,18 @@ namespace UI
         }
         
         /// <summary>
-        /// Bunch of checks to ensure the code is valid then tries to connect to the server.
+        /// Check the code then invoke the event to notify the connection code has been submitted.
         /// </summary>
         /// <param name="code">The code to join the server</param>
         private void OnSubmit(string code)
         {
+            Debug.Log("Code submitted: " + code);
             // If code is not 6 characters long, return.
             if (code.Length != 6) return;
             
-            // 
+            // Invoke the event to notify the connection code has been submitted with the code as argument.
+            OnCodeSubmitEvent?.Invoke(this, new StringEventArgs(code));
+            
             
         }
 
