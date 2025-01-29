@@ -27,8 +27,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/01_Scripts/RaceScripts/CarCollision.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01_Scripts/UI/InGameUI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.multiplayer@1.1.0/Runtime/Relay/SDK/WrappedRelayService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.vivox@16.5.4/Runtime/IVivoxService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -108,7 +108,7 @@
       <workItem from="1738068712520" duration="92000" />
       <workItem from="1738142366580" duration="210000" />
       <workItem from="1738142598527" duration="6802000" />
-      <workItem from="1738152939676" duration="5151000" />
+      <workItem from="1738152939676" duration="8900000" />
     </task>
     <servers />
   </component>
