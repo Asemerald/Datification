@@ -19,7 +19,7 @@ namespace UI
         
         private void Awake()
         {
-            Hide();
+            SetLoadingText("Logging in...");
         }
 
         #endregion

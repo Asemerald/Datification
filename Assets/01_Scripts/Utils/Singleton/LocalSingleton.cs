@@ -14,12 +14,12 @@ namespace Utils
         
         public void Hide()
         {
-            gameObject.SetActive(false);
+            BaseInstance.gameObject.SetActive(false);
         }
         
         public void Show()
         {
-            gameObject.SetActive(true);
+            BaseInstance.gameObject.SetActive(true);
         }
     }
 }
