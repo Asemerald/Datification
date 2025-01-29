@@ -59,8 +59,9 @@ namespace Utils
             }
         }
 #if UNITY_EDITOR
-        private void OnDestroy()
+        public override void OnDestroy()
         {
+            base.OnDestroy();
             if (SHOW_DEBUG)
             {
                 Debug.Log($"Network singleton {typeof(T)} was deleted.", gameObject);
