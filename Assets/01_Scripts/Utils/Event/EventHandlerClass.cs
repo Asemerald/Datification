@@ -8,9 +8,9 @@ namespace Utils.Event
     {
         public string String { get; }
 
-        public StringEventArgs(string String)
+        public StringEventArgs(string argString)
         {
-            String = String;
+            String = argString;
         }
     }
     
@@ -18,9 +18,9 @@ namespace Utils.Event
     {
         public int Int { get; }
 
-        public IntEventArgs(int Int)
+        public IntEventArgs(int argInt)
         {
-            Int = Int;
+            Int = argInt;
         }
     }
     
@@ -28,9 +28,9 @@ namespace Utils.Event
     {
         public float Float { get; }
 
-        public FloatEventArgs(float Float)
+        public FloatEventArgs(float argFloat)
         {
-            Float = Float;
+            Float = argFloat;
         }
     }
     
@@ -38,9 +38,9 @@ namespace Utils.Event
     {
         public bool Bool { get; }
 
-        public BoolEventArgs(bool Bool)
+        public BoolEventArgs(bool argBool)
         {
-            Bool = Bool;
+            Bool = argBool;
         }
     }
     
@@ -48,9 +48,9 @@ namespace Utils.Event
     {
         public GameObject GameObject { get; }
 
-        public GameObjectEventArgs(GameObject GameObject)
+        public GameObjectEventArgs(GameObject argGameObject)
         {
-            GameObject = GameObject;
+            GameObject = argGameObject;
         }
     }
     
@@ -58,9 +58,9 @@ namespace Utils.Event
     {
         public Transform Transform { get; }
 
-        public TransformEventArgs(Transform Transform)
+        public TransformEventArgs(Transform argTransform)
         {
-            Transform = Transform;
+            Transform = argTransform;
         }
     }
     

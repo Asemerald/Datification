@@ -69,8 +69,9 @@ namespace UI
             if (code.Length != 6) return;
             
             // Invoke the event to notify the connection code has been submitted with the code as argument.
-            OnCodeSubmitEvent?.Invoke(this, new StringEventArgs(code));
-            
+            var eventArgs = new StringEventArgs(code);
+            Debug.Log("Event args: " + eventArgs.String);
+            OnCodeSubmitEvent?.Invoke(this, eventArgs);
             
         }
 
