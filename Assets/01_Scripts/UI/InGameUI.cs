@@ -1,3 +1,4 @@
+using System;
 using Network;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace UI
         [Header("InGame UI")]
         [SerializeField] private TMP_Text joinCodeText;
 
+        private bool loadingFinished;
+
         #endregion
     
         #region Methods
@@ -20,12 +23,16 @@ namespace UI
     
         private void Awake()
         {
-            joinCodeText.text = "Join Code: " + RelayManager.Instance.JoinCode;
             RelayManager.Instance.OnRelayFullEvent += DeactivateCodeText_OnRelayFullEvent;
             
             Hide();
         }
-    
+
+        private void OnEnable()
+        {
+            joinCodeText.text = "Join Code: " + RelayManager.Instance.JoinCode;
+        }
+
         #endregion
         
         private void DeactivateCodeText_OnRelayFullEvent(object sender, System.EventArgs e)

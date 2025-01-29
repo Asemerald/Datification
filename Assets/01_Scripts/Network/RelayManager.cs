@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using UI;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport;
@@ -58,17 +59,24 @@ namespace Network
         #endregion
         
         /// <summary>
-        /// Crée un serveur relay pour la partie et retourne le code de connexion
+        /// Crée le serveur
         /// </summary>
+        /// <returns>
+        /// <para>0 = Success</para>
+        /// <para>1 = Error</para>
+        /// </returns>
         public async Task<int> CreateRelayAsync()
         {
             try
             {
                 // Create a Relay allocation
+                LoadingUI.Instance.SetLoadingText("Creating Relay...");
                 Allocation allocation = await RelayService.Instance.CreateAllocationAsync(2);
 
                 // Get the join code
+                LoadingUI.Instance.SetLoadingText("Getting Join Code...");
                 string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+                JoinCode = joinCode;
                 Debug.Log($"Relay created with join code: {joinCode}");
 
                 string host = allocation.RelayServer.IpV4; 
@@ -98,9 +106,10 @@ namespace Network
                     isSecure));
                 
                 NetworkManager.Singleton.StartHost();
-                VivoxManager.Instance.JoinChannelAsync(joinCode);
                 
-                JoinCode = joinCode;
+                LoadingUI.Instance.SetLoadingText("Joining Voice Channel...");
+                await VivoxManager.Instance.JoinChannelAsync(joinCode);
+                
                 return 0;
             }
             catch (RelayServiceException e)
@@ -153,7 +162,9 @@ namespace Network
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(host,
                     port, joinAllocationId, connectionData, hostConnectionData, key, isSecure));
                 NetworkManager.Singleton.StartClient();
-                VivoxManager.Instance.JoinChannelAsync(joinCode);
+                
+                await VivoxManager.Instance.JoinChannelAsync(joinCode);
+                
                 return 0;
             }
             catch (RelayServiceException e)

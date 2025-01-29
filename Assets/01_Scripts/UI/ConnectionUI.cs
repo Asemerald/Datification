@@ -26,6 +26,8 @@ namespace UI
             {
                 OnCreateRoomEvent?.Invoke(this, EventArgs.Empty);
             });
+            
+            Hide();
         }
     }
 }

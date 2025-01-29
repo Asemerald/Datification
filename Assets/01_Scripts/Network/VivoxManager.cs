@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Threading.Tasks;
 using Unity.Services.Vivox;
 using UnityEngine;
 using Utils;
@@ -37,13 +38,14 @@ namespace Network
             await VivoxService.Instance.LoginAsync(options);
         }
         
-        public async void JoinChannelAsync(string channelName)
+        public async Task<Task> JoinChannelAsync(string channelName)
         {
             try
             {
                 this.channelName = channelName;
                 //Leave any existing channel
                 await VivoxService.Instance.LeaveAllChannelsAsync();
+                await VivoxService.Instance.LeaveAllChannelsAsync(); // Jsp pk mais le faire 2 fois marche
                 
                 await VivoxService.Instance.JoinPositionalChannelAsync(channelName, ChatCapability.AudioOnly, new Channel3DProperties(
                     audibleDistance: 32,
@@ -55,12 +57,14 @@ namespace Network
                 Debug.Log($"Joined channel: {channelName}");
                 
                 _hasJoinedChannel = true;
+                return Task.CompletedTask;
             }
             catch (Exception e)
             {
                 Debug.LogError($"Failed to join channel {channelName}: {e}");
                 StartCoroutine(RetryConnection());
                 Debug.LogWarning("Retrying connection in 1 second...");
+                return Task.CompletedTask;
             }
         }
         

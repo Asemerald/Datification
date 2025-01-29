@@ -18,6 +18,7 @@ namespace UI
         {
             EditConnectionCode.Instance.OnCodeSubmitEvent += OnJoinCodeSubmit_OnCodeSubmitEvent;
             ConnectionUI.Instance.OnCreateRoomEvent += OnCreateButtonClicked_OnCreateRoomEvent;
+            Authentificate.Instance.OnAuthentificateSuccess += DeactivateLoadingScreen_OnAuthentificateSuccess;
         }
 
         #endregion
@@ -26,7 +27,8 @@ namespace UI
         {
             ConnectionUI.Instance.Hide();
             LoadingUI.Instance.Show();
-            switch (await RelayManager.Instance.JoinRelayAsync(args.String))
+            var returnCode = await RelayManager.Instance.JoinRelayAsync(args.String);
+            switch (returnCode)
             {
                 case 0: // Success
                     LoadingUI.Instance.Hide();
@@ -51,6 +53,7 @@ namespace UI
             {
                 case 0: // Success
                     LoadingUI.Instance.Hide();
+                    InGameUI.Instance.Show();
                     break;
                 case 1: // Unknown error
                     LoadingUI.Instance.SetLoadingText("An error occurred");
@@ -61,6 +64,12 @@ namespace UI
                     });
                     break;
             }
+        }
+        
+        private void DeactivateLoadingScreen_OnAuthentificateSuccess(object sender, EventArgs args)
+        {
+            LoadingUI.Instance.Hide();
+            ConnectionUI.Instance.Show();
         }
         
         #endregion
