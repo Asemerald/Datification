@@ -30,6 +30,7 @@ namespace UI
             {
                 case 0: // Success
                     LoadingUI.Instance.Hide();
+                    InGameUI.Instance.Show();
                     break;
                 case 1: // Error
                     LoadingUI.Instance.SetLoadingText("An error occurred");

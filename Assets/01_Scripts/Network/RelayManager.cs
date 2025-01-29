@@ -16,15 +16,16 @@ namespace Network
 {
     public class RelayManager : PersistentNetworkSingleton<RelayManager>
     {
-        #region Fields
+        #region Serialize Fields
         
         //
         
         #endregion
         
-        #region Variables
+        #region Fields
         
         public string JoinCode { get; private set; }
+        public event EventHandler<EventArgs> OnRelayFullEvent;
         
         #endregion
 
@@ -36,6 +37,14 @@ namespace Network
         protected override void OnAwake()
         {
             base.OnAwake();
+            NetworkManager.Singleton.OnClientConnectedCallback += (clientId) =>
+            {
+                if (!IsServer) return;
+                if (NetworkManager.Singleton.ConnectedClientsList.Count > 1)
+                {
+                    OnRelayFullEvent?.Invoke(this, EventArgs.Empty);
+                }
+            };
         }
         
         void Start()

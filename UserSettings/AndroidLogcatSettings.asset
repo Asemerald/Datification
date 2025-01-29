@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "UCKF6TJZEQKZ7LEQ",
     "m_SelectedProcess": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "UCKF6TJZEQKZ7LEQ",
+        "name": "com.DefaultCompany.Datification",
+        "processId": 25779,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,12 @@
             "deviceId": "UCKF6TJZEQKZ7LEQ",
             "name": "com.unity3d.genericremote",
             "processId": 12400,
+            "exited": false
+        },
+        {
+            "deviceId": "UCKF6TJZEQKZ7LEQ",
+            "name": "com.DefaultCompany.Datification",
+            "processId": 25779,
             "exited": false
         }
     ],
