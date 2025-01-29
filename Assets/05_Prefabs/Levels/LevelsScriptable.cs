@@ -1,18 +1,27 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelsScriptable : MonoBehaviour
+namespace Prefabs
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "Level", menuName = "ScriptableObjects/NewLevel", order = 1)]
+    public class LevelsScriptable : ScriptableObject
     {
-        
-    }
+        // A scriptable object that contains the levels data
+        // A question theme 
+        // a list of CarPartScriptable objects
 
-    // Update is called once per frame
-    void Update()
-    {
+        [Header("Theme du niveau")] public string theme;
+
+        [Header("Liste des Carrosseries")] 
+        public List<CarPartScriptable> carrosserieList;
+
+        [Header("Liste des Roues")] 
+        public List<CarPartScriptable> rouesList;
+
+        [Header("Liste des Phares")]
+        public List<CarPartScriptable> pharesList;
         
+        [Header("Liste des Accessoires")]
+        public List<CarPartScriptable> accessoiresList;
     }
 }
