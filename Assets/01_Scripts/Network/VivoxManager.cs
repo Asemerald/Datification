@@ -17,7 +17,6 @@ namespace Network
         
         #region Fields
         
-        private bool _hasJoinedChannel = false;
         private string channelName = "default";
         public TaskCompletionSource<bool> ChannelJoinedTaskCompletionSource { get; private set; }
         
@@ -55,8 +54,7 @@ namespace Network
                 await VivoxService.Instance.JoinGroupChannelAsync(channelName, ChatCapability.AudioOnly);
         
                 Debug.Log($"Joined channel: {channelName}");
-
-                _hasJoinedChannel = true;
+                
                 ChannelJoinedTaskCompletionSource.SetResult(true); // Ensure task completes
         
                 return await ChannelJoinedTaskCompletionSource.Task;
