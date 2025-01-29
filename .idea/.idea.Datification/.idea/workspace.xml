@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7507d665-4f00-4d92-8ed4-e6d7dd4c404c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/05_Prefabs/Car/CarPartScriptable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/05_Prefabs/Car/CarPartScriptable.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Datification/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Datification/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Network/Authentificate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Network/Authentificate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Network/RelayManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Network/RelayManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Network/VivoxManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Network/VivoxManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/ConnectionUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/ConnectionUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/InGameUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/InGameUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/LoadingUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/LoadingUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Utils/Singleton/LocalSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Utils/Singleton/LocalSingleton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/04_Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04_Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/AndroidLogcatSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/AndroidLogcatSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05_Prefabs/DefaultNetworkPrefabs.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05_Prefabs/DefaultNetworkPrefabs.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05_Prefabs/Levels/LevelsScriptable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/05_Prefabs/Levels/LevelsScriptable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +21,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/01_Scripts/RaceScripts/CarCollision.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01_Scripts/UI/InGameUI.cs" root0="FORCE_HIGHLIGHTING" />
+<<<<<<< HEAD
+    <setting file="file://$PROJECT_DIR$/Assets/CarController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.multiplayer@1.1.0/Runtime/Relay/SDK/WrappedRelayService.cs" root0="SKIP_HIGHLIGHTING" />
+=======
+>>>>>>> origin/main
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.vivox@16.5.4/Runtime/IVivoxService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -108,7 +107,7 @@
       <workItem from="1738068712520" duration="92000" />
       <workItem from="1738142366580" duration="210000" />
       <workItem from="1738142598527" duration="6802000" />
-      <workItem from="1738152939676" duration="5151000" />
+      <workItem from="1738152939676" duration="9257000" />
     </task>
     <servers />
   </component>

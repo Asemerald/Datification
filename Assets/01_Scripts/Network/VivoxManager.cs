@@ -17,8 +17,8 @@ namespace Network
         
         #region Fields
         
-        private bool _hasJoinedChannel = false;
         private string channelName = "default";
+        public TaskCompletionSource<bool> ChannelJoinedTaskCompletionSource { get; private set; }
         
         #endregion
         
@@ -38,41 +38,35 @@ namespace Network
             await VivoxService.Instance.LoginAsync(options);
         }
         
-        public async Task<Task> JoinChannelAsync(string channelName)
+        
+        public async Task<bool> JoinChannelAsync(string channelName)
         {
+            ChannelJoinedTaskCompletionSource = new TaskCompletionSource<bool>(); // Initialize it at the start
+    
             try
             {
                 this.channelName = channelName;
-                //Leave any existing channel
+        
+                // Leave any existing channel
                 await VivoxService.Instance.LeaveAllChannelsAsync();
-                await VivoxService.Instance.LeaveAllChannelsAsync(); // Jsp pk mais le faire 2 fois marche
-                
-                await VivoxService.Instance.JoinPositionalChannelAsync(channelName, ChatCapability.AudioOnly, new Channel3DProperties(
-                    audibleDistance: 32,
-                    conversationalDistance: 1,
-                    audioFadeModel: AudioFadeModel.InverseByDistance,
-                    audioFadeIntensityByDistanceaudio: 1
-                ));
-                
+                await VivoxService.Instance.LeaveAllChannelsAsync(); // Doing it twice because it works
+        
+                await VivoxService.Instance.JoinGroupChannelAsync(channelName, ChatCapability.AudioOnly);
+        
                 Debug.Log($"Joined channel: {channelName}");
                 
-                _hasJoinedChannel = true;
-                return Task.CompletedTask;
+                ChannelJoinedTaskCompletionSource.SetResult(true); // Ensure task completes
+        
+                return await ChannelJoinedTaskCompletionSource.Task;
             }
             catch (Exception e)
             {
                 Debug.LogError($"Failed to join channel {channelName}: {e}");
-                StartCoroutine(RetryConnection());
-                Debug.LogWarning("Retrying connection in 1 second...");
-                return Task.CompletedTask;
+                ChannelJoinedTaskCompletionSource.SetResult(false); // Ensure task doesn't hang
+                return false;
             }
         }
         
-        private IEnumerator RetryConnection()
-        {
-            yield return new WaitForSeconds(1);
-            JoinChannelAsync(channelName);
-        }
         
         #endregion
     }
