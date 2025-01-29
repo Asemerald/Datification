@@ -5,18 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7507d665-4f00-4d92-8ed4-e6d7dd4c404c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/01_Scripts/Game.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01_Scripts/Game/Customisation.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01_Scripts/Game/Customisation/CustomisationManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01_Scripts/Game/Customisation/CustomisationManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Datification/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Datification/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Network/Authentificate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Network/Authentificate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Dev/Antoine/Scene/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Dev/Antoine/Scene/Test.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Network/RelayManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Network/RelayManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Network/VivoxManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Network/VivoxManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/ConnectionUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/ConnectionUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/InGameUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/InGameUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/LoadingUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/LoadingUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Utils/Singleton/LocalSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Utils/Singleton/LocalSingleton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Art/VFX/Materials/M_Speed.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Art/VFX/Materials/M_Speed.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/04_Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04_Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/AndroidLogcatSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/AndroidLogcatSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
