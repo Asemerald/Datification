@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7507d665-4f00-4d92-8ed4-e6d7dd4c404c" name="Changes" comment="" />
+    <list default="true" id="7507d665-4f00-4d92-8ed4-e6d7dd4c404c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Datification/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Datification/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Network/RelayManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Network/RelayManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/ConnectionUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/ConnectionUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/EditConnectionCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/EditConnectionCode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/UI/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Utils/Editor/DebugMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Utils/Editor/DebugMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Scripts/Utils/Event/EventHandlerClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Scripts/Utils/Event/EventHandlerClass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/04_Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04_Scenes/MainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/05_Prefabs/DefaultNetworkPrefabs.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/05_Prefabs/DefaultNetworkPrefabs.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ConnectionUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ConnectionUI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,10 +28,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.multiplayer@1.1.0/Runtime/Relay/SDK/WrappedRelayService.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2sG4iCY3LgSVbUTPeE1bJukMfak" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,6 +44,10 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -74,8 +99,13 @@
       <option name="presentableId" value="Default" />
       <updated>1738068709294</updated>
       <workItem from="1738068712520" duration="92000" />
+      <workItem from="1738142366580" duration="210000" />
+      <workItem from="1738142598527" duration="2036000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">

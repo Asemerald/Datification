@@ -24,4 +24,4 @@ public class DebugMenu : BaseSingleton<DebugMenu>
     }
 }
 
-// Ça marche pas sa mère TODO
+// Ça marche pas sa mère

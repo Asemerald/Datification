@@ -51,7 +51,7 @@ namespace Network
         /// <summary>
         /// Crée un serveur relay pour la partie et retourne le code de connexion
         /// </summary>
-        public async Task CreateRelayAsync()
+        public async Task<int> CreateRelayAsync()
         {
             try
             {
@@ -92,12 +92,13 @@ namespace Network
                 VivoxManager.Instance.JoinChannelAsync(joinCode);
                 
                 JoinCode = joinCode;
+                return 0;
             }
             catch (RelayServiceException e)
             {
                 Debug.LogError($"Failed to create Relay: {e}");
                 //TODO Reload the scene or something
-                throw;
+                return 1;
             }
         }
         
@@ -110,8 +111,7 @@ namespace Network
         /// <param name="joinCode">The relay room code.</param>
         /// <returns>
         /// <para>0 = Success</para>
-        /// <para>1 = No room found</para>
-        /// <para>2 = Other error</para>
+        /// <para>1 = Error</para>
         /// </returns>
 
         public async Task<int> JoinRelayAsync(string joinCode)
@@ -153,6 +153,7 @@ namespace Network
                 switch (e.Reason)
                 {
                     case RelayExceptionReason.JoinCodeNotFound:
+                        //TODO do something 
                         return 1;
 
                     case RelayExceptionReason.AllocationNotFound:
@@ -161,7 +162,7 @@ namespace Network
                     // Handle other specific error codes as needed
                     default:
                         Debug.LogError($"Failed to join Relay: {e}");
-                        return 2;
+                        return 1;
                 }
             }
 
