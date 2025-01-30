@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Utils
@@ -10,16 +11,6 @@ namespace Utils
             {
                 return BaseInstance;
             }
-        }
-        
-        public virtual void Hide()
-        {
-            BaseInstance.gameObject.SetActive(false);
-        }
-        
-        public virtual void Show()
-        {
-            BaseInstance.gameObject.SetActive(true);
         }
     }
 }
