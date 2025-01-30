@@ -11,5 +11,16 @@ public class CarCollision : MonoBehaviour
         {
             GetComponentInParent<CarController>().Boost();
         }
+
+        if (other.gameObject.CompareTag("RampTrigger"))
+        {
+            GetComponentInParent<CarInputs>().RampAnimationTrigger();
+            
+        }
+
+        if (other.gameObject.CompareTag("MiddleTrigger"))
+        {
+            GetComponentInParent<CarInputs>().StartEndingTrigger();
+        }
     }
 }

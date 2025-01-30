@@ -1,9 +1,87 @@
-﻿using Utils;
+﻿using System;
+using Cinemachine;
+using Prefabs;
+using TMPro;
+using UnityEngine;
+using Utils;
 
 namespace Game.Customisation
 {
-    public class CustomisationManager : LocalSingleton<CustomisationManager>
+    public class CustomisationManager : InstanceBase<CustomisationManager>
     {
+        #region Serialize Fields 
+
+        [Header("Theme UI")]
+        [SerializeField] private TMP_Text themeText;
+        
+        
+        #endregion
+        
+        #region Fields 
+        
+        private GameObject themeGameObject;
+        
+        #endregion
+        
+        #region Methods
+        
+        #region Unity Methods
+        
+        private void Start()
+        {
+            themeGameObject = themeText.transform.parent.gameObject;
+            themeGameObject.SetActive(false);
+        }
+        
+        
+        #endregion
+        
+        public void SetThemeText(string text)
+        {
+            themeGameObject.SetActive(true);
+            themeText.text = text;
+        }
+        
+        public LevelsScriptable SelectRandomLevel()
+        {
+            // Load all Level ScriptableObjects from the Resources/Levels folder
+            LevelsScriptable[] levels = Resources.LoadAll<LevelsScriptable>("Levels");
+
+            if (levels.Length == 0)
+            {
+                Debug.LogError("No levels found in Resources/Levels!");
+                return null;
+            }
+
+            // Select a random level
+            int randomLevelSelected = UnityEngine.Random.Range(0, levels.Length);
+            return levels[randomLevelSelected];
+        }
+
+        public LevelsScriptable GetLevelByName(string levelName)
+        {
+            // Load all Level ScriptableObjects from the Resources/Levels folder
+            LevelsScriptable[] levels = Resources.LoadAll<LevelsScriptable>("Levels");
+            
+            if (levels.Length == 0)
+            {
+                Debug.LogError("No levels found in Resources/Levels!");
+                return null;
+            }
+            
+            // Find the Level with the name 
+            foreach (LevelsScriptable level in levels)
+            {
+                if (level.name == levelName)
+                {
+                    return level;
+                }
+            }
+            
+            return null;
+        }
+        
+        #endregion
         
     }
 }
