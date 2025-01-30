@@ -120,12 +120,18 @@ namespace UI
         
         public void Show()
         {
-            EGameObject.SetActive(true);
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                EGameObject.SetActive(true);
+            });
         }
 
         public void Hide()
         {
-            EGameObject.SetActive(false);
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                EGameObject.SetActive(false);
+            });
         }
         
     }

@@ -8,13 +8,13 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
 
-public class GameManager : PersistentNetworkSingleton<GameManager>
+public class GameManager : NetworkInstanceBase<GameManager>
 {
     
     #region Fields
     
     public LevelsScriptable currentLevel;
-    public NetworkVariable<string> levelName = new("Level 1");
+    public NetworkVariable<string> levelName = new("");
     
     #endregion
     
@@ -22,16 +22,17 @@ public class GameManager : PersistentNetworkSingleton<GameManager>
 
     #region Unity Methods
 
-    public override void OnNetworkSpawn()
+    private void Start()
     {
         InitGame();
     }
-
+    
     #endregion
     private void InitGame()
     {
-        if (IsServer)
+        if (NetworkManager.Singleton.IsHost)
         {
+            Debug.Log("Choosing Current Level");
             currentLevel = CustomisationManager.Instance.SelectRandomLevel();
             levelName.Value = currentLevel.name;
         }
@@ -47,7 +48,7 @@ public class GameManager : PersistentNetworkSingleton<GameManager>
     
     public void StartGame()
     {
-        if (IsServer)
+        if (IsHost)
         {
             StartGameServerRpc();
         }

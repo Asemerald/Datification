@@ -40,6 +40,13 @@ public class CarInputs : MonoBehaviour
             left = Input.GetKey(KeyCode.LeftArrow);
             right = Input.GetKey(KeyCode.RightArrow);
         }
+
+        
+        if (Input.GetKeyUp(KeyCode.UpArrow) && secondStage)
+        {
+            controller.LaunchRamp();
+        }
+        
         
 
         if (left && right)
@@ -65,6 +72,7 @@ public class CarInputs : MonoBehaviour
     public void StartEndingTrigger()
     {
         startEnding = true;
+        controller.canLaunch = true;
     }
     
     public void RampAnimationTrigger()

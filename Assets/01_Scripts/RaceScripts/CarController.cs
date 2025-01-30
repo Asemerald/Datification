@@ -9,6 +9,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private CarInputs inputs;
 
     [Space(15f)] 
+    [Header("Car settings")] 
     [SerializeField] private float maxSpeed;
     [SerializeField] private float accelMultiplier = 2;
     [SerializeField] private float decelMultiplier = 3;
@@ -24,11 +25,16 @@ public class CarController : MonoBehaviour
     [Header("Cameras")] 
     [SerializeField] private CinemachineVirtualCamera mainCam;
     [SerializeField] private CinemachineVirtualCamera rampCam;
+    
+    [Header("Ramp")] 
+    public int rampZone;
+    public bool canLaunch;
 
     
     private void Start()
     {
         rampCam.enabled = false;
+        rampZone = 0;
         
         canBoost = true;
         baseSpeed = maxSpeed;
@@ -83,5 +89,37 @@ public class CarController : MonoBehaviour
     public void SwitchCameras()
     {
         rampCam.enabled = true;
+    }
+    
+    
+    public void LaunchRamp()
+    {
+        if (!canLaunch) return;
+        
+        switch (rampZone)
+        {
+            //Partager cette valeur sur le serveur et
+            // 1. vérifier lequel des deux joueurs à la meilleure valeur
+            // 2. faire la moyenne des deux valeurs
+            
+            case 1 : 
+                Debug.Log("Lancement moyen");
+                canLaunch = false;
+                break;
+            case 2 : 
+                Debug.Log("Bon Lancement");
+                canLaunch = false;
+                break;
+            case 3 : 
+                Debug.Log("Lancement parfait");
+                canLaunch = false;
+                break;
+            case 4 :
+                Debug.Log("Lancement raté");
+                canLaunch = false;
+                break;
+            default :
+                break;
+        }
     }
 }

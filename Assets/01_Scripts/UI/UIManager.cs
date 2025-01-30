@@ -4,12 +4,21 @@ using Network;
 using Utils;
 using Utils.Event;
 using Unity.Netcode;
+using UnityEngine;
 
 
 namespace UI
 {
-    public class UIManager : LocalNetworkSingleton<UIManager>
+    public class UIManager : NetworkInstanceBase<UIManager>
     {
+
+        #region Fields
+
+        private bool uiDisabled = false;
+
+        #endregion
+        
+        
         # region Methods
         
         #region Unity Methods
@@ -22,11 +31,27 @@ namespace UI
             Authentificate.Instance.OnAuthentificateSuccess += DeactivateLoadingScreen_OnAuthentificateSuccess;
             NetworkManager.Singleton.OnConnectionEvent += ((manager, data) =>
             {
+                
                 if (!IsHost) return;
-                if (NetworkManager.Singleton.ConnectedClientsList.Count < 2) return;
+                if (NetworkManager.Singleton.ConnectedClientsList.Count < 2)
+                {
+                    ServerBehaviour.Instance.SpawnGameManager_OnRelayJoined();
+                    return;
+                }
                 DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+                uiDisabled = true;
 
             } );
+        }
+
+        private void Update()
+        {
+            if (!IsHost) return;
+            if (NetworkManager.Singleton.ConnectedClientsList.Count == 2 && !uiDisabled)
+            {
+                DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+                uiDisabled = true;
+            }
         }
 
         #endregion
@@ -39,8 +64,8 @@ namespace UI
             switch (returnCode)
             {
                 case 0: // Success
-                    LoadingUI.Instance.Hide();
                     InGameUI.Instance.Show();
+                    LoadingUI.Instance.Hide();
                     break;
                 case 1: // Error
                     LoadingUI.Instance.SetLoadingText("An error occurred");

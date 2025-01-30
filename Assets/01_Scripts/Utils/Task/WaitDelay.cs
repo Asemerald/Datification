@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Utils
 {
-    public class WaitDelay : LocalSingleton<WaitDelay>
+    public class WaitDelay : InstanceBase<WaitDelay>
     {
         /// <summary>
         ///  Activate the gameObject
