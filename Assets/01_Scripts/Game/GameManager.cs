@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
 
-public class GameManager : PersistentNetworkSingleton<GameManager>
+public class GameManager : NetworkInstanceBase<GameManager>
 {
     
     #region Fields

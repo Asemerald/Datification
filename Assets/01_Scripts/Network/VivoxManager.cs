@@ -7,7 +7,7 @@ using Utils;
 
 namespace Network
 {
-    public class VivoxManager : PersistentNetworkSingleton<VivoxManager>
+    public class VivoxManager : NetworkInstanceBase<VivoxManager>
     {
         #region Serialize Fields
         

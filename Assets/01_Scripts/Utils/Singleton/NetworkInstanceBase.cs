@@ -1,9 +1,10 @@
 ﻿using System;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Utils
 {
-    public class InstanceBase<T> : MonoBehaviour where T : MonoBehaviour
+    public class NetworkInstanceBase<T> : NetworkBehaviour where T : NetworkBehaviour
     {
         // A script to inherit from to make a singleton
 
@@ -21,7 +22,7 @@ namespace Utils
             }
             OnAwake();
         }
-
+        
         protected virtual void OnAwake()
         {
             
