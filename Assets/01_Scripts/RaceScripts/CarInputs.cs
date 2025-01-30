@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,11 +17,30 @@ public class CarInputs : MonoBehaviour
     private bool left, right;
 
     [SerializeField] private Animator anim;
-    
+
+    [HideInInspector] public bool secondStage;
+    private bool startEnding;
+
+    private CarController controller;
+
+    private void Start()
+    {
+        controller = GetComponent<CarController>();
+    }
+
     void Update()
     {
-        left = Input.GetKey(KeyCode.LeftArrow);
-        right = Input.GetKey(KeyCode.RightArrow);
+        if (startEnding)
+        {
+            left = true;
+            right = true;
+        }
+        else
+        {
+            left = Input.GetKey(KeyCode.LeftArrow);
+            right = Input.GetKey(KeyCode.RightArrow);
+        }
+        
 
         if (left && right)
         {
@@ -40,5 +60,22 @@ public class CarInputs : MonoBehaviour
         }
         
         anim.SetInteger("States", (int)activeState);
+    }
+
+    public void StartEndingTrigger()
+    {
+        startEnding = true;
+    }
+    
+    public void RampAnimationTrigger()
+    {
+        anim.SetTrigger("Ramp");
+        
+        //Set animation speed equals to currentSpeed;
+        anim.speed = controller.currentSpeed / 100;
+        
+        controller.SwitchCameras();
+        
+        secondStage = true;
     }
 }

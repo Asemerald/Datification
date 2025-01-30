@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -11,7 +12,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float accelMultiplier = 2;
     [SerializeField] private float decelMultiplier = 3;
-    private float currentSpeed;
+    [HideInInspector] public float currentSpeed;
     private float targetSpeed;
     private float baseSpeed;
     
@@ -20,15 +21,26 @@ public class CarController : MonoBehaviour
     [SerializeField] private ParticleSystem boostPs;
     private bool canBoost;
 
+    [Header("Cameras")] 
+    [SerializeField] private CinemachineVirtualCamera mainCam;
+    [SerializeField] private CinemachineVirtualCamera rampCam;
+
+    
     private void Start()
     {
+        rampCam.enabled = false;
+        
         canBoost = true;
         baseSpeed = maxSpeed;
     }
 
     private void Update()
     {
-        RaceUpdate();
+        if (!inputs.secondStage)
+        {
+            RaceUpdate();
+        }
+        
     }
 
     private void RaceUpdate()
@@ -66,5 +78,10 @@ public class CarController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         canBoost = true;
+    }
+
+    public void SwitchCameras()
+    {
+        rampCam.enabled = true;
     }
 }
