@@ -16,13 +16,20 @@ namespace UI
         
         
         #endregion
+
+        #region Fields
+
+        private GameObject EGameObject;
+
+        #endregion
         
         #region Methods
         
         #region Unity Methods
         
-        private void Awake()
+        private void Start()
         {
+            EGameObject = gameObject;
             OnDisable();
             SetLoadingText("Signing in...");
         }
@@ -49,6 +56,16 @@ namespace UI
         public void SetLoadingDetailsText(string text)
         {
             loadingDetailsText.text = text;
+        }
+        
+        public void Show()
+        {
+            EGameObject.SetActive(true);
+        }
+        
+        public void Hide()
+        {
+            EGameObject.SetActive(false);
         }
         
         
