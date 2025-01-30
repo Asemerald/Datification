@@ -501,7 +501,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConnectionPanelUI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6835905174794475459, guid: db0970a80586ff5469348f9fe74358bf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -16,6 +16,8 @@ public class ServerBehaviour : LocalNetworkSingleton<ServerBehaviour>
 
     private void Awake()
     {
-        var gameManager = NetworkManager.SpawnManager.InstantiateAndSpawn(GameManager);
+        if (!IsServer) return;
+        
+        //var gameManager = NetworkManager.SpawnManager.InstantiateAndSpawn(GameManager);
     }
 }
