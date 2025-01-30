@@ -9,6 +9,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private CarInputs inputs;
 
     [Space(15f)] 
+    [Header("Car settings")] 
     [SerializeField] private float maxSpeed;
     [SerializeField] private float accelMultiplier = 2;
     [SerializeField] private float decelMultiplier = 3;
@@ -24,6 +25,9 @@ public class CarController : MonoBehaviour
     [Header("Cameras")] 
     [SerializeField] private CinemachineVirtualCamera mainCam;
     [SerializeField] private CinemachineVirtualCamera rampCam;
+    
+    [Header("Ramp")] 
+    public int rampZone;
 
     
     private void Start()
@@ -69,6 +73,7 @@ public class CarController : MonoBehaviour
         
         canBoost = false;
         maxSpeed += boosterSpeedAdded;
+        targetSpeed += boosterSpeedAdded;
         boostPs.Play();
             
         StartCoroutine(BoosterCooldown());
@@ -83,5 +88,11 @@ public class CarController : MonoBehaviour
     public void SwitchCameras()
     {
         rampCam.enabled = true;
+    }
+    
+    
+    public void LaunchRamp()
+    {
+        
     }
 }
