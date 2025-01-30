@@ -4,7 +4,6 @@ using UnityEngine;
 public class RaceManager : MonoBehaviour
 {
      private RaceManager Instance;
-     
      private enum RaceStep
      {
           BeforeStart,
@@ -13,11 +12,22 @@ public class RaceManager : MonoBehaviour
           ApproachingJump,
           EndOfRace
      }
-
      private int currentStepIndex;
+     private bool debugOn;
+     private float trafficLightAnimDuration;
+     
      
      [SerializeField] private RaceStep currentRaceStep;
-
+     
+     [Header("Elements")]
+     [SerializeField] private CarController carController;
+     [SerializeField] private GameObject trafficLights;
+     
+     [Space,Header("Timings")]
+     [SerializeField] private float trafficLightsEndTime = 1.5f;
+     [SerializeField] private float raceDuration;
+     
+     
      //Singleton Okazou
      private void Awake()
      {
@@ -28,6 +38,9 @@ public class RaceManager : MonoBehaviour
      {
           //Race Step Initialisation
           currentRaceStep = RaceStep.BeforeStart;
+
+          //Gets the duration of the traffic light animation to give the car control at the right timing
+          trafficLightAnimDuration = trafficLights.GetComponent<Animation>().clip.length;
      }
      private void Update()
      {
@@ -37,35 +50,35 @@ public class RaceManager : MonoBehaviour
                case RaceStep.BeforeStart:
                     if (currentStepIndex == 0)
                     {
-                         //Start logique
+                         StartCoroutine(BeforeStart());
                          currentStepIndex++;
                     }
                     break;
                case RaceStep.StartRace:
                     if (currentStepIndex == 1)
                     {
-                         //Start logique
+                         StartCoroutine(StartRace());
                          currentStepIndex++;
                     }
                     break;
                case RaceStep.DuringRace:
                     if (currentStepIndex == 2)
                     {
-                         //Start lgique
+                         StartCoroutine(DuringRace());
                          currentStepIndex++;
                     }
                     break;
                case RaceStep.ApproachingJump:
                     if (currentStepIndex == 3)
                     {
-                         //Start lgique
+                         StartCoroutine(ApproachingSlide());
                          currentStepIndex++;
                     }
                     break;
                case RaceStep.EndOfRace:
                     if (currentStepIndex == 4)
                     {
-                         //Start lgique
+                         StartCoroutine(EndOfRace());
                          currentStepIndex++;
                     }
                     break;
@@ -76,33 +89,45 @@ public class RaceManager : MonoBehaviour
 
      IEnumerator BeforeStart()
      {
-          //StopCar + Wait for Loading
+          DebugCurrentRaceStep();
+          carController.enabled = false;
           yield return new WaitForSeconds(1f);
           currentRaceStep = RaceStep.StartRace;
      }
      IEnumerator StartRace()
      {
-          //Start Traffic Lights + Give car controle
-          yield return new WaitForSeconds(1f);
-          currentRaceStep = RaceStep.StartRace;
+          DebugCurrentRaceStep();
+          
+          trafficLights.SetActive(true);
+          yield return new WaitForSeconds(trafficLightAnimDuration-trafficLightsEndTime);
+          carController.enabled = true;
+          currentRaceStep = RaceStep.DuringRace;
      }
      IEnumerator DuringRace()
      {
-          //Wait for Slide
-          yield return new WaitForSeconds(1f);
+          DebugCurrentRaceStep();
+          yield return new WaitForSeconds(raceDuration);
           currentRaceStep = RaceStep.ApproachingJump;
      }
      IEnumerator ApproachingSlide()
      {
+          DebugCurrentRaceStep();
           //Give slide control to players + Wait for end of jump
           yield return new WaitForSeconds(1f);
           currentRaceStep = RaceStep.EndOfRace;
      }
      IEnumerator EndOfRace()
      {
+          DebugCurrentRaceStep();
           //trigger Score Apparition then trigger exit button
           yield return new WaitForSeconds(1f);
+          
      }
 
      #endregion
+
+     private void DebugCurrentRaceStep()
+     {
+          if (debugOn) Debug.Log(currentRaceStep);
+     }
 }
