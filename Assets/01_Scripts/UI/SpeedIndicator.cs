@@ -6,11 +6,13 @@ public class SpeedIndicator : MonoBehaviour
 
     [SerializeField] private Image speedIndicatorImage;
     
-    private float currentSpeed = 0;
+    private float currentSpeed;
     private float _maxSpeed = 100;
     private float _minSpeed = 0;
     
     [SerializeField] private float acceleration = 1f ;
+
+    [SerializeField] private CarController controller;
     
     private enum AccelerationState
     {
@@ -22,13 +24,15 @@ public class SpeedIndicator : MonoBehaviour
     
     private void Update()
     {
-        playerAccelerationState = AccelerationState.Normal;
+        //playerAccelerationState = AccelerationState.Normal;
+         currentSpeed = controller.currentSpeed;
+        
     
         UpdateIndicatorPosition();
     }
     private void FixedUpdate()
     {
-        switch (playerAccelerationState)
+       /* switch (playerAccelerationState)
         {
             case AccelerationState.Normal:
                 Accelerate();
@@ -39,7 +43,7 @@ public class SpeedIndicator : MonoBehaviour
             case AccelerationState.Obstacle: 
                 //Decelerate 
                 break;
-        }
+        }*/
     }
 
     private void Accelerate()
