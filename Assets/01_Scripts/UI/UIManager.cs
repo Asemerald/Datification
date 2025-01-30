@@ -8,7 +8,7 @@ using Utils.Event;
 
 namespace UI
 {
-    public class UIManager : LocalSingleton<UIManager>
+    public class UIManager : LocalNetworkSingleton<UIManager>
     {
         # region Methods
         
@@ -16,7 +16,7 @@ namespace UI
 
         private void Awake()
         {
-            EditConnectionCode.Instance.OnCodeSubmitEvent += OnJoinCodeSubmit_OnCodeSubmitEvent;
+            ConnectionUI.Instance.OnCodeSubmitEvent += OnJoinCodeSubmit_OnCodeSubmitEvent;
             ConnectionUI.Instance.OnCreateRoomEvent += OnCreateButtonClicked_OnCreateRoomEvent;
             Authentificate.Instance.OnAuthentificateSuccess += DeactivateLoadingScreen_OnAuthentificateSuccess;
         }
@@ -36,6 +36,7 @@ namespace UI
                     break;
                 case 1: // Error
                     LoadingUI.Instance.SetLoadingText("An error occurred");
+                    LoadingUI.Instance.SetLoadingDetailsText("Please try again");
                     await WaitDelay.Instance.WaitFor(2).ContinueWith(_ =>
                     {
                         LoadingUI.Instance.Hide();
@@ -52,11 +53,15 @@ namespace UI
             switch (await RelayManager.Instance.CreateRelayAsync())
             {
                 case 0: // Success
-                    LoadingUI.Instance.Hide();
-                    InGameUI.Instance.Show();
+                    if (!IsServer) break;
+                    
+                    LoadingUI.Instance.SetJoinCodeText("Join Code: " + RelayManager.Instance.JoinCode);
+                    LoadingUI.Instance.SetLoadingText("Room created");
+                    LoadingUI.Instance.SetLoadingDetailsText("Waiting for player");
                     break;
                 case 1: // Unknown error
                     LoadingUI.Instance.SetLoadingText("An error occurred");
+                    LoadingUI.Instance.SetLoadingDetailsText("Please try again");
                     await WaitDelay.Instance.WaitFor(2).ContinueWith(_ =>
                     {
                         LoadingUI.Instance.Hide();

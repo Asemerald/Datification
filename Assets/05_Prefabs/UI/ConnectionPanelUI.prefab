@@ -167,7 +167,6 @@ GameObject:
   - component: {fileID: 9043090687760601391}
   - component: {fileID: 3999845560603214126}
   - component: {fileID: 7335204570546864206}
-  - component: {fileID: 6562291461499207661}
   m_Layer: 0
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -331,19 +330,6 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
---- !u!114 &6562291461499207661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4839144428765671904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6a14a083494bd0a5cc43e52cc0bc47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConnectionCodeInputField: {fileID: 7335204570546864206}
 --- !u!1 &5447548890149502617
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +476,7 @@ GameObject:
   - component: {fileID: 7996044584288625442}
   - component: {fileID: 8164992136429401281}
   - component: {fileID: 6835905174794475459}
+  - component: {fileID: 6560253644116353557}
   m_Layer: 0
   m_Name: ConnectionPanelUI
   m_TagString: Untagged
@@ -569,6 +556,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createButton: {fileID: 3888605267273695655}
+--- !u!114 &6560253644116353557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6682821223723052231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6a14a083494bd0a5cc43e52cc0bc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConnectionCodeInputField: {fileID: 7335204570546864206}
 --- !u!1 &6772579151498731380
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,12 +12,12 @@ namespace Utils
             }
         }
         
-        public void Hide()
+        public virtual void Hide()
         {
             BaseInstance.gameObject.SetActive(false);
         }
         
-        public void Show()
+        public virtual void Show()
         {
             BaseInstance.gameObject.SetActive(true);
         }

@@ -66,85 +66,84 @@ namespace Network
         /// <para>1 = Error</para>
         /// </returns>
         public async Task<int> CreateRelayAsync()
-{
-    try
-    {
-        // Create a Relay allocation
-        LoadingUI.Instance.SetLoadingText("Creating Relay...");
-        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(2);
-
-        // Get the join code
-        LoadingUI.Instance.SetLoadingText("Getting Join Code...");
-        string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-        JoinCode = joinCode;
-        Debug.Log($"Relay created with join code: {joinCode}");
-
-        string host = allocation.RelayServer.IpV4; 
-        ushort port = (ushort)allocation.RelayServer.Port; 
-        byte[] joinAllocationId = allocation.AllocationIdBytes; 
-        byte[] connectionData = allocation.ConnectionData;
-        byte[] hostConnectionData = allocation.ConnectionData;
-        byte[] key = allocation.Key;
-        bool isSecure = false;
-
-        foreach (var endpoint in allocation.ServerEndpoints)
         {
-            if (endpoint.ConnectionType == "dtls")
+            try
             {
-                host = endpoint.Host;
-                port = (ushort)endpoint.Port;
-                isSecure = endpoint.Secure;
-            }
-        }
+                // Create a Relay allocation
+                LoadingUI.Instance.SetLoadingText("Creating Relay...");
+                Allocation allocation = await RelayService.Instance.CreateAllocationAsync(2);
 
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(host,
-            port,
-            joinAllocationId,
-            connectionData,
-            hostConnectionData,
-            key,
-            isSecure));
+                // Get the join code
+                LoadingUI.Instance.SetLoadingDetailsText("Getting Join Code...");
+                string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+                JoinCode = joinCode;
 
-        NetworkManager.Singleton.StartHost();
+                string host = allocation.RelayServer.IpV4; 
+                ushort port = (ushort)allocation.RelayServer.Port; 
+                byte[] joinAllocationId = allocation.AllocationIdBytes; 
+                byte[] connectionData = allocation.ConnectionData;
+                byte[] hostConnectionData = allocation.ConnectionData;
+                byte[] key = allocation.Key;
+                bool isSecure = false;
 
-        // Retry logic for Vivox
-        int maxRetries = 3;
-        int attempt = 0;
-        bool joinedSuccessfully = false;
-
-        while (attempt < maxRetries && !joinedSuccessfully)
-        {
-            attempt++;
-            LoadingUI.Instance.SetLoadingText($"Joining Voice Channel... (Attempt {attempt}/{maxRetries})");
-            Debug.Log($"Attempt {attempt} to join Vivox channel...");
-
-            await VivoxManager.Instance.JoinChannelAsync(joinCode);
-            joinedSuccessfully = await VivoxManager.Instance.ChannelJoinedTaskCompletionSource.Task;
-
-            if (!joinedSuccessfully)
-            {
-                Debug.LogWarning($"Vivox connection attempt {attempt} failed.");
-                if (attempt < maxRetries)
+                foreach (var endpoint in allocation.ServerEndpoints)
                 {
-                    await Task.Delay(1000); // Wait 1 second before retrying
+                    if (endpoint.ConnectionType == "dtls")
+                    {
+                        host = endpoint.Host;
+                        port = (ushort)endpoint.Port;
+                        isSecure = endpoint.Secure;
+                    }
                 }
+
+                NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(host,
+                    port,
+                    joinAllocationId,
+                    connectionData,
+                    hostConnectionData,
+                    key,
+                    isSecure));
+
+                NetworkManager.Singleton.StartHost();
+
+                // Retry logic for Vivox
+                int maxRetries = 5;
+                int attempt = 0;
+                bool joinedSuccessfully = false;
+
+                while (attempt < maxRetries && !joinedSuccessfully)
+                {
+                    attempt++;
+                    LoadingUI.Instance.SetLoadingText($"Joining Voice Channel...)");
+                    LoadingUI.Instance.SetLoadingDetailsText($"Attempt {attempt}/{maxRetries}");
+
+                    await VivoxManager.Instance.JoinChannelAsync(joinCode);
+                    joinedSuccessfully = await VivoxManager.Instance.ChannelJoinedTaskCompletionSource.Task;
+
+                    if (!joinedSuccessfully)
+                    {
+                        Debug.LogWarning($"Vivox connection attempt {attempt} failed.");
+                        if (attempt < maxRetries)
+                        {
+                            await Task.Delay(1000); // Wait 1 second before retrying
+                        }
+                    }
+                }
+
+                if (!joinedSuccessfully)
+                {
+                    Debug.LogError("Failed to join Vivox after 3 attempts.");
+                    return 1; // Failure
+                }
+
+                return 0; // Success
+            }
+            catch (RelayServiceException e)
+            {
+                Debug.LogError($"Failed to create Relay: {e}");
+                return 1; // Failure
             }
         }
-
-        if (!joinedSuccessfully)
-        {
-            Debug.LogError("Failed to join Vivox after 3 attempts.");
-            return 1; // Failure
-        }
-
-        return 0; // Success
-    }
-    catch (RelayServiceException e)
-    {
-        Debug.LogError($"Failed to create Relay: {e}");
-        return 1; // Failure
-    }
-}
 
         
         
@@ -163,9 +162,8 @@ namespace Network
         {
             try
             {
-                Debug.Log($"Attempting to join Relay with code: {joinCode}");
-
                 // Join an existing Relay allocation
+                LoadingUI.Instance.SetLoadingText("Joining Relay...");
                 JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
                 string host = joinAllocation.RelayServer.IpV4;
@@ -190,9 +188,37 @@ namespace Network
                     port, joinAllocationId, connectionData, hostConnectionData, key, isSecure));
                 NetworkManager.Singleton.StartClient();
                 
-                await VivoxManager.Instance.JoinChannelAsync(joinCode);
-                
-                return 0;
+                // Retry logic for Vivox
+                int maxRetries = 5;
+                int attempt = 0;
+                bool joinedSuccessfully = false;
+
+                while (attempt < maxRetries && !joinedSuccessfully)
+                {
+                    attempt++;
+                    LoadingUI.Instance.SetLoadingText($"Joining Voice Channel...)");
+                    LoadingUI.Instance.SetLoadingDetailsText($"Attempt {attempt}/{maxRetries}");
+
+                    await VivoxManager.Instance.JoinChannelAsync(joinCode);
+                    joinedSuccessfully = await VivoxManager.Instance.ChannelJoinedTaskCompletionSource.Task;
+
+                    if (!joinedSuccessfully)
+                    {
+                        Debug.LogWarning($"Vivox connection attempt {attempt} failed.");
+                        if (attempt < maxRetries)
+                        {
+                            await Task.Delay(1000); // Wait 1 second before retrying
+                        }
+                    }
+                }
+
+                if (!joinedSuccessfully)
+                {
+                    Debug.LogError("Failed to join Vivox after 3 attempts.");
+                    return 1; // Failure
+                }
+
+                return 0; // Success
             }
             catch (RelayServiceException e)
             {

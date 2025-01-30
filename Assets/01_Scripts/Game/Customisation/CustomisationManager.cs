@@ -1,6 +1,8 @@
-﻿namespace _01_Scripts.Game.Customisation
+﻿using Utils;
+
+namespace Game.Customisation
 {
-    public class CustomisationManager
+    public class CustomisationManager : LocalSingleton<CustomisationManager>
     {
         
     }
