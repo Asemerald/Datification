@@ -14,6 +14,9 @@ namespace Prefabs
             Accessoires
         }
         
+        [Header("Type de pièce")]
+        public CarPartType type;
+        
         [Header("Unique ID")] 
         public string id;
         
