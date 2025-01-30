@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8522540988441311597}
   - component: {fileID: 5368286078341757572}
   - component: {fileID: 3968675681256004959}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195025b476b4f5e4f8ef71b458f505ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joinCodeText: {fileID: 0}
+  inGameUI: {fileID: 0}
 --- !u!1 &7271482530771013846
 GameObject:
   m_ObjectHideFlags: 0

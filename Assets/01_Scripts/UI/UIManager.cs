@@ -21,9 +21,10 @@ namespace UI
             Authentificate.Instance.OnAuthentificateSuccess += DeactivateLoadingScreen_OnAuthentificateSuccess;
             NetworkManager.Singleton.OnConnectionEvent += ((manager, data) =>
             {
+                if (!IsHost) return;
                 if (NetworkManager.Singleton.ConnectedClientsList.Count < 2) return;
-                if(IsHost)
-                    DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+                DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+
             } );
         }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5284196660340686972}
   - component: {fileID: 2901468854528703315}
   - component: {fileID: 1250173839642528332}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 9043090687760601391}
   - component: {fileID: 3999845560603214126}
   - component: {fileID: 7335204570546864206}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InputField (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 3492580017479642156}
   - component: {fileID: 8986960279677434426}
   - component: {fileID: 1848336368556536374}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,8 +476,7 @@ GameObject:
   - component: {fileID: 7996044584288625442}
   - component: {fileID: 8164992136429401281}
   - component: {fileID: 6835905174794475459}
-  - component: {fileID: 6560253644116353557}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ConnectionPanelUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,18 +555,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createButton: {fileID: 3888605267273695655}
---- !u!114 &6560253644116353557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6682821223723052231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6a14a083494bd0a5cc43e52cc0bc47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   ConnectionCodeInputField: {fileID: 7335204570546864206}
 --- !u!1 &6772579151498731380
 GameObject:
@@ -581,7 +568,7 @@ GameObject:
   - component: {fileID: 620512869821438130}
   - component: {fileID: 8348058684824110649}
   - component: {fileID: 3888605267273695655}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CreateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7463271136028673222}
   - component: {fileID: 4043183685402723317}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +740,7 @@ GameObject:
   - component: {fileID: 5534068208349976433}
   - component: {fileID: 8670345381882005698}
   - component: {fileID: 6686916159489009190}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
