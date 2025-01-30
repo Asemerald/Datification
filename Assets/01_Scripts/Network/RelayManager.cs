@@ -15,7 +15,7 @@ using Utils;
 
 namespace Network
 {
-    public class RelayManager : PersistentNetworkSingleton<RelayManager>
+    public class RelayManager : NetworkInstanceBase<RelayManager>
     {
         #region Serialize Fields
         
@@ -33,11 +33,8 @@ namespace Network
 
         
         #region Unity Methods
-
-        protected override void OnAwake()
-        {
-            base.OnAwake();
-        }
+        
+        
         
         void Start()
         {
@@ -136,10 +133,6 @@ namespace Network
             }
         }
 
-        
-        
-        #endregion
-        
         /// <summary>
         /// Attempts to join a relay using the provided join code.
         /// </summary>
@@ -148,7 +141,6 @@ namespace Network
         /// <para>0 = Success</para>
         /// <para>1 = Error</para>
         /// </returns>
-
         public async Task<int> JoinRelayAsync(string joinCode)
         {
             try
@@ -231,6 +223,10 @@ namespace Network
             }
 
         }
+        
+        #endregion
+        
+        
         
     }
 }
