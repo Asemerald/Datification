@@ -72,6 +72,7 @@ public class CarInputs : MonoBehaviour
     public void StartEndingTrigger()
     {
         startEnding = true;
+        controller.canLaunch = true;
     }
     
     public void RampAnimationTrigger()
