@@ -5,7 +5,7 @@ using Unity.Netcode;
 using UnityEngine;
 using Utils;
 
-public class ServerBehaviour : LocalNetworkSingleton<ServerBehaviour>
+public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
 {
     #region Serialize Fields
     
@@ -14,13 +14,18 @@ public class ServerBehaviour : LocalNetworkSingleton<ServerBehaviour>
     
     #endregion
 
-    private void Awake()
+    protected void Start()
+    {
+        
+    }
+
+    public void SpawnGameManager_OnRelayJoined()
     {
         if (!IsServer) return;
         
-        //var gameManager = NetworkManager.SpawnManager.InstantiateAndSpawn(GameManager);
+        Debug.Log("ServerBehaviour Awake");
+        var gameManager = NetworkManager.SpawnManager.InstantiateAndSpawn(GameManager);
     }
-    
     
     
 }

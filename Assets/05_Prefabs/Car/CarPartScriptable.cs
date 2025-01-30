@@ -21,7 +21,7 @@ namespace Prefabs
         public string id;
         
         [Header("Nom de la pièce")]
-        public string name;
+        public new string name;
         
         [Header("Mesh de la pièce")]
         public Mesh LeftMesh;
