@@ -14,10 +14,11 @@ namespace UI
         
         #region Unity Methods
 
-        private void Awake()
+        private void Start()
         {
-            ConnectionUI.Instance.OnCodeSubmitEvent += OnJoinCodeSubmit_OnCodeSubmitEvent;
-            ConnectionUI.Instance.OnCreateRoomEvent += OnCreateButtonClicked_OnCreateRoomEvent;
+            
+            ConnectionPanelUI.Instance.OnCodeSubmitEvent += OnJoinCodeSubmit_OnCodeSubmitEvent;
+            ConnectionPanelUI.Instance.OnCreateRoomEvent += OnCreateButtonClicked_OnCreateRoomEvent;
             Authentificate.Instance.OnAuthentificateSuccess += DeactivateLoadingScreen_OnAuthentificateSuccess;
             NetworkManager.Singleton.OnConnectionEvent += ((manager, data) =>
             {
@@ -32,7 +33,7 @@ namespace UI
         
         private async void OnJoinCodeSubmit_OnCodeSubmitEvent(object sender, StringEventArgs args)
         {
-            ConnectionUI.Instance.Hide();
+            ConnectionPanelUI.Instance.Hide();
             LoadingUI.Instance.Show();
             var returnCode = await RelayManager.Instance.JoinRelayAsync(args.String);
             switch (returnCode)
@@ -47,7 +48,7 @@ namespace UI
                     await WaitDelay.Instance.WaitFor(2).ContinueWith(_ =>
                     {
                         LoadingUI.Instance.Hide();
-                        ConnectionUI.Instance.Show();
+                        ConnectionPanelUI.Instance.Show();
                     });
                     break;
             }
@@ -55,7 +56,7 @@ namespace UI
         
         private async void OnCreateButtonClicked_OnCreateRoomEvent(object sender, EventArgs args)
         {
-            ConnectionUI.Instance.Hide();
+            ConnectionPanelUI.Instance.Hide();
             LoadingUI.Instance.Show();
             switch (await RelayManager.Instance.CreateRelayAsync())
             {
@@ -72,7 +73,7 @@ namespace UI
                     await WaitDelay.Instance.WaitFor(2).ContinueWith(_ =>
                     {
                         LoadingUI.Instance.Hide();
-                        ConnectionUI.Instance.Show();
+                        ConnectionPanelUI.Instance.Show();
                     });
                     break;
             }
@@ -81,7 +82,7 @@ namespace UI
         private void DeactivateLoadingScreen_OnAuthentificateSuccess(object sender, EventArgs args)
         {
             LoadingUI.Instance.Hide();
-            ConnectionUI.Instance.Show();
+            ConnectionPanelUI.Instance.Show();
         }
         
         private async void DeactivateLoadingScreen_OnRelayFullEvent(object sender, EventArgs args)
@@ -92,6 +93,7 @@ namespace UI
             {
                 LoadingUI.Instance.Hide();
                 InGameUI.Instance.Show();
+                InGameUI.Instance.ShowStartButton();
             });
         }
         

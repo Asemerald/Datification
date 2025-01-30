@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,13 +7,14 @@ using Utils.Event;
 
 namespace UI
 {
-    public class ConnectionUI : LocalSingleton<ConnectionUI>
+    public class ConnectionPanelUI : InstanceBase<ConnectionPanelUI>
     {
         #region Serialized Fields
-    
+
         [Header("Connection UI")]
-        [SerializeField] private Button createButton;
-        [SerializeField] private TMP_InputField ConnectionCodeInputField;
+        public Button createRelayButton;
+        public Button joinButton;
+        public TMP_InputField ConnectionCodeInputField;
     
         #endregion
         
@@ -22,21 +23,37 @@ namespace UI
         public event EventHandler<EventArgs> OnCreateRoomEvent;
         private string connectionCode = "";
         public event EventHandler<StringEventArgs> OnCodeSubmitEvent;
+        private GameObject EGameObject;
         
         #endregion
 
-        private void Awake()
+        private void Start()
         {
-            createButton.onClick.AddListener(() =>
+            EGameObject = gameObject;
+            if (createRelayButton != null)
             {
-                OnCreateRoomEvent?.Invoke(this, EventArgs.Empty);
-            });
+                createRelayButton.onClick.AddListener(OnCreateButtonClicked);
+            }
+
+            if (joinButton != null)
+            {
+                joinButton.onClick.AddListener(() =>
+                {
+                    OnSubmit(connectionCode);
+                });
+            }
             
             // Ensure the input field updates text in uppercase without causing an infinite loop.
-            ConnectionCodeInputField.onValueChanged.AddListener(OnInputFieldChanged);
+            if (ConnectionCodeInputField != null)
+            {
+                ConnectionCodeInputField.onValueChanged.AddListener(OnInputFieldChanged);
+            }
             
             // Ensure the input field submits the code when the user presses enter.
-            ConnectionCodeInputField.onSubmit.AddListener(OnSubmit);
+            if (ConnectionCodeInputField != null)
+            {
+                ConnectionCodeInputField.onSubmit.AddListener(OnSubmit);
+            }
             
             Hide();
         }
@@ -78,5 +95,38 @@ namespace UI
         {
             return connectionCode;
         }
+        
+        
+        // JSP PK J'AI BESOIN DE FAIRE ÇA 
+        public void OnCreateButtonClicked()
+        {
+            OnCreateRoomEvent?.Invoke(this, EventArgs.Empty);
+        }
+        
+        public void OnJoinButtonClicked()
+        {
+            OnSubmit(connectionCode);
+        }
+        
+        public void OnInputFieldSubmitted(string code)
+        {
+            OnSubmit(code);
+        }
+        
+        public void OnInputFieldValueChanged(string code)
+        {
+            OnInputFieldChanged(code);
+        }
+        
+        public void Show()
+        {
+            EGameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            EGameObject.SetActive(false);
+        }
+        
     }
 }
