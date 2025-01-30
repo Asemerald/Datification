@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CarInputs : MonoBehaviour
 {
-    private enum States
+    public enum States
     {
         noActive,
         leftActive,
         rightActive,
-        //allActive
+        allActive
     }
 
-    [SerializeField] private States activeState;
+    public States activeState;
     private bool left, right;
 
     [SerializeField] private Animator anim;
@@ -24,7 +24,7 @@ public class CarInputs : MonoBehaviour
 
         if (left && right)
         {
-            //activeState = States.allActive;
+            activeState = States.allActive;
         }
         else if (!left && right)
         {
