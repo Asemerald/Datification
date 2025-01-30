@@ -22,5 +22,10 @@ public class CarCollision : MonoBehaviour
         {
             GetComponentInParent<CarInputs>().StartEndingTrigger();
         }
+
+        if (other.gameObject.CompareTag("RampZone"))
+        {
+            GetComponentInParent<CarController>().rampZone++;
+        }
     }
 }
