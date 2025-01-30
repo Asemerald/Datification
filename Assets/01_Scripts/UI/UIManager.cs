@@ -39,15 +39,18 @@ namespace UI
                     return;
                 }
                 DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+                uiDisabled = true;
 
             } );
         }
 
         private void Update()
         {
-            if (NetworkManager.Singleton.ConnectedClientsList.Count < 2 && !uiDisabled)
+            if (!IsHost) return;
+            if (NetworkManager.Singleton.ConnectedClientsList.Count == 2 && !uiDisabled)
             {
                 DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+                uiDisabled = true;
             }
         }
 
