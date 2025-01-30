@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4683093352918641863}
   - component: {fileID: 3674561969063842411}
   - component: {fileID: 5395786323753644509}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LoadingText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 7104155554758802486}
   - component: {fileID: 7390269556228767392}
   - component: {fileID: 6274976000438686261}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LoadingPanelUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 7692257702230355390}
   - component: {fileID: 8784949234220522093}
   - component: {fileID: 4807742239609439212}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LoadingDetailsText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ta soeur sur 5 sayh
+  m_text: Attempts sur 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 7705624855409386053}
   - component: {fileID: 7675676423837477830}
   - component: {fileID: 2941330741411930412}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: JoinCodeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

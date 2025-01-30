@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Network;
-using Unity.Services.Relay;
-using UnityEngine;
 using Utils;
 using Utils.Event;
+using Unity.Netcode;
+
 
 namespace UI
 {
@@ -19,6 +19,13 @@ namespace UI
             ConnectionUI.Instance.OnCodeSubmitEvent += OnJoinCodeSubmit_OnCodeSubmitEvent;
             ConnectionUI.Instance.OnCreateRoomEvent += OnCreateButtonClicked_OnCreateRoomEvent;
             Authentificate.Instance.OnAuthentificateSuccess += DeactivateLoadingScreen_OnAuthentificateSuccess;
+            NetworkManager.Singleton.OnConnectionEvent += ((manager, data) =>
+            {
+                if (!IsHost) return;
+                if (NetworkManager.Singleton.ConnectedClientsList.Count < 2) return;
+                DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+
+            } );
         }
 
         #endregion
@@ -75,6 +82,17 @@ namespace UI
         {
             LoadingUI.Instance.Hide();
             ConnectionUI.Instance.Show();
+        }
+        
+        private async void DeactivateLoadingScreen_OnRelayFullEvent(object sender, EventArgs args)
+        {
+            LoadingUI.Instance.SetLoadingText("Player Connected");
+            LoadingUI.Instance.SetLoadingDetailsText("Starting game...");
+            await WaitDelay.Instance.WaitFor(2).ContinueWith(_ =>
+            {
+                LoadingUI.Instance.Hide();
+                InGameUI.Instance.Show();
+            });
         }
         
         #endregion
