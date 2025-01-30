@@ -29,29 +29,31 @@ namespace UI
             ConnectionPanelUI.Instance.OnCodeSubmitEvent += OnJoinCodeSubmit_OnCodeSubmitEvent;
             ConnectionPanelUI.Instance.OnCreateRoomEvent += OnCreateButtonClicked_OnCreateRoomEvent;
             Authentificate.Instance.OnAuthentificateSuccess += DeactivateLoadingScreen_OnAuthentificateSuccess;
-            NetworkManager.Singleton.OnConnectionEvent += ((manager, data) =>
-            {
-                
-                if (!IsHost) return;
-                if (NetworkManager.Singleton.ConnectedClientsList.Count < 2)
-                {
-                    ServerBehaviour.Instance.SpawnGameManager_OnRelayJoined();
-                    return;
-                }
-                DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
-                uiDisabled = true;
-
-            } );
+            NetworkManager.Singleton.OnClientConnectedCallback += SingletonOnOnClientConnectedCallback;
         }
 
         private void Update()
         {
-            if (!IsHost) return;
-            if (NetworkManager.Singleton.ConnectedClientsList.Count == 2 && !uiDisabled)
+            if (!NetworkManager.Singleton.IsHost) return;
+            if (NetworkManager.Singleton.ConnectedClients.Count == 2 && !uiDisabled)
             {
                 DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
                 uiDisabled = true;
             }
+        }
+
+        private void SingletonOnOnClientConnectedCallback(ulong obj)
+        {
+            Debug.LogError("Client connected");
+            if (!NetworkManager.Singleton.IsHost) return;
+            if (NetworkManager.Singleton.ConnectedClientsList.Count < 2)
+            {
+                ServerBehaviour.Instance.SpawnGameManager_OnRelayJoined();
+                return;
+            }
+            DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+            uiDisabled = true;
+
         }
 
         #endregion
@@ -112,6 +114,7 @@ namespace UI
         
         private async void DeactivateLoadingScreen_OnRelayFullEvent(object sender, EventArgs args)
         {
+            uiDisabled = true;
             LoadingUI.Instance.SetLoadingText("Player Connected");
             LoadingUI.Instance.SetLoadingDetailsText("Starting game...");
             await WaitDelay.Instance.WaitFor(2).ContinueWith(_ =>

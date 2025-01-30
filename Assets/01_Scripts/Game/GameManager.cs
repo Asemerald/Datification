@@ -14,7 +14,7 @@ public class GameManager : NetworkInstanceBase<GameManager>
     #region Fields
     
     public LevelsScriptable currentLevel;
-    public NetworkVariable<string> levelName = new("");
+    private NetworkVariable<string> levelName;
     
     #endregion
     
@@ -25,6 +25,7 @@ public class GameManager : NetworkInstanceBase<GameManager>
     private void Start()
     {
         InitGame();
+        levelName = new NetworkVariable<string>(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     }
     
     #endregion
@@ -32,7 +33,6 @@ public class GameManager : NetworkInstanceBase<GameManager>
     {
         if (NetworkManager.Singleton.IsHost)
         {
-            Debug.Log("Choosing Current Level");
             currentLevel = CustomisationManager.Instance.SelectRandomLevel();
             levelName.Value = currentLevel.name;
         }
