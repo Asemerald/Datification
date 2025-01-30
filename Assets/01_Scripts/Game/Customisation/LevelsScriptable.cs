@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Prefabs
+namespace Game
 {
     [CreateAssetMenu(fileName = "Level", menuName = "ScriptableObjects/NewLevel", order = 1)]
     public class LevelsScriptable : ScriptableObject

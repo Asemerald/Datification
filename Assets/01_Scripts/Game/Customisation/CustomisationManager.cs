@@ -1,6 +1,6 @@
 ﻿using System;
 using Cinemachine;
-using Prefabs;
+using Game;
 using TMPro;
 using UnityEngine;
 using Utils;
@@ -36,10 +36,13 @@ namespace Game.Customisation
         
         #endregion
         
-        public void SetThemeText(string text)
+        public void SetThemeText(string text, bool show)
         {
-            themeGameObject.SetActive(true);
-            themeText.text = text;
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                themeGameObject.SetActive(show);
+                themeText.text = text;
+            });
         }
         
         public LevelsScriptable SelectRandomLevel()
@@ -77,7 +80,7 @@ namespace Game.Customisation
                     return level;
                 }
             }
-            
+            Debug.LogError("Level not found");
             return null;
         }
         

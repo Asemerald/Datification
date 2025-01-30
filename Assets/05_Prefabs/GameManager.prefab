@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3406359066
+  GlobalObjectIdHash: 1561605986
   InScenePlacedSourceGlobalObjectIdHash: 3406359066
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -66,6 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff83dda89d7237944944dc6c662d0aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carLeftPrefab: {fileID: 8271162676860214250, guid: 0357e10f0916c9f4ca664fc227b3682a, type: 3}
+  carRightPrefab: {fileID: 7145519604911353049, guid: e9ba6a0eb9ac2c6459abbdd838e475cb, type: 3}
+  bubblePrefab: {fileID: 6237567891918554191, guid: 1bdc71832536af343bf4be36cf59c4ce, type: 3}
   currentLevel: {fileID: 0}
-  levelName:
-    m_InternalValue: Level 1
+  levelName: 

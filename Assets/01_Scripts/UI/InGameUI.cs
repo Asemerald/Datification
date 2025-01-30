@@ -1,7 +1,9 @@
 using System;
+using Game;
 using Network;
 using TMPro;
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -32,8 +34,7 @@ namespace UI
         private void Start()
         {
             EGameObject = gameObject;
-
-            StartButton?.onClick.AddListener(OnStartButtonClicked);
+            
 
             if (StartButton != null)
             {
@@ -56,6 +57,10 @@ namespace UI
         public void OnStartButtonClicked()
         {
             GameManager.Instance.StartGame();
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                StartButton.gameObject.SetActive(false);
+            });
         }
         
         public void ShowStartButton()

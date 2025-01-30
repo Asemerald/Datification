@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Game;
 using Network;
 using Utils;
 using Utils.Event;
@@ -37,20 +38,20 @@ namespace UI
             if (!NetworkManager.Singleton.IsHost) return;
             if (NetworkManager.Singleton.ConnectedClients.Count == 2 && !uiDisabled)
             {
-                DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+                SingletonOnOnClientConnectedCallback();
                 uiDisabled = true;
             }
         }
 
-        private void SingletonOnOnClientConnectedCallback(ulong obj)
+        private void SingletonOnOnClientConnectedCallback(ulong obj = 0)
         {
-            Debug.LogError("Client connected");
             if (!NetworkManager.Singleton.IsHost) return;
             if (NetworkManager.Singleton.ConnectedClientsList.Count < 2)
             {
                 ServerBehaviour.Instance.SpawnGameManager_OnRelayJoined();
                 return;
             }
+            GameManager.Instance.ClientJoinedServerRpc();
             DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
             uiDisabled = true;
 

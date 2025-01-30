@@ -30,30 +30,6 @@ namespace UI
         private void Start()
         {
             EGameObject = gameObject;
-            if (createRelayButton != null)
-            {
-                createRelayButton.onClick.AddListener(OnCreateButtonClicked);
-            }
-
-            if (joinButton != null)
-            {
-                joinButton.onClick.AddListener(() =>
-                {
-                    OnSubmit(connectionCode);
-                });
-            }
-            
-            // Ensure the input field updates text in uppercase without causing an infinite loop.
-            if (ConnectionCodeInputField != null)
-            {
-                ConnectionCodeInputField.onValueChanged.AddListener(OnInputFieldChanged);
-            }
-            
-            // Ensure the input field submits the code when the user presses enter.
-            if (ConnectionCodeInputField != null)
-            {
-                ConnectionCodeInputField.onSubmit.AddListener(OnSubmit);
-            }
             
             Hide();
         }

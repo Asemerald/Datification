@@ -1,72 +1,97 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Game.Customisation;
-using Prefabs;
+using Game;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils;
 
-public class GameManager : NetworkInstanceBase<GameManager>
+namespace Game
 {
-    
-    #region Fields
-    
-    public LevelsScriptable currentLevel;
-    private NetworkVariable<string> levelName;
-    
-    #endregion
-    
-    #region Methods
-
-    #region Unity Methods
-
-    private void Start()
+    public partial class GameManager : NetworkInstanceBase<GameManager>
     {
-        InitGame();
-        levelName = new NetworkVariable<string>(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    }
     
-    #endregion
-    private void InitGame()
-    {
-        if (NetworkManager.Singleton.IsHost)
+        #region SerializeField
+    
+        [Header("Game Prefabs")]
+        [SerializeField] private GameObject carLeftPrefab;
+        [SerializeField] private GameObject carRightPrefab;
+        [SerializeField] private BubbleBehaviour bubblePrefab;
+    
+        #endregion
+    
+        #region Fields
+    
+        public LevelsScriptable currentLevel;
+        public string levelName;
+    
+        #endregion
+    
+        #region Methods
+
+        #region Unity Methods
+
+        public override void OnNetworkSpawn()
         {
-            currentLevel = CustomisationManager.Instance.SelectRandomLevel();
-            levelName.Value = currentLevel.name;
+            base.OnNetworkSpawn();
+        
+            InitGame();
         }
-    }
-
-    private void GetDataFromServer()
-    {
-        if (IsClient)
+    
+        #endregion
+        private void InitGame()
         {
-            CustomisationManager.Instance.GetLevelByName(levelName.Value);
+            if (NetworkManager.Singleton.IsHost)
+            {
+                currentLevel = CustomisationManager.Instance.SelectRandomLevel();
+                levelName = currentLevel.name;
+            }
         }
-    }
-    
-    public void StartGame()
-    {
-        if (IsHost)
-        {
-            StartGameServerRpc();
-        }
-    }
-    
-    [ServerRpc]
-    private void StartGameServerRpc()
-    {
-        StartGameClientRpc();
-    }
-    
-    [ClientRpc]
-    private void StartGameClientRpc()
-    {
-        if (IsServer && IsHost) return;
-        GetDataFromServer();
-    }
-    
-    #endregion
 
+        private void GetDataFromServer(string serverLevelName)
+        {
+            if (IsClient)
+            {
+                currentLevel = CustomisationManager.Instance.GetLevelByName(serverLevelName);
+            }
+        }
+    
+        public void StartGame()
+        {
+            if (NetworkManager.Singleton.IsHost)
+            {
+                StartGameServerRpc();
+            }
+        }
+    
+        [ServerRpc]
+        private void StartGameServerRpc()
+        {
+        
+            StartGameClientRpc(levelName);
+        }
+    
+        [ClientRpc]
+        private void StartGameClientRpc(string levelName)
+        {
+            CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
+            SpawnCarrosserieBubbles();
+            if (NetworkManager.Singleton.IsHost) return;
+        
+        }
+    
+        [ServerRpc]
+        public void ClientJoinedServerRpc()
+        {
+            ClientJoinedClientRpc(levelName);
+        }
+    
+        [ClientRpc]
+        private void ClientJoinedClientRpc(string levelNameServer)
+        {
+            if (NetworkManager.Singleton.IsHost) return;
+            GetDataFromServer(levelNameServer);
+        }
+    
+        #endregion
+
+    }
 }

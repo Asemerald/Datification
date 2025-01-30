@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 8271162676860214250, guid: 0357e10f0916c9f4ca664fc227b3682a, type: 3}
+      propertyPath: m_TagString
+      value: Car
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -450,7 +454,7 @@ GameObject:
   - component: {fileID: 917868358}
   - component: {fileID: 917868357}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ThemeBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -611,6 +615,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2618646829795967956, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
   m_PrefabInstance: {fileID: 4035646641729928434}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1076467005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1024537940430851851, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+  m_PrefabInstance: {fileID: 4035646641729928434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc64e8b9617aed4d9853e067ba0e84a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1417067197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 339640050060503823, guid: b5bd95b2aef95d048a2ebae300edb836, type: 3}
@@ -836,6 +851,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 51435737266022543, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1076467005}
+    - target: {fileID: 51435737266022543, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCreateButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 51435737266022543, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.ConnectionPanelUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 255101936781678659, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -880,6 +907,46 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 3cae2a3e5ebca4f44b4a2ef9a03591ef, type: 2}
+    - target: {fileID: 4521972139983504861, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_TagString
+      value: MainCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281245454789715085, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1076467005}
+    - target: {fileID: 5281245454789715085, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnJoinButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281245454789715085, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.ConnectionPanelUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5803526755285936486, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1076467005}
+    - target: {fileID: 5803526755285936486, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInputFieldSubmitted
+      objectReference: {fileID: 0}
+    - target: {fileID: 5803526755285936486, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1076467005}
+    - target: {fileID: 5803526755285936486, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInputFieldValueChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5803526755285936486, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.ConnectionPanelUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5803526755285936486, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.ConnectionPanelUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6106215183796534482, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

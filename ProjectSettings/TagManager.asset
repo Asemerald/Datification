@@ -8,6 +8,8 @@ TagManager:
   - RampTrigger
   - MiddleTrigger
   - RampZone
+  - Car
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

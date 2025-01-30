@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Prefabs
+namespace Game
 {
     [CreateAssetMenu(fileName = "CarPart", menuName = "ScriptableObjects/NewCarPart", order = 1)]
     public class CarPartScriptable : ScriptableObject
@@ -13,6 +13,9 @@ namespace Prefabs
             Phares,
             Accessoires
         }
+        
+        [Header("Icone de la pièce")]
+        public Sprite icon;
         
         [Header("Type de pièce")]
         public CarPartType type;
