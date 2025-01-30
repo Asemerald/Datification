@@ -18,7 +18,10 @@ internal class UnityMainThread : MonoBehaviour
         while (asyncJobs.Count > 0)
         {
             Func<Task> job = asyncJobs.Dequeue();
-            await job(); // Now properly await async tasks
+            if (job != null)
+            {
+                await job(); // Now properly await async tasks
+            }
         }
     }
 
