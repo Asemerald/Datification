@@ -92,7 +92,9 @@ public class CarController : MonoBehaviour
         canBoost = false;
         baseSpeed += boosterSpeedAdded;
         boostPs.Play();
-            
+        
+        inputs.animCar.SetTrigger("Boost");
+        
         StartCoroutine(BoosterCooldown());
     }
 

@@ -8,7 +8,6 @@ namespace Game
     public partial class GameManager
     {
         
-        
         private void DespawnAllBubbles()
         {
             var bubbles = GameObject.FindGameObjectsWithTag("Bubble");
