@@ -1,51 +1,64 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Network;
-using Unity.Netcode;
-using Unity.Services.Core;
-using UnityEngine;
 using Unity.Services.Authentication;
+using Unity.Services.Core;
 using Unity.Services.Vivox;
+using UnityEngine;
 using Utils;
 
-public class Authentificate : LocalSingleton<Authentificate>
+public class Authentificate : InstanceBase<Authentificate>
 {
-
     public event EventHandler<EventArgs> OnAuthentificateSuccess;
 
     private void Start()
     {
+        StartCoroutine(WaitForUnityMainThread());
+    }
+
+    private IEnumerator WaitForUnityMainThread()
+    {
+        while (UnityMainThread.wkr == null && VivoxManager.Instance == null)  // Wait until UnityMainThread initializes
+            yield return null;
+
         Initialise();
     }
 
-    private async void Initialise()
+
+    private void Initialise()
     {
-        try
+        UnityMainThread.wkr.AddJobAsync(async () =>
         {
-            await UnityServices.InitializeAsync();
-
-            AuthenticationService.Instance.SignedIn += () =>
+            try
             {
-                Debug.Log("Signed in as: " + AuthenticationService.Instance.PlayerId);
-            };
+                await UnityServices.InitializeAsync();
 
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            await VivoxService.Instance.InitializeAsync();
-            VivoxManager.Instance.LoginToVivoxAsync();
-            
-            OnAuthentificateSuccess?.Invoke(this, EventArgs.Empty);
+                if (AuthenticationService.Instance.IsSignedIn)  // Prevent double sign-in
+                {
+                    Debug.LogWarning("Already signed in. Skipping authentication.");
+                }
+                else
+                {
+                    await AuthenticationService.Instance.SignInAnonymouslyAsync();
+                }
 
-        }
-        catch (Exception e)
-        {
-            await WaitDelay.Instance.WaitFor(2).ContinueWith(_ =>
+                AuthenticationService.Instance.SignedIn += () =>
+                {
+                    Debug.Log("Signed in as: " + AuthenticationService.Instance.PlayerId);
+                };
+
+                await VivoxService.Instance.InitializeAsync();
+                VivoxManager.Instance.LoginToVivoxAsync();
+
+                OnAuthentificateSuccess?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception e)
             {
-                Debug.LogError("An error occurred during the authentification process: " + e.Message);
-                Initialise();
-            });
-        }
+                await WaitDelay.Instance.WaitFor(2);
+                Debug.LogError("An error occurred during authentication: " + e.Message);
+                Initialise(); // Retry authentication
+            }
+        });
     }
-    
-    
+
 }

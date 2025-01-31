@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb7b426979387e4c883a8022c545d62, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  theme: 
-  carrosserieList: []
+  theme: C LE LEVLE 1
+  carrosserieList:
+  - {fileID: 11400000, guid: 1cae420f17490664bae753b3f7c4fddd, type: 2}
+  - {fileID: 11400000, guid: 3030a03bf23e5ca4dbe7c338c59f76c0, type: 2}
   rouesList: []
   pharesList: []
   accessoiresList: []

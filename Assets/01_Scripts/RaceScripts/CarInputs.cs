@@ -37,8 +37,11 @@ public class CarInputs : MonoBehaviour
         }
         else
         {
-            left = Input.GetKey(KeyCode.LeftArrow);
-            right = Input.GetKey(KeyCode.RightArrow);
+            if (RaceManager.Instance.currentRaceStep != RaceManager.RaceStep.BeforeStart)
+            {
+                left = Input.GetKey(KeyCode.LeftArrow);
+                right = Input.GetKey(KeyCode.RightArrow);
+            }
         }
 
         
@@ -72,6 +75,7 @@ public class CarInputs : MonoBehaviour
     public void StartEndingTrigger()
     {
         startEnding = true;
+        controller.canLaunch = true;
     }
     
     public void RampAnimationTrigger()

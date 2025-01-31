@@ -7,6 +7,9 @@ TagManager:
   - Booster
   - RampTrigger
   - MiddleTrigger
+  - RampZone
+  - Car
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

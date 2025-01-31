@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Game;
 using Network;
 using Utils;
 using Utils.Event;
 using Unity.Netcode;
+using UnityEngine;
 
 
 namespace UI
 {
-    public class UIManager : LocalNetworkSingleton<UIManager>
+    public class UIManager : NetworkInstanceBase<UIManager>
     {
+
+        #region Fields
+
+        private bool uiDisabled = false;
+
+        #endregion
+        
+        
         # region Methods
         
         #region Unity Methods
@@ -20,13 +30,31 @@ namespace UI
             ConnectionPanelUI.Instance.OnCodeSubmitEvent += OnJoinCodeSubmit_OnCodeSubmitEvent;
             ConnectionPanelUI.Instance.OnCreateRoomEvent += OnCreateButtonClicked_OnCreateRoomEvent;
             Authentificate.Instance.OnAuthentificateSuccess += DeactivateLoadingScreen_OnAuthentificateSuccess;
-            NetworkManager.Singleton.OnConnectionEvent += ((manager, data) =>
-            {
-                if (!IsHost) return;
-                if (NetworkManager.Singleton.ConnectedClientsList.Count < 2) return;
-                DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+            NetworkManager.Singleton.OnClientConnectedCallback += SingletonOnOnClientConnectedCallback;
+        }
 
-            } );
+        private void Update()
+        {
+            if (!NetworkManager.Singleton.IsHost) return;
+            if (NetworkManager.Singleton.ConnectedClients.Count == 2 && !uiDisabled)
+            {
+                SingletonOnOnClientConnectedCallback();
+                uiDisabled = true;
+            }
+        }
+
+        private void SingletonOnOnClientConnectedCallback(ulong obj = 0)
+        {
+            if (!NetworkManager.Singleton.IsHost) return;
+            if (NetworkManager.Singleton.ConnectedClientsList.Count < 2)
+            {
+                ServerBehaviour.Instance.SpawnGameManager_OnRelayJoined();
+                return;
+            }
+            GameManager.Instance.ClientJoinedServerRpc();
+            DeactivateLoadingScreen_OnRelayFullEvent(this, EventArgs.Empty);
+            uiDisabled = true;
+
         }
 
         #endregion
@@ -39,8 +67,8 @@ namespace UI
             switch (returnCode)
             {
                 case 0: // Success
-                    LoadingUI.Instance.Hide();
                     InGameUI.Instance.Show();
+                    LoadingUI.Instance.Hide();
                     break;
                 case 1: // Error
                     LoadingUI.Instance.SetLoadingText("An error occurred");
@@ -87,6 +115,7 @@ namespace UI
         
         private async void DeactivateLoadingScreen_OnRelayFullEvent(object sender, EventArgs args)
         {
+            uiDisabled = true;
             LoadingUI.Instance.SetLoadingText("Player Connected");
             LoadingUI.Instance.SetLoadingDetailsText("Starting game...");
             await WaitDelay.Instance.WaitFor(2).ContinueWith(_ =>

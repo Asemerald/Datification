@@ -19,6 +19,12 @@ namespace Utils
             {
                 Destroy(gameObject);
             }
+            OnAwake();
+        }
+
+        protected virtual void OnAwake()
+        {
+            
         }
     }
 }

@@ -1,7 +1,9 @@
 using System;
+using Game;
 using Network;
 using TMPro;
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -9,7 +11,7 @@ using Utils;
 
 namespace UI
 {
-    public class InGameUI : LocalSingleton<InGameUI>
+    public class InGameUI : InstanceBase<InGameUI>
     {
         #region SerializeField
 
@@ -21,7 +23,7 @@ namespace UI
         
         #region Fields
 
-        private GameObject EGameObject;
+        public GameObject EGameObject;
         
         #endregion
     
@@ -32,12 +34,17 @@ namespace UI
         private void Start()
         {
             EGameObject = gameObject;
-
-            StartButton?.onClick.AddListener(OnStartButtonClicked);
-
-            if (StartButton != null) StartButton.gameObject.SetActive(false);
             
-            Hide();
+
+            if (StartButton != null)
+            {
+                UnityMainThread.wkr.AddJob(() =>
+                {
+                    StartButton.gameObject.SetActive(false);
+                });
+            }
+            
+            //Hide();
         }
 
         private void OnEnable()
@@ -50,21 +57,34 @@ namespace UI
         public void OnStartButtonClicked()
         {
             GameManager.Instance.StartGame();
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                StartButton.gameObject.SetActive(false);
+            });
         }
         
         public void ShowStartButton()
         {
-            StartButton.gameObject.SetActive(true);
+           UnityMainThread.wkr.AddJob(() =>
+           {
+               StartButton.gameObject.SetActive(true);
+           });
         }
         
         public void Show()
         {
-            EGameObject.SetActive(true);
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                EGameObject.SetActive(true);
+            });
         }
         
         public void Hide()
         {
-            EGameObject.SetActive(false);
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                EGameObject.SetActive(false);
+            });
         }
     
         #endregion
