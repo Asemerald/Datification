@@ -248,18 +248,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d74bb7f9af3f1e4a81ab42cd427bfa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: {fileID: 0}
-  maxSpeed: 100
+  inputs: {fileID: 5540459282989928068}
+  maxSpeed: 30
   baseSpeed: 30
-  accelMultiplier: 2
-  decelMultiplier: 3
+  accelMultiplier: 5
+  decelMultiplier: 8
   currentSpeed: 0
   boosterSpeedAdded: 10
   boostPs: {fileID: 4785243005129899974}
-  mainCam: {fileID: 0}
+  mainCam: {fileID: 7701925862411066908}
   rampCam: {fileID: 0}
   rampZone: 0
   canLaunch: 0
+  animatorJ1: {fileID: 7315633593182286316}
+  animatorJ2: {fileID: 8946285889998748030}
 --- !u!114 &5540459282989928068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,9 +278,8 @@ MonoBehaviour:
   left: 0
   right: 0
   anim: {fileID: 62839763368843421}
+  animCar: {fileID: 0}
   secondStage: 0
-  leftButton: {fileID: 0}
-  rightButton: {fileID: 0}
 --- !u!95 &62839763368843421
 Animator:
   serializedVersion: 5
