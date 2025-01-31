@@ -424,6 +424,7 @@ MonoBehaviour:
   acceleration: 0.1
   controller: {fileID: 0}
   playerAccelerationState: 0
+  speedText: {fileID: 3507771353867696385}
 --- !u!1 &2303082377337863948
 GameObject:
   m_ObjectHideFlags: 0

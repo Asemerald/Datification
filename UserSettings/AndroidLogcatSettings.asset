@@ -10,104 +10,38 @@
     "m_KnownProcessesForSerialization": [
         {
             "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.unity3d.genericremote",
-            "processId": 11723,
-            "exited": true
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.unity3d.genericremote",
-            "processId": 12400,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 25779,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 27257,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 27662,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 28192,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 28432,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 8824,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 10437,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 26067,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 27720,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 28138,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
-            "name": "com.DefaultCompany.Datification",
-            "processId": 30453,
-            "exited": false
-        },
-        {
-            "deviceId": "UCKF6TJZEQKZ7LEQ",
             "name": "com.DefaultCompany.Datification",
             "processId": 18843,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "UCKF6TJZEQKZ7LEQ",
             "name": "com.DefaultCompany.Datification",
             "processId": 19659,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "UCKF6TJZEQKZ7LEQ",
             "name": "com.DefaultCompany.Datification",
             "processId": 25536,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "UCKF6TJZEQKZ7LEQ",
             "name": "com.DefaultCompany.Datification",
             "processId": 27432,
+            "exited": true
+        },
+        {
+            "deviceId": "UCKF6TJZEQKZ7LEQ",
+            "name": "com.miui.home",
+            "processId": 2040,
+            "exited": false
+        },
+        {
+            "deviceId": "UCKF6TJZEQKZ7LEQ",
+            "name": "com.mi.android.globalFileexplorer",
+            "processId": 1959,
             "exited": false
         },
         {
