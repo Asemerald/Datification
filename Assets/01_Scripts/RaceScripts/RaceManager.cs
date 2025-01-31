@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class RaceManager : MonoBehaviour
@@ -14,6 +15,10 @@ public class RaceManager : MonoBehaviour
      }
      private int currentStepIndex;
      private float trafficLightAnimDuration;
+
+     [SerializeField] private TMP_Text finalScoreText;
+     [HideInInspector] public string typeOfLaunchString;
+     
      
      
      public RaceStep currentRaceStep;
@@ -126,6 +131,7 @@ public class RaceManager : MonoBehaviour
           DebugCurrentRaceStep();
           slideIndicator.SetActive(false);
           yield return new WaitForSeconds(finalJumpDuration);
+          finalScoreText.text = typeOfLaunchString;
           finalScorePanel.SetActive(true);
           endRaceButton.SetActive(true);
      }

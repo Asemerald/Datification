@@ -44,7 +44,7 @@ namespace UI
                 });
             }
             
-            //Hide();
+            Hide();
         }
 
         private void OnEnable()
