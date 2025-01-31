@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 0
   id: 00
   name: Carrosserie Rich
-  LeftMesh: {fileID: 1357003498420199797, guid: 7acd0caa6a80b0748a65923fa46b19f0, type: 3}
-  RightMesh: {fileID: 4256272229157246300, guid: a1dcdf1d16e5264419d4ef15d1eb036c, type: 3}
+  LeftMesh: {fileID: 4738712280380234597, guid: 4f5315df8a1c2334a8a6eb53977a80b1, type: 3}
+  RightMesh: {fileID: 6127040703236097615, guid: f0bf3051a0f00c643978bc30e03eeab1, type: 3}

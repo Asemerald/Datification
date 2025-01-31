@@ -97,22 +97,62 @@ namespace Game.Customisation
             switch (carPart.type)
             {
                 case CarPartScriptable.CarPartType.Carrosserie:
-                    carrosserie.transform.position = new Vector3(0, 0, 0);
-                    carrosserie.GetComponent<MeshFilter>().mesh = GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh;
+                    ChangeCarrosserie(carPart);
                     break;
                 case CarPartScriptable.CarPartType.Roues:
-                    roues.transform.position = new Vector3(0, 0, 0);
-                    roues.GetComponent<MeshFilter>().mesh = GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh;
+                    ChangeRoues(carPart);
                     break;
                 case CarPartScriptable.CarPartType.Phares:
-                    phares.transform.position = new Vector3(0, 0, 0);
-                    phares.GetComponent<MeshFilter>().mesh = GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh;
+                    ChangePhares(carPart);
                     break;
                 case CarPartScriptable.CarPartType.Accessoires:
-                    accessoires.transform.position = new Vector3(0, 0, 0);
-                    accessoires.GetComponent<MeshFilter>().mesh = GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh;
+                    ChangeAccessoires(carPart);
                     break;
             }
+        }
+        
+        private void ChangeCarrosserie(CarPartScriptable carPart)
+        {
+            //delete all childs of carrosserie
+            foreach (Transform child in carrosserie.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //instantiate new carrosserie
+            GameObject newCarrosserie = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, carrosserie.transform);
+        }
+        
+        private void ChangeRoues(CarPartScriptable carPart)
+        {
+            //delete all childs of roues
+            foreach (Transform child in roues.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //instantiate new roues
+            GameObject newRoues = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, roues.transform);
+        }
+        
+        private void ChangePhares(CarPartScriptable carPart)
+        {
+            //delete all childs of phares
+            foreach (Transform child in phares.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //instantiate new phares
+            GameObject newPhares = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, phares.transform);
+        }
+        
+        private void ChangeAccessoires(CarPartScriptable carPart)
+        {
+            //delete all childs of accessoires
+            foreach (Transform child in accessoires.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //instantiate new accessoires
+            GameObject newAccessoires = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, accessoires.transform);
         }
 
         #endregion

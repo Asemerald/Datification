@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 1
   id: 07
   name: Roues Vegan
-  LeftMesh: {fileID: -909835317833551346, guid: afcddb2e3439c104c98d0677078b5f98, type: 3}
-  RightMesh: {fileID: -463625475013659191, guid: 694331995a106f74b8143eb104a8b525, type: 3}
+  LeftMesh: {fileID: 819853038161372823, guid: 69020d81eaf6bfa4b93232fb74de0e49, type: 3}
+  RightMesh: {fileID: 692721413344963764, guid: e0642056b76a5f1438defbfef91fe91d, type: 3}

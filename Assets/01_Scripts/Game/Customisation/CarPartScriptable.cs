@@ -27,8 +27,8 @@ namespace Game
         public new string name;
         
         [Header("Mesh de la pièce")]
-        public Mesh LeftMesh;
-        public Mesh RightMesh;
+        public GameObject LeftMesh;
+        public GameObject RightMesh;
             
         
     }

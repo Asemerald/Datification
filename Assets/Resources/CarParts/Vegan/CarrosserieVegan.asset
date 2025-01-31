@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 0
   id: 04
   name: Carrosserie Vegan
-  LeftMesh: {fileID: -4886833988434729905, guid: d8a3bef09fc641649a85b5d93828722f, type: 3}
-  RightMesh: {fileID: 1504649304009958506, guid: 111100f34fab2c141a9adceed26b8f8f, type: 3}
+  LeftMesh: {fileID: 3183272241081811757, guid: 017d161047424a64988c918499c6fc19, type: 3}
+  RightMesh: {fileID: 4626544709294205940, guid: be0fc9caece9d4e4c83ffe8512551bce, type: 3}

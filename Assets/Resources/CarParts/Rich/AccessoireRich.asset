@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 3
   id: 01
   name: Accessoire Rich
-  LeftMesh: {fileID: 5593483092909611139, guid: 9f6a96b306dd6a94abde5ac517c8817d, type: 3}
-  RightMesh: {fileID: 1735423315384433816, guid: ddbd527c0d59bd9418c598d85745ec45, type: 3}
+  LeftMesh: {fileID: 4711104735529376535, guid: ff8bfebdd41861342b260f373700480d, type: 3}
+  RightMesh: {fileID: 4612922019693196756, guid: 2690c5c1f9d2af948b3916dcc0e58b43, type: 3}

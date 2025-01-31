@@ -17,6 +17,23 @@ namespace Game
             }
         }
 
+        public void SpawnSingleBubble(CarPartScriptable carPartScriptable)
+        {
+            if (carPartScriptable == null) return;
+            
+            var mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<RectTransform>();
+
+            BubbleBehaviour bubbleBehaviour = Instantiate(bubblePrefab, mainCanvas);
+            bubbleBehaviour.carPartData = carPartScriptable;
+
+            RectTransform bubbleRect = bubbleBehaviour.GetComponent<RectTransform>();
+
+            float x = Random.Range(-mainCanvas.rect.width / 2f + 50f, mainCanvas.rect.width / 2f - 50f);
+            float y = Random.Range(-mainCanvas.rect.height / 2f + 50f, mainCanvas.rect.height / 2f - 50f);
+
+            bubbleRect.anchoredPosition = new Vector2(x, y);
+        }
+
         private void SpawnCarrosserieBubbles()
         {
             Debug.Log("Spawning carrosserie bubbles");

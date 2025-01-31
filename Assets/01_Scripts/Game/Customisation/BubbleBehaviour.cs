@@ -93,7 +93,7 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
             Debug.Log($"Bulle {carPartData.name} déposée sur la voiture !");
             
             CustomisationManager.Instance.SetLastCarPart(carPartData);
-            CustomisationManager.Instance.SpawnLastBubble();
+            GameManager.Instance.SpawnSingleBubble(CustomisationManager.Instance.LastCarPartScriptable);
             
             ApplyCarPart();
             

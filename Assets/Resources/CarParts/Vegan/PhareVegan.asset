@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 2
   id: 06
   name: Phare Vegan
-  LeftMesh: {fileID: 7450741763379908841, guid: 5865cab2bed082042a23877ff5227045, type: 3}
-  RightMesh: {fileID: 2783131832183395012, guid: 6628fb753f252dd4386b685a988cf5fc, type: 3}
+  LeftMesh: {fileID: 1321216651707610356, guid: 8e75e6cacbd2657438dfd72846aa67ae, type: 3}
+  RightMesh: {fileID: 7360137071109346158, guid: fa232efc816ce6d48ad6f307075e4be1, type: 3}

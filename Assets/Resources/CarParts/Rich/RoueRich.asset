@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 1
   id: 03
   name: Roues Rich
-  LeftMesh: {fileID: 1357003498420199797, guid: 7acd0caa6a80b0748a65923fa46b19f0, type: 3}
-  RightMesh: {fileID: 4256272229157246300, guid: a1dcdf1d16e5264419d4ef15d1eb036c, type: 3}
+  LeftMesh: {fileID: 8796746778573711785, guid: c8c27681f2c7a85438c4588f4b802667, type: 3}
+  RightMesh: {fileID: 1133435448603680198, guid: cbb654919d5a4c840a9ca21e74287ea0, type: 3}

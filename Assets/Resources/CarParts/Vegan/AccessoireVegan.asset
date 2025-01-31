@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 3
   id: 05
   name: Accessoire Vegan
-  LeftMesh: {fileID: 8966807727146614479, guid: 3ab5e666dd360704e9cfc6d78b5e0169, type: 3}
-  RightMesh: {fileID: 4582670911192760571, guid: 2a4ec66d26ff08240a5a85c4c7838de7, type: 3}
+  LeftMesh: {fileID: 273624970397315827, guid: 90972ee9150de9f45a6e53c1dd7f04ff, type: 3}
+  RightMesh: {fileID: 5085263283987679395, guid: 2787ac685256d0d438a5735e48806da3, type: 3}
