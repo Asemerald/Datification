@@ -1,115 +1,113 @@
 using System.Collections;
-using System.Collections.Generic;
 using Game;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    [Header("Bubble Properties")]
-    public float floatSpeed = 0.5f; // Vitesse du mouvement flottant
-    public float floatRange = 20f; // Amplitude du flottement
-
-    private RectTransform _rectTransform;
-    private Vector2 _screenBounds;
-    private Vector2 _startPosition;
-    private Vector2 _randomDirection;
-    private bool _isDragging = false;
-    
-    [Header("Car Part Data")]
     public CarPartScriptable carPartData;
+    private RectTransform rectTransform;
+    private Canvas canvas;
+    private CanvasGroup canvasGroup;
+    private Vector3 initialPosition;
+    private Vector3 targetPosition;
+    private float moveRange = 80f;  // Distance max autour du spawn
+    private bool isDragging = false;
     private Image _bubbleImage;
 
-    private void Start()
+    private void Awake()
     {
-        _rectTransform = GetComponent<RectTransform>();
+        rectTransform = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
+        canvasGroup = GetComponent<CanvasGroup>();
         _bubbleImage = GetComponent<Image>();
-        
+
         if (carPartData != null && _bubbleImage != null)
         {
             _bubbleImage.sprite = carPartData.icon; // Appliquer l'icône du scriptable
         }
 
-        _screenBounds = new Vector2(Screen.width, Screen.height);
-        _startPosition = _rectTransform.anchoredPosition;
-        _randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-
-        StartCoroutine(FloatBubble());
+        initialPosition = rectTransform.anchoredPosition;
+        StartCoroutine(FloatAround());
     }
 
-    private IEnumerator FloatBubble()
+    private IEnumerator FloatAround()
     {
         while (true)
         {
-            if (!_isDragging)
+            if (!isDragging)
             {
-                Vector2 movement = _randomDirection * (floatSpeed * Time.deltaTime * 100);
-                _rectTransform.anchoredPosition += movement;
+                targetPosition = initialPosition + new Vector3(
+                    Random.Range(-moveRange, moveRange), 
+                    Random.Range(-moveRange / 2f, moveRange / 2f), 
+                    0
+                );
 
-                // Rebondir si on touche les bords de l'écran
-                if (_rectTransform.anchoredPosition.x < 0 || _rectTransform.anchoredPosition.x > _screenBounds.x)
-                    _randomDirection.x *= -1;
-                if (_rectTransform.anchoredPosition.y < 0 || _rectTransform.anchoredPosition.y > _screenBounds.y)
-                    _randomDirection.y *= -1;
+                targetPosition.x = Mathf.Clamp(targetPosition.x, -canvas.pixelRect.width / 2, canvas.pixelRect.width / 2);
+                targetPosition.y = Mathf.Clamp(targetPosition.y, -canvas.pixelRect.height * 0.35f, canvas.pixelRect.height / 2);
+
+                float elapsedTime = 0f;
+                Vector3 startPosition = rectTransform.anchoredPosition;
+
+                while (elapsedTime < 2f && !isDragging)
+                {
+                    rectTransform.anchoredPosition = Vector3.Lerp(startPosition, targetPosition, elapsedTime / 2f);
+                    elapsedTime += Time.deltaTime;
+                    yield return null;
+                }
+
+                yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
             }
-
-            yield return null;
         }
     }
 
-    // Détection du début du drag
     public void OnBeginDrag(PointerEventData eventData)
     {
-        _isDragging = true;
-        transform.localScale = Vector3.one * 1.2f; // Agrandit la bulle quand elle est sélectionnée
+        isDragging = true;
+        canvasGroup.alpha = 0.6f;
+        canvasGroup.blocksRaycasts = false;
     }
 
-    // Déplacement de la bulle
     public void OnDrag(PointerEventData eventData)
     {
-        _rectTransform.position = eventData.position; // Suivi du doigt
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
-    // Fin du drag
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.localScale = Vector3.one; // Retour à la taille normale
-        _isDragging = false;
+        isDragging = false;
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
 
-        // Vérifier si on l'a lâchée sur la voiture
-        if (IsOverCar(eventData))
+        if (IsDroppedOnCar(eventData))
         {
-            OnBubbleDropped();
+            Debug.Log($"Bulle {carPartData.name} déposée sur la voiture !");
+            ApplyCarPart();
+            Destroy(gameObject);
         }
     }
 
-    // Vérifie si la bulle est au-dessus de la voiture
-    private bool IsOverCar(PointerEventData eventData)
+    private bool IsDroppedOnCar(PointerEventData eventData)
     {
-        PointerEventData pointerEventData = new PointerEventData(EventSystem.current)
-        {
-            position = eventData.position
-        };
+        Ray ray = Camera.main.ScreenPointToRay(eventData.position);
+        RaycastHit hit;
 
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerEventData, results);
-
-        foreach (RaycastResult result in results)
+        if (Physics.Raycast(ray, out hit))
         {
-            if (result.gameObject.CompareTag("Car"))
+            Debug.Log($"Hit object: {hit.collider.gameObject.name}");
+
+            if (hit.collider.CompareTag("Car"))
             {
                 return true;
             }
         }
-
         return false;
     }
 
-    // Fonction appelée lorsqu'une bulle est déposée sur la voiture
-    private void OnBubbleDropped()
+    private void ApplyCarPart()
     {
-        Debug.Log($"Bubble {carPartData.name} applied to the car!");
-        // TODO: Ajouter ici l'application de la pièce sur la voiture
+        Debug.Log($"Appliquer {carPartData.name} à la voiture !");
+        // TODO: Ajouter l'application de la pièce sur la voiture
     }
 }
