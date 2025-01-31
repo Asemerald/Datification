@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class RaceManager : MonoBehaviour
 {
-     private RaceManager Instance;
-     private enum RaceStep
+     public static RaceManager Instance;
+     public enum RaceStep
      {
           BeforeStart,
           StartRace,
@@ -17,7 +17,7 @@ public class RaceManager : MonoBehaviour
      private float trafficLightAnimDuration;
      
      
-     [SerializeField] private RaceStep currentRaceStep;
+     public RaceStep currentRaceStep;
      
      [Header("Elements")]
      [SerializeField] private CarController carController;

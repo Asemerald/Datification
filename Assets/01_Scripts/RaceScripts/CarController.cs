@@ -10,12 +10,15 @@ public class CarController : MonoBehaviour
 
     [Space(15f)] 
     [Header("Car settings")] 
-    [SerializeField] private float maxSpeed;
+    [SerializeField] private float maxSpeed = 100;
+    [SerializeField] private float baseSpeed = 30;
+    private float accelSpeed;
     [SerializeField] private float accelMultiplier = 2;
     [SerializeField] private float decelMultiplier = 3;
+    
     [HideInInspector] public float currentSpeed;
     private float targetSpeed;
-    private float baseSpeed;
+    
     
     [Space(15f)]
     [SerializeField] private float boosterSpeedAdded = 10f;
@@ -37,7 +40,6 @@ public class CarController : MonoBehaviour
         rampZone = 0;
         
         canBoost = true;
-        baseSpeed = maxSpeed;
     }
 
     private void Update()
@@ -51,20 +53,20 @@ public class CarController : MonoBehaviour
 
     private void RaceUpdate()
     {
-        targetSpeed = maxSpeed;
-        
-        if (inputs.activeState == CarInputs.States.allActive)
+        accelSpeed = baseSpeed + 10;
+
+        if (inputs.activeState == CarInputs.States.noActive)
         {
-            maxSpeed += Time.deltaTime * accelMultiplier;
+            targetSpeed = baseSpeed;
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, decelMultiplier * Time.deltaTime);
         }
-        else if (inputs.activeState == CarInputs.States.noActive)
+        else
         {
-            maxSpeed -= Time.deltaTime * decelMultiplier;
+            targetSpeed = accelSpeed;
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelMultiplier * Time.deltaTime);
         }
 
-        maxSpeed = Mathf.Clamp(maxSpeed, baseSpeed, 100);
-
-        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 5 * Time.deltaTime);
+        targetSpeed = Mathf.Clamp(targetSpeed, 0, maxSpeed);
         
         transform.Translate(Vector3.forward * (currentSpeed * Time.deltaTime));
     }
@@ -74,7 +76,7 @@ public class CarController : MonoBehaviour
         if (!canBoost) return;
         
         canBoost = false;
-        maxSpeed += boosterSpeedAdded;
+        baseSpeed += boosterSpeedAdded;
         boostPs.Play();
             
         StartCoroutine(BoosterCooldown());
