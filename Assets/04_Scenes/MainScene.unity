@@ -640,8 +640,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1087014504904624262, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2722469116527447733, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5915264079799279317, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106215183796534482, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
@@ -684,12 +692,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6324717580573257213, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6854706336416956655, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_BlockingMask.m_Bits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6991419427265428784, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637967642522519023, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7826484515064129556, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873692385212547197, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9009845772383338767, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}

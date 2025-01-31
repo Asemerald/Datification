@@ -1,5 +1,6 @@
 using Game.Customisation;
 using Game;
+using UI;
 using Unity.Netcode;
 using UnityEngine;
 using Utils;
@@ -22,6 +23,7 @@ namespace Game
     
         public LevelsScriptable currentLevel;
         public string levelName;
+        private int currentCustomStageIndex = 0;
     
         #endregion
     
@@ -46,6 +48,29 @@ namespace Game
             }
         }
 
+        public void NextCustomStage()
+        {
+            currentCustomStageIndex++;
+            switch (currentCustomStageIndex)
+            {
+                case 1:
+                    DespawnAllBubbles();
+                    SpawnRouesBubbles();
+                    break;
+                case 2:
+                    DespawnAllBubbles();
+                    SpawnRouesBubbles();
+                    break;
+                case 3:
+                    DespawnAllBubbles();
+                    SpawnAccessoiresBubbles();
+                    break;
+                case 4:
+                    EndCustomisation();
+                    break;
+            }
+        }
+
         private void GetDataFromServer(string serverLevelName)
         {
             if (IsClient)
@@ -66,14 +91,17 @@ namespace Game
         private void StartGameServerRpc()
         {
         
-            StartGameClientRpc(levelName);
+            StartGameClientRpc();
         }
     
         [ClientRpc]
-        private void StartGameClientRpc(string levelName)
+        private void StartGameClientRpc()
         {
             CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
-            SpawnCarrosserieBubbles();
+            SpawnCarrosserieBubbles(); // TODO delay ?
+            
+            InGameUI.Instance.ShowNextButton(true);
+            
             if (NetworkManager.Singleton.IsHost) return;
         
         }
@@ -89,6 +117,14 @@ namespace Game
         {
             if (NetworkManager.Singleton.IsHost) return;
             GetDataFromServer(levelNameServer);
+        }
+        
+        private void EndCustomisation()
+        {
+            if (NetworkManager.Singleton.IsHost)
+            {
+                //EndCustomisationServerRpc();
+            }
         }
     
         #endregion
