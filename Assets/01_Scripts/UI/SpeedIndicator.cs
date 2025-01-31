@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -21,11 +22,14 @@ public class SpeedIndicator : MonoBehaviour
         Obstacle
     }
     [SerializeField] private AccelerationState playerAccelerationState;
+
+    [SerializeField] private TMP_Text speedText;
     
     private void Update()
     {
         //playerAccelerationState = AccelerationState.Normal;
          currentSpeed = controller.currentSpeed;
+         speedText.text = $"{Mathf.RoundToInt((currentSpeed * 2.5f))}km/h"; 
         
     
         UpdateIndicatorPosition();
