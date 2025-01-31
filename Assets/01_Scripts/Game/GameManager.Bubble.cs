@@ -1,18 +1,28 @@
 ﻿using Game.Customisation;
 using Game;
-using Unity.Netcode;
 using UnityEngine;
-using Utils;
+using System.Collections.Generic;
 
 namespace Game
 {
     public partial class GameManager
     {
+        private List<Vector2> usedPositions = new List<Vector2>(); // Stocker les positions déjà utilisées
+        private float minDistanceBetweenBubbles = 150f; // Distance minimale entre bulles
+
         private void SpawnCarrosserieBubbles()
         {
             Debug.Log("Spawning carrosserie bubbles");
-    
+
             var mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<RectTransform>();
+
+            float canvasWidth = mainCanvas.rect.width;
+            float canvasHeight = mainCanvas.rect.height;
+
+            float minY = -canvasHeight / 2f + (canvasHeight * 0.35f); // Bas limité à 35% du canvas
+            float maxY = canvasHeight / 2f - 50f; // Haut de l'écran
+
+            usedPositions.Clear(); // Reset des positions
 
             foreach (var bubble in currentLevel.carrosserieList)
             {
@@ -21,13 +31,33 @@ namespace Game
 
                 RectTransform bubbleRect = bubbleBehaviour.GetComponent<RectTransform>();
 
-                // Générer une position aléatoire dans l'espace du canvas
-                float x = Random.Range(-mainCanvas.rect.width / 2f + 50f, mainCanvas.rect.width / 2f - 50f);
-                float y = Random.Range(-mainCanvas.rect.height / 2f + 50f, mainCanvas.rect.height / 2f - 50f);
+                Vector2 spawnPos;
+                int attempts = 0;
 
-                bubbleRect.anchoredPosition = new Vector2(x, y); // Position en UI space
+                do
+                {
+                    float x = Random.Range(-canvasWidth / 2f + 50f, canvasWidth / 2f - 50f);
+                    float y = Random.Range(minY, maxY);
+                    spawnPos = new Vector2(x, y);
+                    attempts++;
+
+                } while (IsTooCloseToOthers(spawnPos) && attempts < 10);
+
+                usedPositions.Add(spawnPos);
+                bubbleRect.anchoredPosition = spawnPos;
             }
         }
 
+        private bool IsTooCloseToOthers(Vector2 newPos)
+        {
+            foreach (var pos in usedPositions)
+            {
+                if (Vector2.Distance(newPos, pos) < minDistanceBetweenBubbles)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4123190752854348986}
   - component: {fileID: 4147791182690633793}
   - component: {fileID: 6237567891918554191}
+  - component: {fileID: 6052742155019475534}
   m_Layer: 5
   m_Name: Bubble
   m_TagString: Untagged
@@ -88,6 +89,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db75956c422399742adb224b0a73000b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatSpeed: 0.5
-  floatRange: 20
   carPartData: {fileID: 0}
+--- !u!225 &6052742155019475534
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628968251427472469}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
