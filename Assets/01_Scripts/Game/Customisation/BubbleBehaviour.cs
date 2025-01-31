@@ -1,5 +1,6 @@
 using System.Collections;
 using Game;
+using Game.Customisation;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -16,7 +17,7 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     private bool isDragging = false;
     private Image _bubbleImage;
 
-    private void Awake()
+    private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
@@ -28,9 +29,16 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
             _bubbleImage.sprite = carPartData.icon; // Appliquer l'icône du scriptable
         }
 
-        initialPosition = rectTransform.anchoredPosition;
+        StartCoroutine(InitializePositionAndStartFloating());
+    }
+
+    private IEnumerator InitializePositionAndStartFloating()
+    {
+        yield return null; // Wait for one frame to let Unity apply the spawned position
+        initialPosition = rectTransform.anchoredPosition; // Now we set it correctly
         StartCoroutine(FloatAround());
     }
+
 
     private IEnumerator FloatAround()
     {
@@ -84,6 +92,8 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         {
             Debug.Log($"Bulle {carPartData.name} déposée sur la voiture !");
             ApplyCarPart();
+            CustomisationManager.Instance.SetLastCarPart(carPartData);
+            CustomisationManager.Instance.SpawnLastBubble();
             Destroy(gameObject);
         }
     }

@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
@@ -32,6 +30,10 @@ public class CarController : MonoBehaviour
     [Header("Ramp")] 
     public int rampZone;
     public bool canLaunch;
+
+    [Header("Characters")] 
+    [SerializeField] private Animator animatorJ1;
+    [SerializeField] private Animator animatorJ2;
 
     
     private void Start()
@@ -82,6 +84,7 @@ public class CarController : MonoBehaviour
             Debug.Log("Lancement raté");
             DisplayZone("Lancement raté !");
             canLaunch = false;
+            TriggerEndAnimation();
         }
     }
 
@@ -92,7 +95,12 @@ public class CarController : MonoBehaviour
         canBoost = false;
         baseSpeed += boosterSpeedAdded;
         boostPs.Play();
-            
+        
+        inputs.animCar.SetTrigger("Boost");
+        
+        animatorJ1.SetTrigger("isBoosting");
+        animatorJ2.SetTrigger("isBoosting");
+        
         StartCoroutine(BoosterCooldown());
     }
 
@@ -122,16 +130,19 @@ public class CarController : MonoBehaviour
                 Debug.Log("Lancement moyen");
                 RaceManager.Instance.typeOfLaunchString = "Lancement moyen !";
                 canLaunch = false;
+                TriggerEndAnimation();
                 break;
             case 2 : 
                 Debug.Log("Bon Lancement");
                 DisplayZone("Bon Lancement !");
                 canLaunch = false;
+                TriggerEndAnimation();
                 break;
             case 3 : 
                 Debug.Log("Lancement parfait");
                 DisplayZone("Lancement parfait !");
                 canLaunch = false;
+                TriggerEndAnimation();
                 break;
             default :
                 break;
@@ -141,5 +152,11 @@ public class CarController : MonoBehaviour
     private void DisplayZone(string displayedText)
     {
         RaceManager.Instance.typeOfLaunchString = displayedText;
+    }
+
+    private void TriggerEndAnimation()
+    {
+        animatorJ1.SetBool("raceOver",true);
+        animatorJ2.SetBool("raceOver",true);
     }
 }

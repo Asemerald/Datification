@@ -2,8 +2,10 @@
 using Cinemachine;
 using Game;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using Utils;
+using Random = UnityEngine.Random;
 
 namespace Game.Customisation
 {
@@ -20,6 +22,7 @@ namespace Game.Customisation
         #region Fields 
         
         private GameObject themeGameObject;
+        public CarPartScriptable LastCarPartScriptable { get; set; }
         
         #endregion
         
@@ -34,7 +37,37 @@ namespace Game.Customisation
         }
         
         
+        
         #endregion
+        
+        public void SetLastCarPart(CarPartScriptable carPartScriptable = null)
+        {
+            LastCarPartScriptable = carPartScriptable;
+        }
+        
+        public void SpawnLastBubble()
+        {
+            if (LastCarPartScriptable == null) return;
+            
+            var mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<RectTransform>();
+
+            float canvasWidth = mainCanvas.rect.width;
+            float canvasHeight = mainCanvas.rect.height;
+
+            float minY = -canvasHeight / 2f + (canvasHeight * 0.35f); // Bottom 35% locked
+            float maxY = canvasHeight / 2f - 50f; // Top allowed area
+
+            BubbleBehaviour bubbleBehaviour = Instantiate(GameManager.Instance.bubblePrefab, mainCanvas);
+            bubbleBehaviour.carPartData = LastCarPartScriptable;
+
+            RectTransform bubbleRect = bubbleBehaviour.GetComponent<RectTransform>();
+
+            float x = Random.Range(-canvasWidth / 2f + 50f, canvasWidth / 2f - 50f);
+            float y = Random.Range(minY, maxY);
+
+            bubbleRect.anchoredPosition = new Vector2(x, y);
+            
+        }
         
         public void SetThemeText(string text, bool show)
         {

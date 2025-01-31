@@ -6,6 +6,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 
@@ -14,9 +15,10 @@ namespace UI
     public class InGameUI : InstanceBase<InGameUI>
     {
         #region SerializeField
-
+        
         [Header("InGame UI")]
-        [SerializeField] private Button StartButton; 
+        [SerializeField] private Button startButton; 
+        [SerializeField] private Button nextButton;
         
 
         #endregion
@@ -35,14 +37,8 @@ namespace UI
         {
             EGameObject = gameObject;
             
-
-            if (StartButton != null)
-            {
-                UnityMainThread.wkr.AddJob(() =>
-                {
-                    StartButton.gameObject.SetActive(false);
-                });
-            }
+            ShowStartButton(false);
+            ShowNextButton(false);
             
             Hide();
         }
@@ -53,21 +49,32 @@ namespace UI
         }
 
         #endregion
+
+        public void ShowNextButton(bool show)
+        {
+            // TODO maybe add a delay to avoid double tap
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                nextButton.gameObject.SetActive(show);
+            });
+        }
+        
+        public void OnNextButtonClicked()
+        {
+            GameManager.Instance.NextCustomStage();
+        }
         
         public void OnStartButtonClicked()
         {
             GameManager.Instance.StartGame();
-            UnityMainThread.wkr.AddJob(() =>
-            {
-                StartButton.gameObject.SetActive(false);
-            });
+            ShowStartButton(false);
         }
         
-        public void ShowStartButton()
+        public void ShowStartButton(bool show)
         {
            UnityMainThread.wkr.AddJob(() =>
            {
-               StartButton.gameObject.SetActive(true);
+               startButton.gameObject.SetActive(show);
            });
         }
         
