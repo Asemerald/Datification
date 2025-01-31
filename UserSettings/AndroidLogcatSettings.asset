@@ -37,6 +37,12 @@
             "name": "com.miui.home",
             "processId": 2040,
             "exited": false
+        },
+        {
+            "deviceId": "UCKF6TJZEQKZ7LEQ",
+            "name": "com.mi.android.globalFileexplorer",
+            "processId": 1959,
+            "exited": false
         }
     ],
     "m_Tags": {
