@@ -122,7 +122,7 @@ namespace UI
             {
                 LoadingUI.Instance.Hide();
                 InGameUI.Instance.Show();
-                InGameUI.Instance.ShowStartButton();
+                InGameUI.Instance.ShowStartButton(true);
             });
         }
         

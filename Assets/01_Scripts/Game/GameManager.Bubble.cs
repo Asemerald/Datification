@@ -7,8 +7,16 @@ namespace Game
 {
     public partial class GameManager
     {
-        private List<Vector2> usedPositions = new List<Vector2>(); // Stocker les positions déjà utilisées
-        private float minDistanceBetweenBubbles = 150f; // Distance minimale entre bulles
+        
+        
+        private void DespawnAllBubbles()
+        {
+            var bubbles = GameObject.FindGameObjectsWithTag("Bubble");
+            foreach (var bubble in bubbles)
+            {
+                Destroy(bubble);
+            }
+        }
 
         private void SpawnCarrosserieBubbles()
         {
@@ -19,10 +27,8 @@ namespace Game
             float canvasWidth = mainCanvas.rect.width;
             float canvasHeight = mainCanvas.rect.height;
 
-            float minY = -canvasHeight / 2f + (canvasHeight * 0.35f); // Bas limité à 35% du canvas
-            float maxY = canvasHeight / 2f - 50f; // Haut de l'écran
-
-            usedPositions.Clear(); // Reset des positions
+            float minY = -canvasHeight / 2f + (canvasHeight * 0.35f); // Bottom 35% locked
+            float maxY = canvasHeight / 2f - 50f; // Top allowed area
 
             foreach (var bubble in currentLevel.carrosserieList)
             {
@@ -31,33 +37,90 @@ namespace Game
 
                 RectTransform bubbleRect = bubbleBehaviour.GetComponent<RectTransform>();
 
-                Vector2 spawnPos;
-                int attempts = 0;
+                float x = Random.Range(-canvasWidth / 2f + 50f, canvasWidth / 2f - 50f);
+                float y = Random.Range(minY, maxY);
 
-                do
-                {
-                    float x = Random.Range(-canvasWidth / 2f + 50f, canvasWidth / 2f - 50f);
-                    float y = Random.Range(minY, maxY);
-                    spawnPos = new Vector2(x, y);
-                    attempts++;
-
-                } while (IsTooCloseToOthers(spawnPos) && attempts < 10);
-
-                usedPositions.Add(spawnPos);
-                bubbleRect.anchoredPosition = spawnPos;
+                bubbleRect.anchoredPosition = new Vector2(x, y);
             }
         }
-
-        private bool IsTooCloseToOthers(Vector2 newPos)
+        
+        private void SpawnRouesBubbles()
         {
-            foreach (var pos in usedPositions)
+            Debug.Log("Spawning roues bubbles");
+
+            var mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<RectTransform>();
+
+            float canvasWidth = mainCanvas.rect.width;
+            float canvasHeight = mainCanvas.rect.height;
+
+            float minY = -canvasHeight / 2f + (canvasHeight * 0.35f); // Bottom 35% locked
+            float maxY = canvasHeight / 2f - 50f; // Top allowed area
+
+            foreach (var bubble in currentLevel.rouesList)
             {
-                if (Vector2.Distance(newPos, pos) < minDistanceBetweenBubbles)
-                {
-                    return true;
-                }
+                BubbleBehaviour bubbleBehaviour = Instantiate(bubblePrefab, mainCanvas);
+                bubbleBehaviour.carPartData = bubble;
+
+                RectTransform bubbleRect = bubbleBehaviour.GetComponent<RectTransform>();
+
+                float x = Random.Range(-canvasWidth / 2f + 50f, canvasWidth / 2f - 50f);
+                float y = Random.Range(minY, maxY);
+
+                bubbleRect.anchoredPosition = new Vector2(x, y);
             }
-            return false;
         }
+
+        private void SpawnPharesBubbles()
+        {
+            Debug.Log("Spawning phares bubbles");
+
+            var mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<RectTransform>();
+
+            float canvasWidth = mainCanvas.rect.width;
+            float canvasHeight = mainCanvas.rect.height;
+
+            float minY = -canvasHeight / 2f + (canvasHeight * 0.35f); // Bottom 35% locked
+            float maxY = canvasHeight / 2f - 50f; // Top allowed area
+
+            foreach (var bubble in currentLevel.pharesList)
+            {
+                BubbleBehaviour bubbleBehaviour = Instantiate(bubblePrefab, mainCanvas);
+                bubbleBehaviour.carPartData = bubble;
+
+                RectTransform bubbleRect = bubbleBehaviour.GetComponent<RectTransform>();
+
+                float x = Random.Range(-canvasWidth / 2f + 50f, canvasWidth / 2f - 50f);
+                float y = Random.Range(minY, maxY);
+
+                bubbleRect.anchoredPosition = new Vector2(x, y);
+            }
+        }
+        
+        private void SpawnAccessoiresBubbles()
+        {
+            Debug.Log("Spawning accessoires bubbles");
+
+            var mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<RectTransform>();
+
+            float canvasWidth = mainCanvas.rect.width;
+            float canvasHeight = mainCanvas.rect.height;
+
+            float minY = -canvasHeight / 2f + (canvasHeight * 0.35f); // Bottom 35% locked
+            float maxY = canvasHeight / 2f - 50f; // Top allowed area
+
+            foreach (var bubble in currentLevel.accessoiresList)
+            {
+                BubbleBehaviour bubbleBehaviour = Instantiate(bubblePrefab, mainCanvas);
+                bubbleBehaviour.carPartData = bubble;
+
+                RectTransform bubbleRect = bubbleBehaviour.GetComponent<RectTransform>();
+
+                float x = Random.Range(-canvasWidth / 2f + 50f, canvasWidth / 2f - 50f);
+                float y = Random.Range(minY, maxY);
+
+                bubbleRect.anchoredPosition = new Vector2(x, y);
+            }
+        }
+        
     }
 }

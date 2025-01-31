@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "UCKF6TJZEQKZ7LEQ",
     "m_SelectedProcess": {
-        "deviceId": "UCKF6TJZEQKZ7LEQ",
-        "name": "com.DefaultCompany.Datification",
-        "processId": 27432,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -108,6 +108,24 @@
             "deviceId": "UCKF6TJZEQKZ7LEQ",
             "name": "com.DefaultCompany.Datification",
             "processId": 27432,
+            "exited": false
+        },
+        {
+            "deviceId": "UCKF6TJZEQKZ7LEQ",
+            "name": "com.DefaultCompany.Datification",
+            "processId": 28144,
+            "exited": false
+        },
+        {
+            "deviceId": "UCKF6TJZEQKZ7LEQ",
+            "name": "com.DefaultCompany.Datification",
+            "processId": 28563,
+            "exited": false
+        },
+        {
+            "deviceId": "UCKF6TJZEQKZ7LEQ",
+            "name": "com.DefaultCompany.Datification",
+            "processId": 29086,
             "exited": false
         }
     ],
