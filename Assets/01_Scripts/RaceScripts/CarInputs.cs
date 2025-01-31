@@ -19,14 +19,12 @@ public class CarInputs : MonoBehaviour
     [HideInInspector] public bool left, right;
 
     [SerializeField] private Animator anim;
+    public Animator animCar;
 
     [HideInInspector] public bool secondStage;
     private bool startEnding;
 
     private CarController controller;
-
-    [Header("Inputs")]
-    [SerializeField] private Button leftButton, rightButton;
     private float startDragY;
 
     private void Start()
