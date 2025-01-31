@@ -15,7 +15,7 @@ namespace Game
         [Header("Game Prefabs")]
         [SerializeField] private GameObject carLeftPrefab;
         [SerializeField] private GameObject carRightPrefab;
-        [SerializeField] private BubbleBehaviour bubblePrefab;
+        [SerializeField] public BubbleBehaviour bubblePrefab;
     
         #endregion
     

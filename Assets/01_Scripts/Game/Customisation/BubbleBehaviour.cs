@@ -1,5 +1,6 @@
 using System.Collections;
 using Game;
+using Game.Customisation;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -91,6 +92,8 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         {
             Debug.Log($"Bulle {carPartData.name} déposée sur la voiture !");
             ApplyCarPart();
+            CustomisationManager.Instance.SetLastCarPart(carPartData);
+            CustomisationManager.Instance.SpawnBubble();
             Destroy(gameObject);
         }
     }

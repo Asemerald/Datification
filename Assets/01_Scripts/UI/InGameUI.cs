@@ -52,6 +52,7 @@ namespace UI
 
         public void ShowNextButton(bool show)
         {
+            // TODO maybe add a delay to avoid double tap
             UnityMainThread.wkr.AddJob(() =>
             {
                 nextButton.gameObject.SetActive(show);
