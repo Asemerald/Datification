@@ -16,12 +16,18 @@ namespace Game.Customisation
 
         private bool _isTouchingCar = false; // To track if the touch is on the car
 
+        [SerializeField] private GameObject carrosserie;
+        [SerializeField] private GameObject roues;
+        [SerializeField] private GameObject phares;
+        [SerializeField] private GameObject accessoires;
+
         void Update()
         {
             HandleDrag();
             HandlePinchToZoom();
         }
 
+        #region Touch Controls
         void HandleDrag()
         {
             if (Input.touchCount == 1) // One finger for dragging
@@ -81,5 +87,34 @@ namespace Game.Customisation
                 }
             }
         }
+        
+        #endregion
+
+        #region Change Skins
+
+        public void ChangeCarPart(CarPartScriptable carPart)
+        {
+            switch (carPart.type)
+            {
+                case CarPartScriptable.CarPartType.Carrosserie:
+                    carrosserie.transform.position = new Vector3(0, 0, 0);
+                    carrosserie.GetComponent<MeshFilter>().mesh = GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh;
+                    break;
+                case CarPartScriptable.CarPartType.Roues:
+                    roues.transform.position = new Vector3(0, 0, 0);
+                    roues.GetComponent<MeshFilter>().mesh = GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh;
+                    break;
+                case CarPartScriptable.CarPartType.Phares:
+                    phares.transform.position = new Vector3(0, 0, 0);
+                    phares.GetComponent<MeshFilter>().mesh = GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh;
+                    break;
+                case CarPartScriptable.CarPartType.Accessoires:
+                    accessoires.transform.position = new Vector3(0, 0, 0);
+                    accessoires.GetComponent<MeshFilter>().mesh = GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh;
+                    break;
+            }
+        }
+
+        #endregion
     }
 }
