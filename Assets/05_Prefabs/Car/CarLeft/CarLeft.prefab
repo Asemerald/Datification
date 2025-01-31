@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 7020222735855323127}
   m_Layer: 0
   m_Name: CarLeft
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,6 +414,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f7839d041668146be0b67d5e43c7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carrosserie: {fileID: 8885266433600564035}
+  roues: {fileID: 5854252858952029284}
+  phares: {fileID: 5109627308688598469}
+  accessoires: {fileID: 1123111391407841903}
 --- !u!65 &7020222735855323127
 BoxCollider:
   m_ObjectHideFlags: 0
