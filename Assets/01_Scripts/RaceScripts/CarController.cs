@@ -48,6 +48,10 @@ public class CarController : MonoBehaviour
         {
             RaceUpdate();
         }
+        else
+        {
+            CheckRampZone();
+        }
         
     }
 
@@ -69,6 +73,16 @@ public class CarController : MonoBehaviour
         targetSpeed = Mathf.Clamp(targetSpeed, 0, maxSpeed);
         
         transform.Translate(Vector3.forward * (currentSpeed * Time.deltaTime));
+    }
+
+    private void CheckRampZone()
+    {
+        if (rampZone == 4 && canLaunch)
+        {
+            Debug.Log("Lancement raté");
+            DisplayZone("Lancement raté !");
+            canLaunch = false;
+        }
     }
 
     public void Boost()
@@ -106,22 +120,26 @@ public class CarController : MonoBehaviour
             
             case 1 : 
                 Debug.Log("Lancement moyen");
+                RaceManager.Instance.typeOfLaunchString = "Lancement moyen !";
                 canLaunch = false;
                 break;
             case 2 : 
                 Debug.Log("Bon Lancement");
+                DisplayZone("Bon Lancement !");
                 canLaunch = false;
                 break;
             case 3 : 
                 Debug.Log("Lancement parfait");
-                canLaunch = false;
-                break;
-            case 4 :
-                Debug.Log("Lancement raté");
+                DisplayZone("Lancement parfait !");
                 canLaunch = false;
                 break;
             default :
                 break;
         }
+    }
+
+    private void DisplayZone(string displayedText)
+    {
+        RaceManager.Instance.typeOfLaunchString = displayedText;
     }
 }
