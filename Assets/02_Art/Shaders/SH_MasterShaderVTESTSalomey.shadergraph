@@ -279,8 +279,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 291.0,
-            "y": 668.0000610351563
+            "x": -744.9999389648438,
+            "y": 628.0000610351563
         },
         "m_Blocks": [
             {
@@ -296,8 +296,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 305.9999694824219,
-            "y": 866.9999389648438
+            "x": -730.0,
+            "y": 827.0
         },
         "m_Blocks": [
             {
@@ -346,10 +346,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "00e576feac8440edbf46d66c910fe39d",
     "m_Id": 1,
-    "m_DisplayName": "Out_Vector4",
+    "m_DisplayName": "Normal",
     "m_SlotType": 1,
     "m_Hidden": false,
-    "m_ShaderOutputName": "OutVector4",
+    "m_ShaderOutputName": "Normal",
     "m_StageCapability": 2,
     "m_Value": {
         "x": 0.0,
@@ -462,10 +462,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "105043303cda406aa7b49ea3a150e376",
     "m_Id": 3,
-    "m_DisplayName": "Out_Vector1 (1)",
+    "m_DisplayName": "Metalic",
     "m_SlotType": 1,
     "m_Hidden": false,
-    "m_ShaderOutputName": "OutVector11",
+    "m_ShaderOutputName": "Metalic",
     "m_StageCapability": 2,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
@@ -681,10 +681,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "416c128efba84db59707de5edbe7a580",
     "m_Id": 2,
-    "m_DisplayName": "Out_Vector1",
+    "m_DisplayName": "Ao",
     "m_SlotType": 1,
     "m_Hidden": false,
-    "m_ShaderOutputName": "OutVector1",
+    "m_ShaderOutputName": "Ao",
     "m_StageCapability": 2,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
@@ -1224,10 +1224,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "9679550a6a0f409ebdb1d9b256c4244b",
     "m_Id": 4,
-    "m_DisplayName": "Out_Vector1 (2)",
+    "m_DisplayName": "Roughness",
     "m_SlotType": 1,
     "m_Hidden": false,
-    "m_ShaderOutputName": "OutVector12",
+    "m_ShaderOutputName": "Roughness",
     "m_StageCapability": 2,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
@@ -1760,10 +1760,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "f220bba27e0a462ebdb39696c8d2d47d",
     "m_Id": 5,
-    "m_DisplayName": "Out_Vector3",
+    "m_DisplayName": "Base_color",
     "m_SlotType": 1,
     "m_Hidden": false,
-    "m_ShaderOutputName": "OutVector3",
+    "m_ShaderOutputName": "Base_color",
     "m_StageCapability": 2,
     "m_Value": {
         "x": 0.0,

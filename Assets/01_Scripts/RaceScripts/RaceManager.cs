@@ -13,7 +13,6 @@ public class RaceManager : MonoBehaviour
           EndOfRace
      }
      private int currentStepIndex;
-     private bool debugOn;
      private float trafficLightAnimDuration;
      
      
@@ -22,11 +21,16 @@ public class RaceManager : MonoBehaviour
      [Header("Elements")]
      [SerializeField] private CarController carController;
      [SerializeField] private GameObject trafficLights;
+     [SerializeField] private GameObject slideIndicator;
+     [SerializeField] private GameObject finalScorePanel;
+     [SerializeField] private GameObject endRaceButton;
      
      [Space,Header("Timings")]
-     [SerializeField] private float trafficLightsEndTime = 1.5f;
-     [SerializeField] private float raceDuration;
+     [SerializeField] private float trafficLightsEndTime = .5f;
+     [SerializeField] private float finalJumpDuration = 2f;
      
+     [Space,Header("Debug")]
+     [SerializeField] private bool debugOn;
      
      //Singleton Okazou
      private void Awake()
@@ -36,8 +40,12 @@ public class RaceManager : MonoBehaviour
      }
      private void Start()
      {
-          //Race Step Initialisation
+          //Race Initialisation
           currentRaceStep = RaceStep.BeforeStart;
+          trafficLights.SetActive(false);
+          slideIndicator.SetActive(false);
+          finalScorePanel.SetActive(false);
+          endRaceButton.SetActive(false);
 
           //Gets the duration of the traffic light animation to give the car control at the right timing
           trafficLightAnimDuration = trafficLights.GetComponent<Animation>().clip.length;
@@ -64,21 +72,18 @@ public class RaceManager : MonoBehaviour
                case RaceStep.DuringRace:
                     if (currentStepIndex == 2)
                     {
-                         StartCoroutine(DuringRace());
                          currentStepIndex++;
                     }
                     break;
                case RaceStep.ApproachingJump:
                     if (currentStepIndex == 3)
                     {
-                         StartCoroutine(ApproachingSlide());
                          currentStepIndex++;
                     }
                     break;
                case RaceStep.EndOfRace:
                     if (currentStepIndex == 4)
                     {
-                         StartCoroutine(EndOfRace());
                          currentStepIndex++;
                     }
                     break;
@@ -103,25 +108,26 @@ public class RaceManager : MonoBehaviour
           carController.enabled = true;
           currentRaceStep = RaceStep.DuringRace;
      }
-     IEnumerator DuringRace()
+     private void DuringRace()
      {
           DebugCurrentRaceStep();
-          yield return new WaitForSeconds(raceDuration);
-          currentRaceStep = RaceStep.ApproachingJump;
      }
-     IEnumerator ApproachingSlide()
+     public void ApproachingSlide()
      {
           DebugCurrentRaceStep();
-          //Give slide control to players + Wait for end of jump
-          yield return new WaitForSeconds(1f);
-          currentRaceStep = RaceStep.EndOfRace;
+          slideIndicator.SetActive(true);
+     }
+     public void CoroutineEndOfRace()
+     {
+          StartCoroutine(EndOfRace());
      }
      IEnumerator EndOfRace()
      {
           DebugCurrentRaceStep();
-          //trigger Score Apparition then trigger exit button
-          yield return new WaitForSeconds(1f);
-          
+          slideIndicator.SetActive(false);
+          yield return new WaitForSeconds(finalJumpDuration);
+          finalScorePanel.SetActive(true);
+          endRaceButton.SetActive(true);
      }
 
      #endregion
