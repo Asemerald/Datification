@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4fb2fbd907b4818ad07ab2902b2a70a, type: 3}
-  m_Name: CarPart
+  m_Name: CarrosserieVegan
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0a2667b3a9c66d54c83e593d555c0548, type: 3}
   type: 0
-  id: 
-  name: 
-  LeftMesh: {fileID: 0}
-  RightMesh: {fileID: 0}
+  id: 04
+  name: Carrosserie Vegan
+  LeftMesh: {fileID: -4886833988434729905, guid: d8a3bef09fc641649a85b5d93828722f, type: 3}
+  RightMesh: {fileID: 1504649304009958506, guid: 111100f34fab2c141a9adceed26b8f8f, type: 3}

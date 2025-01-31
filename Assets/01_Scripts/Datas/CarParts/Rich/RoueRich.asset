@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fb2fbd907b4818ad07ab2902b2a70a, type: 3}
+  m_Name: RoueRich
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 87b2a0511e7cf36489edd39dabc8ce6a, type: 3}
+  type: 1
+  id: 03
+  name: Roues Rich
+  LeftMesh: {fileID: 1357003498420199797, guid: 7acd0caa6a80b0748a65923fa46b19f0, type: 3}
+  RightMesh: {fileID: 4256272229157246300, guid: a1dcdf1d16e5264419d4ef15d1eb036c, type: 3}

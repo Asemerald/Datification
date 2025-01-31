@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fb2fbd907b4818ad07ab2902b2a70a, type: 3}
+  m_Name: AccessoireRich
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: a5428cf23decea44785adeefab3d04e8, type: 3}
+  type: 3
+  id: 01
+  name: Accessoire Rich
+  LeftMesh: {fileID: 5593483092909611139, guid: 9f6a96b306dd6a94abde5ac517c8817d, type: 3}
+  RightMesh: {fileID: 1735423315384433816, guid: ddbd527c0d59bd9418c598d85745ec45, type: 3}
