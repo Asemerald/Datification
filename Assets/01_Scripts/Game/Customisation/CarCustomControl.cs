@@ -94,6 +94,7 @@ namespace Game.Customisation
 
         public void ChangeCarPart(CarPartScriptable carPart)
         {
+            Debug.LogError("Changing car part: " + carPart.name);
             switch (carPart.type)
             {
                 case CarPartScriptable.CarPartType.Carrosserie:
