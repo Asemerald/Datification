@@ -42,7 +42,7 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
     private IEnumerator FloatAround()
     {
-        while (true)
+        while (this != null) // Ensure the object exists
         {
             if (!isDragging)
             {
@@ -51,9 +51,6 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
                     Random.Range(-moveRange / 2f, moveRange / 2f), 
                     0
                 );
-
-                targetPosition.x = Mathf.Clamp(targetPosition.x, -canvas.pixelRect.width / 2, canvas.pixelRect.width / 2);
-                targetPosition.y = Mathf.Clamp(targetPosition.y, -canvas.pixelRect.height * 0.35f, canvas.pixelRect.height / 2);
 
                 float elapsedTime = 0f;
                 Vector3 startPosition = rectTransform.anchoredPosition;
@@ -67,8 +64,13 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
                 yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
             }
+            else
+            {
+                yield return null;
+            }
         }
     }
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
