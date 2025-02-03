@@ -24,6 +24,8 @@ namespace Game
         public LevelsScriptable currentLevel;
         public string levelName;
         private int currentCustomStageIndex = 0;
+        public bool hasRightCar = false;
+        public CarCustomControl car;
     
         #endregion
     
@@ -44,6 +46,7 @@ namespace Game
             if (NetworkManager.Singleton.IsHost)
             {
                 currentLevel = CustomisationManager.Instance.SelectRandomLevel();
+                hasRightCar = Random.Range(0, 2) == 0;
                 levelName = currentLevel.name;
             }
         }
@@ -71,11 +74,12 @@ namespace Game
             }
         }
 
-        private void GetDataFromServer(string serverLevelName)
+        private void GetDataFromServer(string serverLevelName, bool rightCar)
         {
             if (IsClient)
             {
                 currentLevel = CustomisationManager.Instance.GetLevelByName(serverLevelName);
+                hasRightCar = !rightCar;
             }
         }
     
@@ -98,6 +102,7 @@ namespace Game
         private void StartGameClientRpc()
         {
             CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
+            SpawnCar(hasRightCar);
             SpawnCarrosserieBubbles(); // TODO delay ?
             
             InGameUI.Instance.ShowNextButton(true);
@@ -116,7 +121,7 @@ namespace Game
         private void ClientJoinedClientRpc(string levelNameServer)
         {
             if (NetworkManager.Singleton.IsHost) return;
-            GetDataFromServer(levelNameServer);
+            GetDataFromServer(levelNameServer, hasRightCar);
         }
         
         private void EndCustomisation()

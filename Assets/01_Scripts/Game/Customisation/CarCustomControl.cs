@@ -16,12 +16,18 @@ namespace Game.Customisation
 
         private bool _isTouchingCar = false; // To track if the touch is on the car
 
+        [SerializeField] private GameObject carrosserie;
+        [SerializeField] private GameObject roues;
+        [SerializeField] private GameObject phares;
+        [SerializeField] private GameObject accessoires;
+
         void Update()
         {
             HandleDrag();
             HandlePinchToZoom();
         }
 
+        #region Touch Controls
         void HandleDrag()
         {
             if (Input.touchCount == 1) // One finger for dragging
@@ -81,5 +87,74 @@ namespace Game.Customisation
                 }
             }
         }
+        
+        #endregion
+
+        #region Change Skins
+
+        public void ChangeCarPart(CarPartScriptable carPart)
+        {
+            switch (carPart.type)
+            {
+                case CarPartScriptable.CarPartType.Carrosserie:
+                    ChangeCarrosserie(carPart);
+                    break;
+                case CarPartScriptable.CarPartType.Roues:
+                    ChangeRoues(carPart);
+                    break;
+                case CarPartScriptable.CarPartType.Phares:
+                    ChangePhares(carPart);
+                    break;
+                case CarPartScriptable.CarPartType.Accessoires:
+                    ChangeAccessoires(carPart);
+                    break;
+            }
+        }
+        
+        private void ChangeCarrosserie(CarPartScriptable carPart)
+        {
+            //delete all childs of carrosserie
+            foreach (Transform child in carrosserie.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //instantiate new carrosserie
+            GameObject newCarrosserie = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, carrosserie.transform);
+        }
+        
+        private void ChangeRoues(CarPartScriptable carPart)
+        {
+            //delete all childs of roues
+            foreach (Transform child in roues.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //instantiate new roues
+            GameObject newRoues = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, roues.transform);
+        }
+        
+        private void ChangePhares(CarPartScriptable carPart)
+        {
+            //delete all childs of phares
+            foreach (Transform child in phares.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //instantiate new phares
+            GameObject newPhares = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, phares.transform);
+        }
+        
+        private void ChangeAccessoires(CarPartScriptable carPart)
+        {
+            //delete all childs of accessoires
+            foreach (Transform child in accessoires.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            //instantiate new accessoires
+            GameObject newAccessoires = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, accessoires.transform);
+        }
+
+        #endregion
     }
 }

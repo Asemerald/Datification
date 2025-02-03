@@ -91,9 +91,12 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         if (IsDroppedOnCar(eventData))
         {
             Debug.Log($"Bulle {carPartData.name} déposée sur la voiture !");
-            ApplyCarPart();
+            
             CustomisationManager.Instance.SetLastCarPart(carPartData);
-            CustomisationManager.Instance.SpawnLastBubble();
+            GameManager.Instance.SpawnSingleBubble(CustomisationManager.Instance.LastCarPartScriptable);
+            
+            ApplyCarPart();
+            
             Destroy(gameObject);
         }
     }
@@ -118,6 +121,6 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     private void ApplyCarPart()
     {
         Debug.Log($"Appliquer {carPartData.name} à la voiture !");
-        // TODO: Ajouter l'application de la pièce sur la voiture
+        GameManager.Instance.car.ChangeCarPart(carPartData);
     }
 }
