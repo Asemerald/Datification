@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 87b2a0511e7cf36489edd39dabc8ce6a, type: 3}
   type: 1
-  id: 03
+  id: 1
   name: Roues Rich
   LeftMesh: {fileID: 8796746778573711785, guid: c8c27681f2c7a85438c4588f4b802667, type: 3}
   RightMesh: {fileID: 1133435448603680198, guid: cbb654919d5a4c840a9ca21e74287ea0, type: 3}
