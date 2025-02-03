@@ -1,6 +1,9 @@
 using System;
+using System.Numerics;
 using Unity.Netcode;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Game.Customisation
 {
@@ -22,12 +25,21 @@ namespace Game.Customisation
         [SerializeField] private GameObject roues;
         [SerializeField] private GameObject phares;
         [SerializeField] private GameObject accessoires;
-
+        
+        [Header("Start transform")]
+        [SerializeField] private Vector3 startPosition;
+        [SerializeField] private Vector3 startRotation;
         
         #region Network
 
         private void Start()
         {
+
+
+            transform.position = startPosition;
+            transform.eulerAngles = startRotation;
+            
+            
             if (!NetworkObject.IsOwner)
             {
                 // disable collider

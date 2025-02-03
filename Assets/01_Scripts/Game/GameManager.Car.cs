@@ -10,7 +10,7 @@ namespace Game
 
         private void SpawnCar(bool rightCar)
         {
-            // Instantiate and spawn my caar depending on hasRightCar, also give ownership to the one who spawned it
+            // Instantiate and spawn my car depending on hasRightCar, also give ownership to the one who spawned it
             if (rightCar)
             {
                 NetworkManager.SpawnManager.InstantiateAndSpawn(carRightPrefab, 0);

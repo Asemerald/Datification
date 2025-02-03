@@ -49,12 +49,23 @@ namespace Game
                 hasRightCar = Random.Range(0, 2) == 0;
                 levelName = currentLevel.name;
             }
-            var mainCamRight = gameObject.transform.Find("MainCameraRight").gameObject;
-            var mainCamLeft = gameObject.transform.Find("MainCameraLeft").gameObject;
-            
-            mainCamRight.SetActive(hasRightCar);
-            mainCamLeft.SetActive(!hasRightCar);
+
+            // Find cameras by tag
+            GameObject mainCamRight = GameObject.FindWithTag("MainCameraRight");
+            GameObject mainCamLeft = GameObject.FindWithTag("MainCameraLeft");
+
+            // Ensure cameras are found before setting active states
+            if (mainCamRight != null && mainCamLeft != null)
+            {
+                mainCamRight.SetActive(hasRightCar);
+                mainCamLeft.SetActive(!hasRightCar);
+            }
+            else
+            {
+                Debug.LogError("MainCameraRight or MainCameraLeft not found! Make sure they have the correct tags.");
+            }
         }
+
 
         public void NextCustomStage()
         {
@@ -130,11 +141,20 @@ namespace Game
             if (NetworkManager.Singleton.IsHost) return;
             GetDataFromServer(levelNameServer, hasRightCar);
             
-            var mainCamRight = gameObject.transform.Find("MainCameraRight").gameObject;
-            var mainCamLeft = gameObject.transform.Find("MainCameraLeft").gameObject;
-            
-            mainCamRight.SetActive(hasRightCar);
-            mainCamLeft.SetActive(!hasRightCar);
+            // Find cameras by tag
+            GameObject mainCamRight = GameObject.FindWithTag("MainCameraRight");
+            GameObject mainCamLeft = GameObject.FindWithTag("MainCameraLeft");
+
+            // Ensure cameras are found before setting active states
+            if (mainCamRight != null && mainCamLeft != null)
+            {
+                mainCamRight.SetActive(hasRightCar);
+                mainCamLeft.SetActive(!hasRightCar);
+            }
+            else
+            {
+                Debug.LogError("MainCameraRight or MainCameraLeft not found! Make sure they have the correct tags.");
+            }
         }
         
         private void EndCustomisation()
