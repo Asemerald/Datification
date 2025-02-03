@@ -11,6 +11,8 @@ TagManager:
   - Car
   - MainCanvas
   - Bubble
+  - MainCameraRight
+  - MainCameraLeft
   layers:
   - Default
   - TransparentFX

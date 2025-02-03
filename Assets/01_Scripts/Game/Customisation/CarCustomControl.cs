@@ -44,7 +44,11 @@ namespace Game.Customisation
             {
                 // disable collider
                 GetComponent<Collider>().enabled = false;
+                return;
             }
+            
+            // Set the car in the GameManager
+            GameManager.Instance.car = this;
         }
 
         #endregion

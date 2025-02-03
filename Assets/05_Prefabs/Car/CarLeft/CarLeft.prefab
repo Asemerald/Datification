@@ -543,8 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1045413293
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3857486234
+  InScenePlacedSourceGlobalObjectIdHash: 1045413293
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
   roues: {fileID: 5553300826695784286}
   phares: {fileID: 4518682744085080035}
   accessoires: {fileID: 3075818925766523358}
-  startPosition: {x: 0, y: -3.5, z: 4}
+  startPosition: {x: 0, y: -3.5, z: 4.21}
   startRotation: {x: 0, y: -90, z: 0}
 --- !u!65 &7020222735855323127
 BoxCollider:

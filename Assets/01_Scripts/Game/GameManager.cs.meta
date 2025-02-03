@@ -3,7 +3,14 @@ guid: ff83dda89d7237944944dc6c662d0aba
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - carLeftPrefab: {instanceID: 0}
+  - carRightPrefab: {instanceID: 0}
+  - bubblePrefab: {instanceID: 0}
+  - MainCameraLeft: {fileID: 4813418779943909445, guid: e04bdf1bcd9c54b448e88c5e45f4d7ea, type: 3}
+  - MainCameraRight: {fileID: 2249050811860785214, guid: ff1ad3bcdc3b5f645abffcea175b4013, type: 3}
+  - currentLevel: {instanceID: 0}
+  - car: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

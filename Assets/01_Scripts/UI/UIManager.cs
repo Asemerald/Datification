@@ -45,6 +45,7 @@ namespace UI
 
         private void SingletonOnOnClientConnectedCallback(ulong obj = 0)
         {
+            if (uiDisabled) return;
             if (!NetworkManager.Singleton.IsHost) return;
             if (NetworkManager.Singleton.ConnectedClientsList.Count < 2)
             {

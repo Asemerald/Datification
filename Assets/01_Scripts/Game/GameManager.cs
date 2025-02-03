@@ -16,6 +16,10 @@ namespace Game
         [SerializeField] private NetworkObject carLeftPrefab;
         [SerializeField] private NetworkObject carRightPrefab;
         [SerializeField] public BubbleBehaviour bubblePrefab;
+        [SerializeField] public Vector3 MainCameraLeftPosition;
+        [SerializeField] public Vector3 MainCameraLeftRotation;
+        [SerializeField] public Vector3 MainCameraRightPosition;
+        [SerializeField] public Vector3 MainCameraRightRotation;
     
         #endregion
     
@@ -49,21 +53,10 @@ namespace Game
                 hasRightCar = Random.Range(0, 2) == 0;
                 levelName = currentLevel.name;
             }
-
-            // Find cameras by tag
-            GameObject mainCamRight = GameObject.FindWithTag("MainCameraRight");
-            GameObject mainCamLeft = GameObject.FindWithTag("MainCameraLeft");
-
-            // Ensure cameras are found before setting active states
-            if (mainCamRight != null && mainCamLeft != null)
-            {
-                mainCamRight.SetActive(hasRightCar);
-                mainCamLeft.SetActive(!hasRightCar);
-            }
-            else
-            {
-                Debug.LogError("MainCameraRight or MainCameraLeft not found! Make sure they have the correct tags.");
-            }
+            
+            Camera.main.transform.position = hasRightCar ? MainCameraRightPosition : MainCameraLeftPosition;
+            Camera.main.transform.eulerAngles = hasRightCar ? MainCameraRightRotation : MainCameraLeftRotation;
+            
         }
 
 
@@ -141,20 +134,8 @@ namespace Game
             if (NetworkManager.Singleton.IsHost) return;
             GetDataFromServer(levelNameServer, hasRightCar);
             
-            // Find cameras by tag
-            GameObject mainCamRight = GameObject.FindWithTag("MainCameraRight");
-            GameObject mainCamLeft = GameObject.FindWithTag("MainCameraLeft");
-
-            // Ensure cameras are found before setting active states
-            if (mainCamRight != null && mainCamLeft != null)
-            {
-                mainCamRight.SetActive(hasRightCar);
-                mainCamLeft.SetActive(!hasRightCar);
-            }
-            else
-            {
-                Debug.LogError("MainCameraRight or MainCameraLeft not found! Make sure they have the correct tags.");
-            }
+            Camera.main.transform.position = hasRightCar ? MainCameraRightPosition : MainCameraLeftPosition;
+            Camera.main.transform.eulerAngles = hasRightCar ? MainCameraRightRotation : MainCameraLeftRotation;
         }
         
         private void EndCustomisation()
