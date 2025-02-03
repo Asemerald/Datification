@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RaceManager : MonoBehaviour
 {
@@ -141,5 +142,10 @@ public class RaceManager : MonoBehaviour
      private void DebugCurrentRaceStep()
      {
           if (debugOn) Debug.Log(currentRaceStep);
+     }
+
+     public void RestartScene()
+     {
+          SceneManager.LoadScene(0);
      }
 }
