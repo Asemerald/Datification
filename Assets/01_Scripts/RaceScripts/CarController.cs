@@ -20,7 +20,6 @@ public class CarController : MonoBehaviour
     
     [Space(15f)]
     [SerializeField] private float boosterSpeedAdded = 10f;
-    [SerializeField] private ParticleSystem boostPs;
     private bool canBoost;
 
     [Header("Cameras")] 
