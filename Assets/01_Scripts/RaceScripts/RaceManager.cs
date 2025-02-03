@@ -30,6 +30,8 @@ public class RaceManager : MonoBehaviour
      [SerializeField] private GameObject slideIndicator;
      [SerializeField] private GameObject finalScorePanel;
      [SerializeField] private GameObject endRaceButton;
+     [SerializeField] private GameObject controlTouchScreenRight;
+     [SerializeField] private GameObject controlTouchScreenLeft;
      
      [Space,Header("Timings")]
      [SerializeField] private float trafficLightsEndTime = .5f;
@@ -52,6 +54,9 @@ public class RaceManager : MonoBehaviour
           slideIndicator.SetActive(false);
           finalScorePanel.SetActive(false);
           endRaceButton.SetActive(false);
+          controlTouchScreenRight.SetActive(false);
+          controlTouchScreenLeft.SetActive(false);
+          
 
           //Gets the duration of the traffic light animation to give the car control at the right timing
           trafficLightAnimDuration = trafficLights.GetComponent<Animation>().clip.length;
@@ -102,7 +107,17 @@ public class RaceManager : MonoBehaviour
      {
           DebugCurrentRaceStep();
           carController.enabled = false;
-          yield return new WaitForSeconds(1f);
+          
+          /*APPARITION INDICATION TOUCH SCREEN J1 LEFT - A CHANGER EN FONCTION DU JOUEUR!
+          controlTouchScreenLeft.SetActive(true);
+          yield return new WaitForSeconds(2f);
+          controlTouchScreenLeft.SetActive(false);*/
+          
+          //APPARITION INDICATION TOUCH SCREEN J2 RIGHT 
+          controlTouchScreenRight.SetActive(true);
+          yield return new WaitForSeconds(2f);
+          controlTouchScreenRight.SetActive(false);
+          
           currentRaceStep = RaceStep.StartRace;
      }
      IEnumerator StartRace()
