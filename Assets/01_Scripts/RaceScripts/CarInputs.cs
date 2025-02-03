@@ -55,26 +55,64 @@ public class CarInputs : MonoBehaviour
             controller.LaunchRamp();
         }*/
         
-        
 
         if (left && right)
         {
-            activeState = States.allActive;
+            if (activeState != States.allActive)
+            {
+                SwitchFX();
+                activeState = States.allActive;
+            }
         }
         else if (!left && right)
         {
-            activeState = States.rightActive;
+            if (activeState != States.rightActive)
+            {
+                SwitchFX();
+                activeState = States.rightActive;
+            }
         }
         else if (left && !right)
         {
-            activeState = States.leftActive;
+            if (activeState != States.leftActive)
+            {
+                SwitchFX();
+                activeState = States.leftActive;
+            }
         }
         else
         {
-            activeState = States.noActive;
+            if (activeState != States.noActive)
+            {
+                SwitchFX();
+                activeState = States.noActive;
+            }
         }
         
         anim.SetInteger("States", (int)activeState);
+    }
+
+    private void SwitchFX()
+    {
+        Debug.Log("Switch FX");
+        
+        if (left)
+        {
+            controller.EnableLeftFX();
+        }
+        else
+        {
+            controller.DisableLeftFX();
+        }
+
+        if (right)
+        {
+            controller.EnableRightFX();
+        }
+        else
+        {
+            controller.DisableRightFX();
+        }
     }
 
     public void StartEndingTrigger()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f5f5fca3fc2c44144b6a2d11020da042, type: 3}
   type: 1
-  id: 07
+  id: 5
   name: Roues Vegan
   LeftMesh: {fileID: 819853038161372823, guid: 69020d81eaf6bfa4b93232fb74de0e49, type: 3}
   RightMesh: {fileID: 692721413344963764, guid: e0642056b76a5f1438defbfef91fe91d, type: 3}

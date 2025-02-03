@@ -20,7 +20,6 @@ public class CarController : MonoBehaviour
     
     [Space(15f)]
     [SerializeField] private float boosterSpeedAdded = 10f;
-    [SerializeField] private ParticleSystem boostPs;
     private bool canBoost;
 
     [Header("Cameras")] 
@@ -35,6 +34,15 @@ public class CarController : MonoBehaviour
     [SerializeField] private Animator animatorJ1;
     [SerializeField] private Animator animatorJ2;
 
+    [Header("FX")] 
+    [SerializeField] private ParticleSystem fxAccelLeft;
+    [SerializeField] private ParticleSystem fxAccelRight;
+    [Space]
+    [SerializeField] private ParticleSystem fxWheelLeft;
+    [SerializeField] private ParticleSystem fxWheelRight;
+    [Space]
+    [SerializeField] private ParticleSystem fxBoostLeft; 
+    [SerializeField] private ParticleSystem fxBoostRight;
     
     private void Start()
     {
@@ -42,10 +50,14 @@ public class CarController : MonoBehaviour
         rampZone = 0;
         
         canBoost = true;
+        
+        //setup FX
+        DisableAllFX();
     }
 
     private void Update()
     {
+        
         if (!inputs.secondStage)
         {
             RaceUpdate();
@@ -90,13 +102,58 @@ public class CarController : MonoBehaviour
         }
     }
 
+    public void EnableRightFX()
+    {
+        fxAccelRight.Play(true);
+        fxWheelRight.Play(true);
+    }
+    public void EnableLeftFX()
+    {
+        fxAccelLeft.Play(true);
+        fxWheelLeft.Play(true);
+    }
+    
+    public void DisableRightFX()
+    {
+        fxAccelRight.Clear(true);
+        fxWheelRight.Clear(true);
+        
+        fxAccelRight.Stop(true);
+        fxWheelRight.Stop(true);
+    }
+    public void DisableLeftFX()
+    {
+        fxAccelLeft.Clear(true);
+        fxWheelLeft.Clear(true);
+        
+        fxAccelLeft.Stop(true);
+        fxWheelLeft.Stop(true);
+    }
+
+    private void DisableAllFX()
+    {
+        DisableLeftFX();
+        DisableRightFX();
+        
+        fxBoostLeft.Clear(true);
+        fxBoostRight.Clear(true);
+        
+        fxBoostLeft.Stop(true);
+        fxBoostRight.Stop(true);
+    }
+    
+
     public void Boost()
     {
         if (!canBoost) return;
         
         canBoost = false;
         baseSpeed += boosterSpeedAdded;
-        boostPs.Play();
+        
+        //particles
+        
+        fxBoostLeft.Play();
+        fxBoostRight.Play();
         
         inputs.animCar.SetTrigger("Boost");
         
@@ -108,8 +165,11 @@ public class CarController : MonoBehaviour
 
     private IEnumerator BoosterCooldown()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         canBoost = true;
+        yield return new WaitForSeconds(0.7f);
+        fxBoostLeft.Stop();
+        fxBoostRight.Stop();
     }
 
     public void SwitchCameras()

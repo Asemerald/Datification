@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f1b090baf99009c45a6ddeed82a89d26, type: 3}
   type: 2
-  id: 02
+  id: 0
   name: Phare Rich
   LeftMesh: {fileID: 1505241846921273133, guid: 8cc59079a1b4786438b797f235cf6481, type: 3}
   RightMesh: {fileID: 5535290219259279464, guid: 42199173223144a45ae552c7547a8b3a, type: 3}
