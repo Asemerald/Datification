@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fb2fbd907b4818ad07ab2902b2a70a, type: 3}
+  m_Name: AccessoireBouillon
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 1104711cc0dd54c47b765c0753478995, type: 3}
+  type: 3
+  id: 08
+  name: Accessoire Bouillon
+  LeftMesh: {fileID: 8125690702757746954, guid: dd8ce0052364b5a42bed4c8109db9829, type: 3}
+  RightMesh: {fileID: 1984904468840072937, guid: 92e3b58edd6db4e44a88193025bf578b, type: 3}
