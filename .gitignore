@@ -61,6 +61,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-Assets/Others/Agora-RTC-Plugin/Agora-Unity-RTC-SDK/
-Assets/Others/Agora-RTC-Plugin/Agora-RTC-Plugin/
+Assets/Others/Agora-RTC-Plugin/
 
