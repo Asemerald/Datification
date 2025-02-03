@@ -13,8 +13,8 @@ namespace Game
         #region SerializeField
     
         [Header("Game Prefabs")]
-        [SerializeField] private GameObject carLeftPrefab;
-        [SerializeField] private GameObject carRightPrefab;
+        [SerializeField] private NetworkObject carLeftPrefab;
+        [SerializeField] private NetworkObject carRightPrefab;
         [SerializeField] public BubbleBehaviour bubblePrefab;
     
         #endregion
@@ -49,6 +49,11 @@ namespace Game
                 hasRightCar = Random.Range(0, 2) == 0;
                 levelName = currentLevel.name;
             }
+            var mainCamRight = gameObject.transform.Find("MainCameraRight").gameObject;
+            var mainCamLeft = gameObject.transform.Find("MainCameraLeft").gameObject;
+            
+            mainCamRight.SetActive(hasRightCar);
+            mainCamLeft.SetActive(!hasRightCar);
         }
 
         public void NextCustomStage()
@@ -96,13 +101,15 @@ namespace Game
         {
         
             StartGameClientRpc();
+            SpawnCar(hasRightCar);
         }
     
         [ClientRpc]
         private void StartGameClientRpc()
         {
             CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
-            SpawnCar(hasRightCar);
+            
+            
             SpawnCarrosserieBubbles(); // TODO delay ?
             
             InGameUI.Instance.ShowNextButton(true);
@@ -122,6 +129,12 @@ namespace Game
         {
             if (NetworkManager.Singleton.IsHost) return;
             GetDataFromServer(levelNameServer, hasRightCar);
+            
+            var mainCamRight = gameObject.transform.Find("MainCameraRight").gameObject;
+            var mainCamLeft = gameObject.transform.Find("MainCameraLeft").gameObject;
+            
+            mainCamRight.SetActive(hasRightCar);
+            mainCamLeft.SetActive(!hasRightCar);
         }
         
         private void EndCustomisation()

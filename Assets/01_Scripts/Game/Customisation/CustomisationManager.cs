@@ -91,6 +91,31 @@ namespace Game.Customisation
             Debug.LogError("Level not found");
             return null;
         }
+
+        public CarPartScriptable GetCarPartById(int carPartId)
+        {
+            // Load all CarPart ScriptableObjects from the Resources/CarParts folder
+            // return the CarPart with the id
+            
+            CarPartScriptable[] carParts = Resources.LoadAll<CarPartScriptable>("CarParts");
+            
+            if (carParts.Length == 0)
+            {
+                Debug.LogError("No car parts found in Resources/CarParts!");
+                return null;
+            }
+            
+            foreach (CarPartScriptable carPart in carParts)
+            {
+                if (carPart.id == carPartId)
+                {
+                    return carPart;
+                }
+            }
+            
+            Debug.LogError("Car part not found");
+            return null;
+        }
         
         #endregion
         
