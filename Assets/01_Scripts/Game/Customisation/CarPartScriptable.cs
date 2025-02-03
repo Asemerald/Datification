@@ -21,7 +21,7 @@ namespace Game
         public CarPartType type;
         
         [Header("Unique ID")] 
-        public string id;
+        public int id;
         
         [Header("Nom de la pièce")]
         public new string name;

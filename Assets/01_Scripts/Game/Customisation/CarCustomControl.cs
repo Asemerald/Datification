@@ -1,8 +1,10 @@
+using System;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Game.Customisation
 {
-    public class CarCustomControl : MonoBehaviour
+    public class CarCustomControl : NetworkBehaviour
     {
         private Vector3 _startPosition;
         private Vector3 _dragOffset;
@@ -21,6 +23,22 @@ namespace Game.Customisation
         [SerializeField] private GameObject phares;
         [SerializeField] private GameObject accessoires;
 
+        
+        #region Network
+
+        private void Start()
+        {
+            SpawnCarServerRpc();
+        }
+
+        [ServerRpc (RequireOwnership = false)]
+        private void SpawnCarServerRpc()
+        {
+            NetworkObject.Spawn();
+        }
+        #endregion
+        
+        
         void Update()
         {
             HandleDrag();
