@@ -13,8 +13,8 @@ namespace Game
         #region SerializeField
     
         [Header("Game Prefabs")]
-        [SerializeField] private GameObject carLeftPrefab;
-        [SerializeField] private GameObject carRightPrefab;
+        [SerializeField] private NetworkObject carLeftPrefab;
+        [SerializeField] private NetworkObject carRightPrefab;
         [SerializeField] public BubbleBehaviour bubblePrefab;
     
         #endregion
@@ -101,13 +101,15 @@ namespace Game
         {
         
             StartGameClientRpc();
+            SpawnCar(hasRightCar);
         }
     
         [ClientRpc]
         private void StartGameClientRpc()
         {
             CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
-            SpawnCar(hasRightCar);
+            
+            
             SpawnCarrosserieBubbles(); // TODO delay ?
             
             InGameUI.Instance.ShowNextButton(true);

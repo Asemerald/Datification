@@ -28,19 +28,20 @@ namespace Game.Customisation
 
         private void Start()
         {
-            SpawnCarServerRpc();
+            if (!NetworkObject.IsOwner)
+            {
+                // disable collider
+                GetComponent<Collider>().enabled = false;
+            }
         }
 
-        [ServerRpc (RequireOwnership = false)]
-        private void SpawnCarServerRpc()
-        {
-            NetworkObject.Spawn();
-        }
         #endregion
         
         
         void Update()
         {
+            if (!NetworkObject.IsOwner) return;
+            
             HandleDrag();
             HandlePinchToZoom();
         }
@@ -112,64 +113,119 @@ namespace Game.Customisation
 
         public void ChangeCarPart(CarPartScriptable carPart)
         {
-            Debug.LogError("Changing car part: " + carPart.name);
             switch (carPart.type)
             {
                 case CarPartScriptable.CarPartType.Carrosserie:
-                    ChangeCarrosserie(carPart);
+                    ChangeCarrosserieServerRpc(carPart.id);
                     break;
                 case CarPartScriptable.CarPartType.Roues:
-                    ChangeRoues(carPart);
+                    ChangeRouesServerRpc(carPart.id);
                     break;
                 case CarPartScriptable.CarPartType.Phares:
-                    ChangePhares(carPart);
+                    ChangePharesServerRpc(carPart.id);
                     break;
                 case CarPartScriptable.CarPartType.Accessoires:
-                    ChangeAccessoires(carPart);
+                    ChangeAccessoiresServerRpc(carPart.id);
                     break;
             }
         }
         
-        private void ChangeCarrosserie(CarPartScriptable carPart)
+        [ServerRpc (RequireOwnership = false)]
+        private void ChangeCarrosserieServerRpc(int carPartId)
+        {
+            ChangeCarrosserieClientRpc(carPartId);
+        }
+        
+        [ClientRpc]
+        private void ChangeCarrosserieClientRpc(int carPartId)
+        {
+            ChangeCarrosserie(carPartId);
+        }
+        
+        private void ChangeCarrosserie(int carPartId)
         {
             //delete all childs of carrosserie
             foreach (Transform child in carrosserie.transform)
             {
                 Destroy(child.gameObject);
             }
+            
+            var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
             //instantiate new carrosserie
             GameObject newCarrosserie = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, carrosserie.transform);
         }
         
-        private void ChangeRoues(CarPartScriptable carPart)
+        [ServerRpc (RequireOwnership = false)]
+        private void ChangeRouesServerRpc(int carPartId)
+        {
+            ChangeRouesClientRpc(carPartId);
+        }
+        
+        [ClientRpc]
+        private void ChangeRouesClientRpc(int carPartId)
+        {
+            ChangeRoues(carPartId);
+        }
+        
+        private void ChangeRoues(int carPartId)
         {
             //delete all childs of roues
             foreach (Transform child in roues.transform)
             {
                 Destroy(child.gameObject);
             }
+            
+            var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
             //instantiate new roues
             GameObject newRoues = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, roues.transform);
         }
         
-        private void ChangePhares(CarPartScriptable carPart)
+        [ServerRpc (RequireOwnership = false)]
+        private void ChangePharesServerRpc(int carPartId)
+        {
+            ChangePharesClientRpc(carPartId);
+        }
+        
+        [ClientRpc]
+        private void ChangePharesClientRpc(int carPartId)
+        {
+            ChangePhares(carPartId);
+        }
+        
+        private void ChangePhares(int carPartId)
         {
             //delete all childs of phares
             foreach (Transform child in phares.transform)
             {
                 Destroy(child.gameObject);
             }
+            
+            var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
             //instantiate new phares
             GameObject newPhares = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, phares.transform);
         }
         
-        private void ChangeAccessoires(CarPartScriptable carPart)
+        [ServerRpc (RequireOwnership = false)]
+        private void ChangeAccessoiresServerRpc(int carPartId)
+        {
+            ChangeAccessoiresClientRpc(carPartId);
+        }
+        
+        [ClientRpc]
+        private void ChangeAccessoiresClientRpc(int carPartId)
+        {
+            ChangeAccessoires(carPartId);
+        }
+        
+        private void ChangeAccessoires(int carPartId)
         {
             //delete all childs of accessoires
             foreach (Transform child in accessoires.transform)
             {
                 Destroy(child.gameObject);
             }
+            
+            var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
             //instantiate new accessoires
             GameObject newAccessoires = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, accessoires.transform);
         }
