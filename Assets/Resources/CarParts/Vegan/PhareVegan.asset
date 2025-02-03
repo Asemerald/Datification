@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f6270bbe79a9f754ba7345ad1a8b3120, type: 3}
   type: 2
-  id: 06
+  id: 4
   name: Phare Vegan
   LeftMesh: {fileID: 1321216651707610356, guid: 8e75e6cacbd2657438dfd72846aa67ae, type: 3}
   RightMesh: {fileID: 7360137071109346158, guid: fa232efc816ce6d48ad6f307075e4be1, type: 3}

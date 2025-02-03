@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f1b090baf99009c45a6ddeed82a89d26, type: 3}
   type: 2
-  id: 10
+  id: 9
   name: Phare Bouillon
   LeftMesh: {fileID: 450169513402400540, guid: d963b83ed4c9a6749bf94b938ddd2f13, type: 3}
   RightMesh: {fileID: 8628451434873416925, guid: c638141580310994ba749e824e69dbbd, type: 3}

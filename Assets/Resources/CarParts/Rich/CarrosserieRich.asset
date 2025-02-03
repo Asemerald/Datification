@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 6677b664ac232dc4294e3508582858d4, type: 3}
   type: 0
-  id: 00
+  id: 2
   name: Carrosserie Rich
   LeftMesh: {fileID: 4738712280380234597, guid: 4f5315df8a1c2334a8a6eb53977a80b1, type: 3}
   RightMesh: {fileID: 6127040703236097615, guid: f0bf3051a0f00c643978bc30e03eeab1, type: 3}
