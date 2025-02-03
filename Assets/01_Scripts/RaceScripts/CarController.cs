@@ -61,16 +61,18 @@ public class CarController : MonoBehaviour
     {
         accelSpeed = baseSpeed + 10;
 
-        if (inputs.activeState == CarInputs.States.noActive)
+        /*if (inputs.activeState == CarInputs.States.noActive)
         {
             targetSpeed = baseSpeed;
             currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, decelMultiplier * Time.deltaTime);
         }
         else
         {
-            targetSpeed = accelSpeed;
-            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelMultiplier * Time.deltaTime);
-        }
+            
+        }*/
+        
+        targetSpeed = accelSpeed;
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelMultiplier * Time.deltaTime);
 
         targetSpeed = Mathf.Clamp(targetSpeed, 0, maxSpeed);
         
