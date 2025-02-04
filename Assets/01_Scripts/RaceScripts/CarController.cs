@@ -61,24 +61,10 @@ public class CarController : NetworkBehaviour
 
         if (!NetworkManager.Singleton.IsServer) return;
         
-        SpawnChildServerRpc();
-        
         // transform position = 0 1 -250
         transform.position = new Vector3(0, 1, -250);
     }
     
-    [ServerRpc]
-    private void SpawnChildServerRpc()
-    {
-        // For each child with a NetworkObject, spawn it
-        foreach (Transform child in transform)
-        {
-            if (child.TryGetComponent(out NetworkObject networkObject))
-            {
-                networkObject.Spawn();
-            }
-        }
-    }
 
     private void Update()
     {

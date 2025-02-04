@@ -9,6 +9,8 @@ public class MainCarPreview : MonoBehaviour
     
     [SerializeField] Vector3 startPosition;
     
+    private bool raceStarted = false;
+    
     void Start()
     {
         transform.position = startPosition;
@@ -16,6 +18,24 @@ public class MainCarPreview : MonoBehaviour
 
     private void Update()
     {
-        
+        // If i have a parent and race has not started, disable the animation components
+        if (transform.parent != null && !raceStarted)
+        {
+            DisableAnimationComponents();
+        }
+    }
+
+    private void DisableAnimationComponents()
+    {
+        if (raceStarted) return;
+        raceStarted = true;
+        UnityMainThread.wkr.AddJob(() =>
+        {
+            
+            var animationComponent = GetComponent<Animator>();
+            animationComponent.enabled = false;
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
+        });
     }
 }

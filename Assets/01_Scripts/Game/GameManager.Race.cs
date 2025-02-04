@@ -11,6 +11,7 @@ namespace Game
             UnityMainThread.wkr.AddJob(() =>
             {
                 ServerBehaviour.Instance.racePrefab.SetActive(true);
+                ServerBehaviour.Instance.showReelPrefab.SetActive(false);
             });
         }
     }

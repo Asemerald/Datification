@@ -14,6 +14,7 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
     [SerializeField] private NetworkObject mainCarPrefab;
     [SerializeField] private NetworkObject raceCarPrefab;
     [SerializeField] public GameObject racePrefab;
+    [SerializeField] public GameObject showReelPrefab;
     
     #endregion
 
@@ -39,7 +40,7 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
         
         var raceCar = NetworkManager.SpawnManager.InstantiateAndSpawn(raceCarPrefab);
         
-        maincar.TrySetParent(raceCar.transform.GetChild(0), false);
+        maincar.TrySetParent(raceCar, false);
     }
     
     
