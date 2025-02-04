@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 667d2caadce391d42b522e9f202ef204, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.501
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 667d2caadce391d42b522e9f202ef204, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 667d2caadce391d42b522e9f202ef204, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.36
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 667d2caadce391d42b522e9f202ef204, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0c47d1d3c7470c849ad90a0a0f891d90, type: 2}
     - target: {fileID: 919132149155446097, guid: 667d2caadce391d42b522e9f202ef204, type: 3}
       propertyPath: m_Name
-      value: SM_DecoCup_Right
+      value: Prefab_DecoCup_Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

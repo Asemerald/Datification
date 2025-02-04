@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 4713127346854041320}
   - component: {fileID: 3506468353321041943}
   - component: {fileID: 7020222735855323127}
+  - component: {fileID: -8611936350736130812}
   m_Layer: 0
   m_Name: CarLeft
   m_TagString: Car
@@ -543,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3284782973
+  GlobalObjectIdHash: 1045413293
   InScenePlacedSourceGlobalObjectIdHash: 1045413293
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -591,6 +592,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.1866245, y: 3.137968, z: 6.419172}
   m_Center: {x: 0.9307816, y: 0.3158431, z: 0.32896948}
+--- !u!114 &-8611936350736130812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8271162676860214250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
 --- !u!1 &8885266433600564035
 GameObject:
   m_ObjectHideFlags: 0

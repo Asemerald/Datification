@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ceb9f67e38d34024389284d15582d7f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb9f67e38d34024389284d15582d7f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.921
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb9f67e38d34024389284d15582d7f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.475894
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ceb9f67e38d34024389284d15582d7f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0c47d1d3c7470c849ad90a0a0f891d90, type: 2}
     - target: {fileID: 919132149155446097, guid: ceb9f67e38d34024389284d15582d7f9, type: 3}
       propertyPath: m_Name
-      value: SM_WheelDonut_Left
+      value: Prefab_WheelDonut_Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

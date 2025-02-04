@@ -16,6 +16,6 @@ public class AudioManager : InstanceBase<AudioManager>
 
     public void PlaySound(int index, float volume = 1)
     {
-        audioSource.PlayOneShot(audioClips[index], volume);
+        //audioSource.PlayOneShot(audioClips[index], volume);
     }
 }

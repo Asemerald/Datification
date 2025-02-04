@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 09c53bcb84137c24bb6a1569367a4428, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 09c53bcb84137c24bb6a1569367a4428, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 09c53bcb84137c24bb6a1569367a4428, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.465
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 09c53bcb84137c24bb6a1569367a4428, type: 3}
       propertyPath: m_LocalRotation.w
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0c47d1d3c7470c849ad90a0a0f891d90, type: 2}
     - target: {fileID: 919132149155446097, guid: 09c53bcb84137c24bb6a1569367a4428, type: 3}
       propertyPath: m_Name
-      value: SM_FFCar_Right
+      value: Prefab_FFCar_Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

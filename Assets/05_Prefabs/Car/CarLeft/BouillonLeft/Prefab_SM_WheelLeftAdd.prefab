@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 43543fa07a9d83b4eb25f3afd208a6cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 174.34947
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 43543fa07a9d83b4eb25f3afd208a6cf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 43543fa07a9d83b4eb25f3afd208a6cf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -326.55334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 43543fa07a9d83b4eb25f3afd208a6cf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: df0595479deeb864cbfd233f644de788, type: 2}
     - target: {fileID: 919132149155446097, guid: 43543fa07a9d83b4eb25f3afd208a6cf, type: 3}
       propertyPath: m_Name
-      value: SM_WheelLeftAdd
+      value: Prefab_SM_WheelLeftAdd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
