@@ -72,7 +72,7 @@ namespace Game
                     break;
                 case 2:
                     DespawnAllBubbles();
-                    SpawnRouesBubbles();
+                    SpawnPharesBubbles();
                     break;
                 case 3:
                     DespawnAllBubbles();
