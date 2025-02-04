@@ -17,6 +17,7 @@ namespace Game.Customisation
         [SerializeField] private TMP_Text themeText;
         [SerializeField] public CinemachineVirtualCamera showRoomCamera;
         [SerializeField] public GameObject rideau;
+        [SerializeField] public GameObject mainCarParent;
         
         
         #endregion
