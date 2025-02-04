@@ -149,9 +149,11 @@ public class CarController : MonoBehaviour
         targetSpeed += boosterSpeedAdded;
         
         //particles
-        
         fxBoostLeft.Play();
         fxBoostRight.Play();
+        
+        //Audio call
+        AudioManager.Instance.PlaySound(9, 0.5f);
         
         inputs.animCar.SetTrigger("Boost");
         
