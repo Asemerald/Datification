@@ -35,7 +35,10 @@ namespace Game
         
         public NetworkVariable<bool> hostFinishedCustomisation = new NetworkVariable<bool>(false);
         public NetworkVariable<bool> clientFinishedCustomisation = new NetworkVariable<bool>(false);
-    
+
+        //Ajout UI
+        private CustomisationPhaseUIManager phaseCustomUIManager;
+        
         #endregion
     
         #region Methods
@@ -62,6 +65,9 @@ namespace Game
             Camera.main.transform.position = hasRightCar ? MainCameraRightPosition : MainCameraLeftPosition;
             Camera.main.transform.eulerAngles = hasRightCar ? MainCameraRightRotation : MainCameraLeftRotation;
             
+            
+            //Ajout UI
+            phaseCustomUIManager = CustomisationPhaseUIManager.Instance;
         }
 
 
@@ -73,6 +79,9 @@ namespace Game
                 case 1:
                     DespawnAllBubbles();
                     SpawnRouesBubbles();
+                    
+                    //Ajout ui
+                    phaseCustomUIManager.ThemeActivation(true);
                     break;
                 case 2:
                     DespawnAllBubbles();
@@ -84,6 +93,9 @@ namespace Game
                     break;
                 case 4:
                     EndCustomisation();
+                    
+                    //Ajout ui
+                    phaseCustomUIManager.WaitingActivation(true,true);
                     break;
             }
         }
