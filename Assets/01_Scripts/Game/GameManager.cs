@@ -170,6 +170,7 @@ namespace Game
                 
                 //Ajout ui
                 phaseCustomUIManager.WaitingActivation(true,true);
+                CheckEndCustomisation();
             }
             else
             {
@@ -177,6 +178,7 @@ namespace Game
                 
                 //Ajout ui
                 phaseCustomUIManager.WaitingActivation(true,true);
+                CheckEndCustomisation();
             }
         }
     

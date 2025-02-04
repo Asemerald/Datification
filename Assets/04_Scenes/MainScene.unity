@@ -507,6 +507,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06216e4368b01a142888123faa2123ed, type: 3}
+--- !u!1 &2140848081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2989764438476503422, guid: 06216e4368b01a142888123faa2123ed, type: 3}
+  m_PrefabInstance: {fileID: 2140848080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2140848082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 113338229472972596, guid: 06216e4368b01a142888123faa2123ed, type: 3}
+  m_PrefabInstance: {fileID: 2140848080}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &524017745965894955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -733,7 +749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1540468595585966799, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1805881919645085679, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_IsActive
@@ -825,9 +841,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6991419427265428784, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7637967642522519023, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873692385212547197, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -901,9 +921,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5540642161655057005, guid: 18d29593d6577f34aad1a016a4f7cc1a, type: 3}
+      propertyPath: rideau
+      value: 
+      objectReference: {fileID: 2140848081}
+    - target: {fileID: 5540642161655057005, guid: 18d29593d6577f34aad1a016a4f7cc1a, type: 3}
       propertyPath: themeText
       value: 
       objectReference: {fileID: 481245350}
+    - target: {fileID: 5540642161655057005, guid: 18d29593d6577f34aad1a016a4f7cc1a, type: 3}
+      propertyPath: showRoomCamera
+      value: 
+      objectReference: {fileID: 2140848082}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
