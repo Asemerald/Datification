@@ -13,6 +13,6 @@ public class DebugUi : MonoBehaviour
     private void Update()
     {
         if (GameManager.Instance == null) return;
-        rightSideText.text = $"Right side: {GameManager.Instance.hasRightCar}";
+        rightSideText.text = $"Host : ${GameManager.Instance.hostFinishedCustomisation.Value} Client : ${GameManager.Instance.clientFinishedCustomisation.Value}";
     }
 }

@@ -21,6 +21,7 @@ namespace Game
         [SerializeField] public Vector3 MainCameraLeftRotation;
         [SerializeField] public Vector3 MainCameraRightPosition;
         [SerializeField] public Vector3 MainCameraRightRotation;
+        
     
         #endregion
     
@@ -31,6 +32,9 @@ namespace Game
         private int currentCustomStageIndex = 0;
         public bool hasRightCar = false;
         public CarCustomControl car;
+        
+        public NetworkVariable<bool> hostFinishedCustomisation = new NetworkVariable<bool>(false);
+        public NetworkVariable<bool> clientFinishedCustomisation = new NetworkVariable<bool>(false);
     
         #endregion
     
@@ -142,9 +146,21 @@ namespace Game
         
         private void EndCustomisation()
         {
-            if (NetworkManager.Singleton.IsHost)
+            InGameUI.Instance.ShowNextButton(false);
+
+            ChangeFinishBoolServerRpc(NetworkManager.Singleton.IsHost, true);
+        }
+        
+        [ServerRpc (RequireOwnership = false)]
+        private void ChangeFinishBoolServerRpc(bool isHost, bool value)
+        {
+            if (isHost)
             {
-                //EndCustomisationServerRpc();
+                hostFinishedCustomisation.Value = value;
+            }
+            else
+            {
+                clientFinishedCustomisation.Value = value;
             }
         }
     
