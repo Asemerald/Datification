@@ -94,7 +94,7 @@ Material:
     - _NoRMAo: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Roughness: 0
+    - _Roughness: 1
     - _Saturation: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
