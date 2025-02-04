@@ -80,7 +80,7 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
-    - _ContrastAjustement: 1
+    - _ContrastAjustement: 0.8
     - _CurveAmount: -0.001
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -95,7 +95,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Roughness: 0
-    - _Saturation: 1
+    - _Saturation: 1.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
