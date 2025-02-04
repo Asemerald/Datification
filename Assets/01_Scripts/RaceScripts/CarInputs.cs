@@ -94,7 +94,8 @@ public class CarInputs : MonoBehaviour
 
     private void SwitchFX()
     {
-        Debug.Log("Switch FX");
+        //Audio call
+        AudioManager.Instance.PlaySound(8, 0.5f);
         
         if (left)
         {
