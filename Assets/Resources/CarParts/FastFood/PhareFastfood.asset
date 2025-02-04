@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fb2fbd907b4818ad07ab2902b2a70a, type: 3}
+  m_Name: PhareFastfood
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 3c5b2f64cd16a254c89c60321074a49a, type: 3}
+  type: 2
+  id: 13
+  name: Phare FastFood
+  LeftMesh: {fileID: 1732878674031061169, guid: 9ee5a0edc5e36794c88ee9566fd1d596, type: 3}
+  RightMesh: {fileID: 8842289654321652894, guid: 7b68240dd579aa64f8816f276e2338ad, type: 3}

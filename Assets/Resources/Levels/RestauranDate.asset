@@ -16,12 +16,20 @@ MonoBehaviour:
   carrosserieList:
   - {fileID: 11400000, guid: 8fea30fcdd3115f4fbfffa4094a13f60, type: 2}
   - {fileID: 11400000, guid: cedb6c5e34f35b247b74e49319e6a3af, type: 2}
+  - {fileID: 11400000, guid: 826069f0d47fdca4387fd0c72bc311c5, type: 2}
+  - {fileID: 11400000, guid: eddc68fab6a23c94894983ec29c61bf4, type: 2}
   rouesList:
   - {fileID: 11400000, guid: 79be1d1fd6204c241a7ba2d7ac076189, type: 2}
   - {fileID: 11400000, guid: 28ff58e58c5268747af1aa0aa3fb106a, type: 2}
+  - {fileID: 11400000, guid: e4f424d83a5b73f49bba14a73da300a0, type: 2}
+  - {fileID: 11400000, guid: 0f65a39fa16868f4cb265c30d97b5f39, type: 2}
   pharesList:
   - {fileID: 11400000, guid: c7994d639a32e1c4095864d74cc55c24, type: 2}
   - {fileID: 11400000, guid: 30cd1ceef5c851c48a9292b0c5b255f9, type: 2}
+  - {fileID: 11400000, guid: 2bc9c41c88894f24f832464bd7eec9aa, type: 2}
+  - {fileID: 11400000, guid: db80e99de8c96c74082262206617f73d, type: 2}
   accessoiresList:
   - {fileID: 11400000, guid: d23986a82d7318441ac033b09cd325f4, type: 2}
   - {fileID: 11400000, guid: d3238f773266b5e40943183e53a2f728, type: 2}
+  - {fileID: 11400000, guid: db7744d0a3bb0734ab90f582bef1fb69, type: 2}
+  - {fileID: 11400000, guid: 98eda9b80e3133a43852e579c1dc56f9, type: 2}
