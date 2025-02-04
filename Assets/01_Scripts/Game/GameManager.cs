@@ -162,7 +162,7 @@ namespace Game
         }
         
         [ServerRpc (RequireOwnership = false)]
-        private void ChangeFinishBoolServerRpc(bool isHost, bool value)
+        private void ChangeFinishBoolServerRpc(bool isHost, bool value, ServerRpcParams rpcParams = default)
         {
             if (isHost)
             {
@@ -177,9 +177,18 @@ namespace Game
                 clientFinishedCustomisation.Value = value;
                 
                 //Ajout ui
-                phaseCustomUIManager.WaitingActivation(true,true);
-                CheckEndCustomisation();
+                DisplayEndUiClientRpc();
             }
+        }
+        
+        [ClientRpc]
+        private void DisplayEndUiClientRpc()
+        {
+            if (NetworkManager.Singleton.IsHost) return;
+            
+            //Ajout ui
+            phaseCustomUIManager.WaitingActivation(false,false);
+            phaseCustomUIManager.ResultActivation(true);
         }
     
         #endregion

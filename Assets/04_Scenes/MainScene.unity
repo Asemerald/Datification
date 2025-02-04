@@ -274,6 +274,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &766568332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 341467910108165701, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+  m_PrefabInstance: {fileID: 4035646641729928434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &883777438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,6 +349,16 @@ PrefabInstance:
 --- !u!1 &1050005643 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 730795558315450006, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
+  m_PrefabInstance: {fileID: 4035646641729928434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1107518448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4852382046635431700, guid: 06216e4368b01a142888123faa2123ed, type: 3}
+  m_PrefabInstance: {fileID: 2140848080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1120100363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1540468595585966799, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
   m_PrefabInstance: {fileID: 4035646641729928434}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1417067197 stripped
@@ -508,11 +529,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06216e4368b01a142888123faa2123ed, type: 3}
---- !u!1 &2140848081 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2989764438476503422, guid: 06216e4368b01a142888123faa2123ed, type: 3}
-  m_PrefabInstance: {fileID: 2140848080}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2140848082 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 113338229472972596, guid: 06216e4368b01a142888123faa2123ed, type: 3}
@@ -540,6 +556,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 435265680
       objectReference: {fileID: 0}
+    - target: {fileID: 1990176787102536970, guid: b5bd95b2aef95d048a2ebae300edb836, type: 3}
+      propertyPath: mainCarPrefab
+      value: 
+      objectReference: {fileID: 2998825350300096785, guid: e4f994b97457a4741a8ef0effe1bb017, type: 3}
     - target: {fileID: 6723696114913797737, guid: b5bd95b2aef95d048a2ebae300edb836, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -603,6 +623,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4899680087103637433, guid: 2b5362a10107cdc42a823f715cce0d44, type: 3}
+      propertyPath: themeText
+      value: 
+      objectReference: {fileID: 766568332}
+    - target: {fileID: 4899680087103637433, guid: 2b5362a10107cdc42a823f715cce0d44, type: 3}
       propertyPath: nextButton
       value: 
       objectReference: {fileID: 1050005643}
@@ -622,6 +646,10 @@ PrefabInstance:
       propertyPath: transitionPanelAnimator
       value: 
       objectReference: {fileID: 412594704}
+    - target: {fileID: 4899680087103637433, guid: 2b5362a10107cdc42a823f715cce0d44, type: 3}
+      propertyPath: placeholderCustomisationUI
+      value: 
+      objectReference: {fileID: 1120100363}
     - target: {fileID: 8442404854324397395, guid: 2b5362a10107cdc42a823f715cce0d44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -738,7 +766,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1540468595585966799, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1805881919645085679, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
       propertyPath: m_IsActive
@@ -856,11 +884,15 @@ PrefabInstance:
     - target: {fileID: 5540642161655057005, guid: 18d29593d6577f34aad1a016a4f7cc1a, type: 3}
       propertyPath: rideau
       value: 
-      objectReference: {fileID: 2140848081}
+      objectReference: {fileID: 1107518448}
     - target: {fileID: 5540642161655057005, guid: 18d29593d6577f34aad1a016a4f7cc1a, type: 3}
       propertyPath: themeText
       value: 
       objectReference: {fileID: 481245350}
+    - target: {fileID: 5540642161655057005, guid: 18d29593d6577f34aad1a016a4f7cc1a, type: 3}
+      propertyPath: mainCarParent
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5540642161655057005, guid: 18d29593d6577f34aad1a016a4f7cc1a, type: 3}
       propertyPath: showRoomCamera
       value: 

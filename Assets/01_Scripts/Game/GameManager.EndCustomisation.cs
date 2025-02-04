@@ -36,12 +36,15 @@ namespace Game
             {
                 // Find objects with car tag and make them child of CustomisationManager.Instance.mainCarParent
                 
-                CustomisationManager.Instance.mainCarParent.SetActive(true);
                 
                 var cars = GameObject.FindGameObjectsWithTag("Car");
-                foreach (var car in cars)
+                foreach (var halfCars in cars)
                 {
-                    car.transform.SetParent(CustomisationManager.Instance.mainCarParent.transform);
+                    halfCars.transform.SetParent(ServerBehaviour.Instance.maincar.gameObject.transform);
+                    
+                    // reset position and rotation
+                    halfCars.transform.localPosition = Vector3.zero;
+                    halfCars.transform.localRotation = Quaternion.identity;
                 }
                 
                 CustomisationManager.Instance.showRoomCamera.gameObject.SetActive(true);

@@ -11,8 +11,11 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
     
     [Header("To Instantiate")]
     [SerializeField] private NetworkObject GameManager;
+    [SerializeField] private NetworkObject mainCarPrefab;
     
     #endregion
+
+    public NetworkObject maincar;
 
     protected void Start()
     {
@@ -25,6 +28,7 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
         
         Debug.Log("ServerBehaviour Awake");
         var gameManager = NetworkManager.SpawnManager.InstantiateAndSpawn(GameManager);
+        maincar = NetworkManager.SpawnManager.InstantiateAndSpawn(mainCarPrefab);
     }
     
     
