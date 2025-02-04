@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
 
-public class RaceManager : InstanceBase<RaceManager>
+public partial class RaceManager : NetworkInstanceBase<RaceManager>
 {
      public enum RaceStep
      {
@@ -42,6 +42,21 @@ public class RaceManager : InstanceBase<RaceManager>
      
      private void Start()
      {
+          // Check if the client is connected
+          clientConnected = false;
+          CheckClientConnection();
+          
+          // Wait for the client to connect
+          StartCoroutine(WaitForInitialize());
+     }
+
+     private IEnumerator WaitForInitialize()
+     {
+          while (!clientConnected)  // Wait until Client connect
+               yield return null;
+          
+          Debug.LogError("Client Connected");
+          
           //Race Initialisation
           currentRaceStep = RaceStep.BeforeStart;
           trafficLights.SetActive(false);
@@ -54,9 +69,12 @@ public class RaceManager : InstanceBase<RaceManager>
 
           //Gets the duration of the traffic light animation to give the car control at the right timing
           trafficLightAnimDuration = trafficLights.GetComponent<Animation>().clip.length;
+          
      }
      private void Update()
      {
+          if (!clientConnected) return;
+          
           //Triggers the coroutine of the current step
           switch (currentRaceStep)
           {
