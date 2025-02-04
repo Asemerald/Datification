@@ -4,6 +4,7 @@ using UI;
 using Unity.Netcode;
 using UnityEngine;
 using Utils;
+using Debug = System.Diagnostics.Debug;
 
 namespace Game
 {
@@ -125,15 +126,16 @@ namespace Game
         [ServerRpc]
         public void ClientJoinedServerRpc()
         {
-            ClientJoinedClientRpc(levelName);
+            ClientJoinedClientRpc(levelName, hasRightCar);
         }
     
         [ClientRpc]
-        private void ClientJoinedClientRpc(string levelNameServer)
+        private void ClientJoinedClientRpc(string levelNameServer, bool rightCarBool)
         {
             if (NetworkManager.Singleton.IsHost) return;
-            GetDataFromServer(levelNameServer, hasRightCar);
-            
+            GetDataFromServer(levelNameServer, rightCarBool);
+
+            Debug.Assert(Camera.main != null, "Camera.main != null");
             Camera.main.transform.position = hasRightCar ? MainCameraRightPosition : MainCameraLeftPosition;
             Camera.main.transform.eulerAngles = hasRightCar ? MainCameraRightRotation : MainCameraLeftRotation;
         }

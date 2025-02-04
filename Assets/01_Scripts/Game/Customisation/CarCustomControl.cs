@@ -221,30 +221,49 @@ namespace Game.Customisation
             GameObject newPhares = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, phares.transform);
         }
         
-        [ServerRpc (RequireOwnership = false)]
-        private void ChangeAccessoiresServerRpc(int carPartId)
+        [ServerRpc(RequireOwnership = false)]
+        private void ChangeAccessoiresServerRpc(int carPartId, ServerRpcParams serverRpcParams = default)
         {
-            ChangeAccessoiresClientRpc(carPartId);
+            // Extract the client ID of the sender
+            ulong senderClientId = serverRpcParams.Receive.SenderClientId;
+
+            // Create ClientRpcParams to ensure all clients receive the update
+            ClientRpcParams clientRpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = NetworkManager.Singleton.ConnectedClientsIds // Send to all clients
+                }
+            };
+
+            ChangeAccessoiresClientRpc(carPartId, senderClientId, clientRpcParams);
         }
-        
+
         [ClientRpc]
-        private void ChangeAccessoiresClientRpc(int carPartId)
+        private void ChangeAccessoiresClientRpc(int carPartId, ulong senderClientId, ClientRpcParams clientRpcParams = default)
         {
-            ChangeAccessoires(carPartId);
+            // Call ChangeAccessoires and check if I'm the client that originally sent the request
+            bool isSender = senderClientId == NetworkManager.Singleton.LocalClientId;
+            ChangeAccessoires(carPartId, isSender);
         }
         
-        private void ChangeAccessoires(int carPartId)
+        private void ChangeAccessoires(int carPartId, bool MyCar)
         {
-            //delete all childs of accessoires
+            // Delete all children of accessoires
             foreach (Transform child in accessoires.transform)
             {
                 Destroy(child.gameObject);
             }
-            
+
             var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
-            //instantiate new accessoires
-            GameObject newAccessoires = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, accessoires.transform);
+    
+            // Determine which mesh to instantiate based on MyCar flag
+            bool useRightMesh = MyCar ? GameManager.Instance.hasRightCar : !GameManager.Instance.hasRightCar;
+    
+            // Instantiate the correct mesh
+            GameObject newAccessoires = Instantiate(useRightMesh ? carPart.RightMesh : carPart.LeftMesh, accessoires.transform);
         }
+
 
         #endregion
     }
