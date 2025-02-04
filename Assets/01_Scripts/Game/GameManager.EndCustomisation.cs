@@ -55,7 +55,7 @@ namespace Game
             ShowCar();
         }
         
-        private async void ShowCar()
+        private void ShowCar()
         {
             UnityMainThread.wkr.AddJob(() =>
            {

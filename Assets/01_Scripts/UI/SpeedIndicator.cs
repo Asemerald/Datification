@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
@@ -25,8 +26,29 @@ public class SpeedIndicator : MonoBehaviour
 
     [SerializeField] private TMP_Text speedText;
     
+    private bool carSpawned = false;
+    
+    private void Start()
+    {
+        StartCoroutine(TryToGetCarController());
+    }
+    
+    private IEnumerator TryToGetCarController()
+    {
+        // check if there is a car controller in the scene, if not wait for 1 second and try again
+        while (controller == null)
+        {
+            controller = FindObjectOfType<CarController>();
+            yield return new WaitForSeconds(1);
+        }
+        
+        carSpawned = true;
+    }
+    
     private void Update()
     {
+        if (!carSpawned) return;
+        
         //playerAccelerationState = AccelerationState.Normal;
          currentSpeed = controller.currentSpeed;
          speedText.text = $"{Mathf.RoundToInt((currentSpeed * 2.5f))}km/h"; 

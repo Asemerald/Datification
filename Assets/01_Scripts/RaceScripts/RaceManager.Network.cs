@@ -15,14 +15,28 @@ public partial class RaceManager
     private void StartRaceClientRpc()
     {
         clientConnected = true;
+        
+        // get the gameobject with tag car
+        var car = GameObject.FindGameObjectWithTag("Car");
+        if (car != null)
+        {
+            CarController controller = car.AddComponent<CarController>();
+            carController = controller;
+            carController.enabled = true;
+        }
     }
     
     private void CheckClientConnection()
     {
-        if (!NetworkManager.Singleton.IsHost)
+        switch (NetworkManager.Singleton.IsHost)
         {
-            Debug.LogWarning("Client connected");
-            StartRaceServerRpc();
+            case true:
+                ServerBehaviour.Instance.SpawnRaceCar();
+                break;
+            case false:
+                Debug.LogWarning("Client connected");
+                StartRaceServerRpc();
+                break;
         }
     }
     

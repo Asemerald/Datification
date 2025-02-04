@@ -8,8 +8,7 @@ public class MainCarPreview : MonoBehaviour
     // -0.25 -3 4
     
     [SerializeField] Vector3 startPosition;
-    
-    private bool raceStarted = false;
+
     
     void Start()
     {
@@ -19,20 +18,13 @@ public class MainCarPreview : MonoBehaviour
 
     private void Update()
     {
-        // If i have a parent and race has not started, disable the animation components
-        if (transform.parent != null && !raceStarted)
-        {
-            DisableAnimationComponents();
-        }
+        
     }
 
-    private void DisableAnimationComponents()
+    public void DisableAnimationComponents()
     {
-        if (raceStarted) return;
-        raceStarted = true;
         UnityMainThread.wkr.AddJob(() =>
         {
-            
             var animationComponent = GetComponent<Animator>();
             animationComponent.enabled = false;
             transform.localPosition = Vector3.zero;

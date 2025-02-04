@@ -13,12 +13,10 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
     [SerializeField] private NetworkObject GameManager;
     [SerializeField] private NetworkObject mainCarPrefab;
     [SerializeField] private NetworkObject raceCarPrefab;
-    [SerializeField] public GameObject racePrefab;
-    [SerializeField] public GameObject showReelPrefab;
     
     #endregion
 
-    public NetworkObject maincar;
+    [HideInInspector] public NetworkObject maincar;
 
     protected void Start()
     {
@@ -43,6 +41,14 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
         
         maincar.TrySetParent(raceCar, false);
     }*/
+
+    public void SpawnRaceCar()
+    {
+        if (!IsServer) return;
+        
+        var raceCar = NetworkManager.SpawnManager.InstantiateAndSpawn(raceCarPrefab);
+        raceCar.transform.position = new Vector3(0, 1, -250);
+    }
     
     
 }
