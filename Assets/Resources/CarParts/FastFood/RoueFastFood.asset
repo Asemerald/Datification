@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fb2fbd907b4818ad07ab2902b2a70a, type: 3}
+  m_Name: RoueFastFood
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: a70bf8dacde4f394f8690ffdfbd66468, type: 3}
+  type: 1
+  id: 14
+  name: Roues FastFood
+  LeftMesh: {fileID: 1794080225748450555, guid: db7bcad922f1af04f940089c46ec4fd5, type: 3}
+  RightMesh: {fileID: 7828791080496004253, guid: fed8ee680cfd1c1448368d9758dbb0d8, type: 3}
