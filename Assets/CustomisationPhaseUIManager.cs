@@ -1,8 +1,8 @@
 using UnityEngine;
+using Utils;
 
-public class CustomisationPhaseUIManager : MonoBehaviour
+public class CustomisationPhaseUIManager : InstanceBase<CustomisationPhaseUIManager>
 {
-    public static CustomisationPhaseUIManager Instance;
     
     [Header("Animators")]
     [SerializeField] private Animator textWindowAnimator;
@@ -14,11 +14,6 @@ public class CustomisationPhaseUIManager : MonoBehaviour
     [SerializeField] private GameObject confirmButton;
     [SerializeField] private GameObject transitionPanel;
     
-    private void Awake()
-    {
-        if(Instance != this && Instance!= null) Destroy(this);
-        Instance = this;
-    }
     void Start()
     {
         nextButton.SetActive(true);

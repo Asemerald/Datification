@@ -79,9 +79,6 @@ namespace Game
                 case 1:
                     DespawnAllBubbles();
                     SpawnRouesBubbles();
-                    
-                    //Ajout ui
-                    phaseCustomUIManager.ThemeActivation(true);
                     break;
                 case 2:
                     DespawnAllBubbles();
@@ -93,9 +90,6 @@ namespace Game
                     break;
                 case 4:
                     EndCustomisation();
-                    
-                    //Ajout ui
-                    phaseCustomUIManager.WaitingActivation(true,true);
                     break;
             }
         }
@@ -130,6 +124,10 @@ namespace Game
         {
             CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
             
+            //Ajout ui
+            phaseCustomUIManager.CustomisationPhaseActivation(true);
+            phaseCustomUIManager.ThemeActivation(true);
+            //Set text Theme
             
             SpawnCarrosserieBubbles(); // TODO delay ?
             
@@ -169,10 +167,16 @@ namespace Game
             if (isHost)
             {
                 hostFinishedCustomisation.Value = value;
+                
+                //Ajout ui
+                phaseCustomUIManager.WaitingActivation(true,true);
             }
             else
             {
                 clientFinishedCustomisation.Value = value;
+                
+                //Ajout ui
+                phaseCustomUIManager.WaitingActivation(true,true);
             }
         }
     
