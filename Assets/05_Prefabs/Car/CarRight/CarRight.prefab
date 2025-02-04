@@ -532,7 +532,7 @@ MonoBehaviour:
   roues: {fileID: 3010707822634966398}
   phares: {fileID: 5886013144472869051}
   accessoires: {fileID: 406980887913382827}
-  startPosition: {x: 0, y: -3.5, z: 4}
+  startPosition: {x: 0, y: -3, z: 4}
   startRotation: {x: 0, y: -90, z: 0}
 --- !u!65 &214821862216362408
 BoxCollider:
