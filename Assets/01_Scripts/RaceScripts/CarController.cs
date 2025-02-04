@@ -10,11 +10,10 @@ public class CarController : MonoBehaviour
     [Header("Car settings")] 
     [SerializeField] private float maxSpeed = 100;
     [SerializeField] private float baseSpeed = 30;
-    private float accelSpeed;
-    [SerializeField] private float accelMultiplier = 2;
-    [SerializeField] private float decelMultiplier = 3;
     
-    [HideInInspector] public float currentSpeed;
+    [SerializeField] private float accelMultiplier = 2;
+    
+    public float currentSpeed;
     private float targetSpeed;
     
     
@@ -50,6 +49,7 @@ public class CarController : MonoBehaviour
         rampZone = 0;
         
         canBoost = true;
+        targetSpeed = baseSpeed;
         
         //setup FX
         DisableAllFX();
@@ -57,7 +57,6 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-        
         if (!inputs.secondStage)
         {
             RaceUpdate();
@@ -71,20 +70,19 @@ public class CarController : MonoBehaviour
 
     private void RaceUpdate()
     {
-        accelSpeed = baseSpeed + 10;
-
-        /*if (inputs.activeState == CarInputs.States.noActive)
+        if (inputs.startEnding)
         {
-            targetSpeed = baseSpeed;
-            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, decelMultiplier * Time.deltaTime);
+            targetSpeed = 50;
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 1f * Time.deltaTime);
+            
+            Debug.Log("Change FOV");
         }
         else
         {
-            
-        }*/
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelMultiplier * Time.deltaTime);
+        }
         
-        targetSpeed = accelSpeed;
-        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelMultiplier * Time.deltaTime);
+        
 
         targetSpeed = Mathf.Clamp(targetSpeed, 0, maxSpeed);
         
@@ -148,7 +146,7 @@ public class CarController : MonoBehaviour
         if (!canBoost) return;
         
         canBoost = false;
-        baseSpeed += boosterSpeedAdded;
+        targetSpeed += boosterSpeedAdded;
         
         //particles
         

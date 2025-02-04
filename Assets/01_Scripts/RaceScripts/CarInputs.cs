@@ -22,7 +22,7 @@ public class CarInputs : MonoBehaviour
     public Animator animCar;
 
     [HideInInspector] public bool secondStage;
-    private bool startEnding;
+    [HideInInspector] public  bool startEnding;
 
     private CarController controller;
     private float startDragY;
@@ -119,6 +119,7 @@ public class CarInputs : MonoBehaviour
     {
         startEnding = true;
         controller.canLaunch = true;
+        animCar.SetTrigger("Ending");
     }
     
     public void RampAnimationTrigger()
