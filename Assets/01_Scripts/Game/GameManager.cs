@@ -122,11 +122,11 @@ namespace Game
         [ClientRpc]
         private void StartGameClientRpc()
         {
-            CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
+            //CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
             
             //Ajout ui
             phaseCustomUIManager.CustomisationPhaseActivation(true);
-            phaseCustomUIManager.ThemeActivation(true);
+            phaseCustomUIManager.ThemeActivation(true, currentLevel.theme);
             //Set text Theme
             
             SpawnCarrosserieBubbles(); // TODO delay ?

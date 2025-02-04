@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using Utils;
 
@@ -13,6 +14,9 @@ public class CustomisationPhaseUIManager : InstanceBase<CustomisationPhaseUIMana
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject confirmButton;
     [SerializeField] private GameObject transitionPanel;
+
+    [Header("Theme")]
+    [SerializeField] private TextMeshProUGUI themeText;
     
     void Start()
     {
@@ -31,8 +35,10 @@ public class CustomisationPhaseUIManager : InstanceBase<CustomisationPhaseUIMana
     }
     
     //Manages theme text apparition
-    public void ThemeActivation(bool isOn)
+    public void ThemeActivation(bool isOn, string theme)
     {
+        themeText.text = theme;
+        
         TextWindowParameterReset();
         textWindowAnimator.SetBool("ThemeOn",isOn);
     }
