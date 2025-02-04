@@ -146,105 +146,110 @@ namespace Game.Customisation
             }
         }
         
-        [ServerRpc (RequireOwnership = false)]
-        private void ChangeCarrosserieServerRpc(int carPartId)
+         [ServerRpc(RequireOwnership = false)]
+        private void ChangeCarrosserieServerRpc(int carPartId, ServerRpcParams serverRpcParams = default)
         {
-            ChangeCarrosserieClientRpc(carPartId);
+            ulong senderClientId = serverRpcParams.Receive.SenderClientId;
+            ChangeCarrosserieClientRpc(carPartId, senderClientId);
         }
-        
+
         [ClientRpc]
-        private void ChangeCarrosserieClientRpc(int carPartId)
+        private void ChangeCarrosserieClientRpc(int carPartId, ulong senderClientId)
         {
-            ChangeCarrosserie(carPartId);
+            bool isSender = senderClientId == NetworkManager.Singleton.LocalClientId;
+            ChangeCarrosserie(carPartId, isSender);
         }
-        
-        private void ChangeCarrosserie(int carPartId)
+
+        private void ChangeCarrosserie(int carPartId, bool MyCar)
         {
-            //delete all childs of carrosserie
             foreach (Transform child in carrosserie.transform)
             {
                 Destroy(child.gameObject);
             }
-            
+
             var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
-            //instantiate new carrosserie
-            GameObject newCarrosserie = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, carrosserie.transform);
+            bool useRightMesh = MyCar ? GameManager.Instance.hasRightCar : !GameManager.Instance.hasRightCar;
+            Instantiate(useRightMesh ? carPart.RightMesh : carPart.LeftMesh, carrosserie.transform);
         }
-        
-        [ServerRpc (RequireOwnership = false)]
-        private void ChangeRouesServerRpc(int carPartId)
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ChangeRouesServerRpc(int carPartId, ServerRpcParams serverRpcParams = default)
         {
-            ChangeRouesClientRpc(carPartId);
+            ulong senderClientId = serverRpcParams.Receive.SenderClientId;
+            ChangeRouesClientRpc(carPartId, senderClientId);
         }
-        
+
         [ClientRpc]
-        private void ChangeRouesClientRpc(int carPartId)
+        private void ChangeRouesClientRpc(int carPartId, ulong senderClientId)
         {
-            ChangeRoues(carPartId);
+            bool isSender = senderClientId == NetworkManager.Singleton.LocalClientId;
+            ChangeRoues(carPartId, isSender);
         }
-        
-        private void ChangeRoues(int carPartId)
+
+        private void ChangeRoues(int carPartId, bool MyCar)
         {
-            //delete all childs of roues
             foreach (Transform child in roues.transform)
             {
                 Destroy(child.gameObject);
             }
-            
+
             var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
-            //instantiate new roues
-            GameObject newRoues = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, roues.transform);
+            bool useRightMesh = MyCar ? GameManager.Instance.hasRightCar : !GameManager.Instance.hasRightCar;
+            Instantiate(useRightMesh ? carPart.RightMesh : carPart.LeftMesh, roues.transform);
         }
-        
-        [ServerRpc (RequireOwnership = false)]
-        private void ChangePharesServerRpc(int carPartId)
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ChangePharesServerRpc(int carPartId, ServerRpcParams serverRpcParams = default)
         {
-            ChangePharesClientRpc(carPartId);
+            ulong senderClientId = serverRpcParams.Receive.SenderClientId;
+            ChangePharesClientRpc(carPartId, senderClientId);
         }
-        
+
         [ClientRpc]
-        private void ChangePharesClientRpc(int carPartId)
+        private void ChangePharesClientRpc(int carPartId, ulong senderClientId)
         {
-            ChangePhares(carPartId);
+            bool isSender = senderClientId == NetworkManager.Singleton.LocalClientId;
+            ChangePhares(carPartId, isSender);
         }
-        
-        private void ChangePhares(int carPartId)
+
+        private void ChangePhares(int carPartId, bool MyCar)
         {
-            //delete all childs of phares
             foreach (Transform child in phares.transform)
             {
                 Destroy(child.gameObject);
             }
-            
+
             var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
-            //instantiate new phares
-            GameObject newPhares = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, phares.transform);
+            bool useRightMesh = MyCar ? GameManager.Instance.hasRightCar : !GameManager.Instance.hasRightCar;
+            Instantiate(useRightMesh ? carPart.RightMesh : carPart.LeftMesh, phares.transform);
         }
-        
-        [ServerRpc (RequireOwnership = false)]
-        private void ChangeAccessoiresServerRpc(int carPartId)
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ChangeAccessoiresServerRpc(int carPartId, ServerRpcParams serverRpcParams = default)
         {
-            ChangeAccessoiresClientRpc(carPartId);
+            ulong senderClientId = serverRpcParams.Receive.SenderClientId;
+            ChangeAccessoiresClientRpc(carPartId, senderClientId);
         }
-        
+
         [ClientRpc]
-        private void ChangeAccessoiresClientRpc(int carPartId)
+        private void ChangeAccessoiresClientRpc(int carPartId, ulong senderClientId)
         {
-            ChangeAccessoires(carPartId);
+            bool isSender = senderClientId == NetworkManager.Singleton.LocalClientId;
+            ChangeAccessoires(carPartId, isSender);
         }
-        
-        private void ChangeAccessoires(int carPartId)
+
+        private void ChangeAccessoires(int carPartId, bool MyCar)
         {
-            //delete all childs of accessoires
             foreach (Transform child in accessoires.transform)
             {
                 Destroy(child.gameObject);
             }
-            
+
             var carPart = CustomisationManager.Instance.GetCarPartById(carPartId);
-            //instantiate new accessoires
-            GameObject newAccessoires = Instantiate(GameManager.Instance.hasRightCar ? carPart.RightMesh : carPart.LeftMesh, accessoires.transform);
+            bool useRightMesh = MyCar ? GameManager.Instance.hasRightCar : !GameManager.Instance.hasRightCar;
+            Instantiate(useRightMesh ? carPart.RightMesh : carPart.LeftMesh, accessoires.transform);
         }
+
 
         #endregion
     }

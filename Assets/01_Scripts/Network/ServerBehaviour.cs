@@ -16,7 +16,7 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
 
     protected void Start()
     {
-        
+        Application.targetFrameRate = 120;
     }
 
     public void SpawnGameManager_OnRelayJoined()

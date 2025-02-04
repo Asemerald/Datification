@@ -4,6 +4,7 @@ using UI;
 using Unity.Netcode;
 using UnityEngine;
 using Utils;
+using Debug = System.Diagnostics.Debug;
 
 namespace Game
 {
@@ -20,6 +21,7 @@ namespace Game
         [SerializeField] public Vector3 MainCameraLeftRotation;
         [SerializeField] public Vector3 MainCameraRightPosition;
         [SerializeField] public Vector3 MainCameraRightRotation;
+        
     
         #endregion
     
@@ -30,7 +32,13 @@ namespace Game
         private int currentCustomStageIndex = 0;
         public bool hasRightCar = false;
         public CarCustomControl car;
-    
+        
+        public NetworkVariable<bool> hostFinishedCustomisation = new NetworkVariable<bool>(false);
+        public NetworkVariable<bool> clientFinishedCustomisation = new NetworkVariable<bool>(false);
+
+        //Ajout UI
+        private CustomisationPhaseUIManager phaseCustomUIManager;
+        
         #endregion
     
         #region Methods
@@ -57,6 +65,9 @@ namespace Game
             Camera.main.transform.position = hasRightCar ? MainCameraRightPosition : MainCameraLeftPosition;
             Camera.main.transform.eulerAngles = hasRightCar ? MainCameraRightRotation : MainCameraLeftRotation;
             
+            
+            //Ajout UI
+            phaseCustomUIManager = CustomisationPhaseUIManager.Instance;
         }
 
 
@@ -71,7 +82,7 @@ namespace Game
                     break;
                 case 2:
                     DespawnAllBubbles();
-                    SpawnRouesBubbles();
+                    SpawnPharesBubbles();
                     break;
                 case 3:
                     DespawnAllBubbles();
@@ -113,6 +124,10 @@ namespace Game
         {
             CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
             
+            //Ajout ui
+            phaseCustomUIManager.CustomisationPhaseActivation(true);
+            phaseCustomUIManager.ThemeActivation(true);
+            //Set text Theme
             
             SpawnCarrosserieBubbles(); // TODO delay ?
             
@@ -125,24 +140,43 @@ namespace Game
         [ServerRpc]
         public void ClientJoinedServerRpc()
         {
-            ClientJoinedClientRpc(levelName);
+            ClientJoinedClientRpc(levelName, hasRightCar);
         }
     
         [ClientRpc]
-        private void ClientJoinedClientRpc(string levelNameServer)
+        private void ClientJoinedClientRpc(string levelNameServer, bool rightCarBool)
         {
             if (NetworkManager.Singleton.IsHost) return;
-            GetDataFromServer(levelNameServer, hasRightCar);
-            
+            GetDataFromServer(levelNameServer, rightCarBool);
+
+            Debug.Assert(Camera.main != null, "Camera.main != null");
             Camera.main.transform.position = hasRightCar ? MainCameraRightPosition : MainCameraLeftPosition;
             Camera.main.transform.eulerAngles = hasRightCar ? MainCameraRightRotation : MainCameraLeftRotation;
         }
         
         private void EndCustomisation()
         {
-            if (NetworkManager.Singleton.IsHost)
+            InGameUI.Instance.ShowNextButton(false);
+
+            ChangeFinishBoolServerRpc(NetworkManager.Singleton.IsHost, true);
+        }
+        
+        [ServerRpc (RequireOwnership = false)]
+        private void ChangeFinishBoolServerRpc(bool isHost, bool value)
+        {
+            if (isHost)
             {
-                //EndCustomisationServerRpc();
+                hostFinishedCustomisation.Value = value;
+                
+                //Ajout ui
+                phaseCustomUIManager.WaitingActivation(true,true);
+            }
+            else
+            {
+                clientFinishedCustomisation.Value = value;
+                
+                //Ajout ui
+                phaseCustomUIManager.WaitingActivation(true,true);
             }
         }
     
