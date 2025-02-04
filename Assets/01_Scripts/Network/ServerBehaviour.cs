@@ -23,6 +23,7 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
     protected void Start()
     {
         Application.targetFrameRate = 120;
+        DontDestroyOnLoad(this);
     }
 
     public void SpawnGameManager_OnRelayJoined()
@@ -34,14 +35,14 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
         maincar = NetworkManager.SpawnManager.InstantiateAndSpawn(mainCarPrefab);
     }
     
-    public void SpawnRaceCar()
+    /*public void SpawnRaceCar()
     {
         if (!IsServer) return;
         
         var raceCar = NetworkManager.SpawnManager.InstantiateAndSpawn(raceCarPrefab);
         
         maincar.TrySetParent(raceCar, false);
-    }
+    }*/
     
     
 }

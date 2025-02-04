@@ -5,6 +5,7 @@ using Cinemachine;
 using Game.Customisation;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 namespace Game
@@ -24,6 +25,7 @@ namespace Game
         [ServerRpc]
         private void ShowCarServerRpc()
         {
+            Debug.LogError("ShowCar");
             ShowCarClientRpc();
             
             
@@ -43,7 +45,7 @@ namespace Game
                 
                 }
                 
-                StartCoroutine(SpawnRaceCarCall());
+                StartCoroutine(GoToRaceScene());
             });
         }
         
@@ -55,23 +57,17 @@ namespace Game
         
         private async void ShowCar()
         {
-           await UnityMainThread.wkr.AddJobAsync(async () =>
+            UnityMainThread.wkr.AddJob(() =>
            {
-               CustomisationManager.Instance.showRoomCamera.gameObject.SetActive(true);
                CustomisationManager.Instance.rideau.SetActive(false);
-
-               await Task.Delay(5000);
-               
-               
-               SpawnRace();
-
            });
         }
 
-        private IEnumerator SpawnRaceCarCall()
+        private IEnumerator GoToRaceScene()
         {
             yield return new WaitForSeconds(5);
-            ServerBehaviour.Instance.SpawnRaceCar();
+            // Go to Race Scene
+            NetworkManager.Singleton.SceneManager.LoadScene("RaceScene", LoadSceneMode.Single);
         }
 
 

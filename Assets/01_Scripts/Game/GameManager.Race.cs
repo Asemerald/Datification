@@ -6,13 +6,15 @@ namespace Game
     {
         
         
-        private void SpawnRace()
+        /*private void SpawnRace()
         {
             UnityMainThread.wkr.AddJob(() =>
             {
                 ServerBehaviour.Instance.racePrefab.SetActive(true);
                 ServerBehaviour.Instance.showReelPrefab.SetActive(false);
             });
-        }
+        }*/
+        
+        
     }
 }

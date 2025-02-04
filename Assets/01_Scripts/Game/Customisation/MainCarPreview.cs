@@ -14,6 +14,7 @@ public class MainCarPreview : MonoBehaviour
     void Start()
     {
         transform.position = startPosition;
+        DontDestroyOnLoad(this);
     }
 
     private void Update()

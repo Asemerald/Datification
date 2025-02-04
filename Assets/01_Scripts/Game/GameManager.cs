@@ -48,6 +48,7 @@ namespace Game
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
+            DontDestroyOnLoad(this);
         
             InitGame();
         }
@@ -178,6 +179,7 @@ namespace Game
                 
                 //Ajout ui
                 DisplayEndUiClientRpc();
+                CheckEndCustomisation();
             }
         }
         

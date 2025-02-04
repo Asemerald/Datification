@@ -15,7 +15,6 @@ namespace Game.Customisation
 
         [Header("Theme UI")]
         [SerializeField] private TMP_Text themeText;
-        [SerializeField] public CinemachineVirtualCamera showRoomCamera;
         [SerializeField] public GameObject rideau;
         
         
