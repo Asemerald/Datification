@@ -76,7 +76,7 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
-    - _Contrast: 1.32
+    - _Contrast: 0.92
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -87,15 +87,16 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Roughness: 0
+    - _Roughness: 0.38
     - _Saturation: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UseRoughnessMAP: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.3466536, g: 0.7735849, b: 0.7079032, a: 1}
+    - _Color: {r: 0.8396226, g: 0.7168476, b: 0.81176805, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5086338370858004840

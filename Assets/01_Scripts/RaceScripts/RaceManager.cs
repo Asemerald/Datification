@@ -2,10 +2,10 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
-public class RaceManager : MonoBehaviour
+public class RaceManager : InstanceBase<RaceManager>
 {
-     public static RaceManager Instance;
      public enum RaceStep
      {
           BeforeStart,
@@ -40,12 +40,6 @@ public class RaceManager : MonoBehaviour
      [Space,Header("Debug")]
      [SerializeField] private bool debugOn;
      
-     //Singleton Okazou
-     private void Awake()
-     {
-          if(Instance != null && Instance != this) Destroy(this);
-          Instance = this;
-     }
      private void Start()
      {
           //Race Initialisation

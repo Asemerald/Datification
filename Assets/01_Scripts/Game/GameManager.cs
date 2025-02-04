@@ -35,7 +35,10 @@ namespace Game
         
         public NetworkVariable<bool> hostFinishedCustomisation = new NetworkVariable<bool>(false);
         public NetworkVariable<bool> clientFinishedCustomisation = new NetworkVariable<bool>(false);
-    
+
+        //Ajout UI
+        private CustomisationPhaseUIManager phaseCustomUIManager;
+        
         #endregion
     
         #region Methods
@@ -62,6 +65,9 @@ namespace Game
             Camera.main.transform.position = hasRightCar ? MainCameraRightPosition : MainCameraLeftPosition;
             Camera.main.transform.eulerAngles = hasRightCar ? MainCameraRightRotation : MainCameraLeftRotation;
             
+            
+            //Ajout UI
+            phaseCustomUIManager = CustomisationPhaseUIManager.Instance;
         }
 
 
@@ -118,6 +124,10 @@ namespace Game
         {
             CustomisationManager.Instance.SetThemeText(currentLevel.theme, true);
             
+            //Ajout ui
+            phaseCustomUIManager.CustomisationPhaseActivation(true);
+            phaseCustomUIManager.ThemeActivation(true);
+            //Set text Theme
             
             SpawnCarrosserieBubbles(); // TODO delay ?
             
@@ -157,10 +167,16 @@ namespace Game
             if (isHost)
             {
                 hostFinishedCustomisation.Value = value;
+                
+                //Ajout ui
+                phaseCustomUIManager.WaitingActivation(true,true);
             }
             else
             {
                 clientFinishedCustomisation.Value = value;
+                
+                //Ajout ui
+                phaseCustomUIManager.WaitingActivation(true,true);
             }
         }
     
