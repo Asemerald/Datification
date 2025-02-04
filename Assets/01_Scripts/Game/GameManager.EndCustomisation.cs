@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
+using System.Threading.Tasks;
 using Cinemachine;
 using Game.Customisation;
 using Unity.Netcode;
 using UnityEngine;
+using Utils;
 
 namespace Game
 {
@@ -23,15 +26,25 @@ namespace Game
         {
             ShowCarClientRpc();
             
-            var cars = GameObject.FindGameObjectsWithTag("Car");
-            foreach (var halfCars in cars)
+            
+            UnityMainThread.wkr.AddJob(() =>
             {
-                halfCars.transform.SetParent(ServerBehaviour.Instance.maincar.gameObject.transform);
+                Debug.Log("ShowCarServerRpc");
+                // Find objects with car tag and make them child of CustomisationManager.Instance.mainCarParent
+                var cars = GameObject.FindGameObjectsWithTag("Car");
+                foreach (var halfCars in cars)
+                {
+                    halfCars.transform.SetParent(ServerBehaviour.Instance.maincar.gameObject.transform);
                     
-                // reset position and rotation
-                halfCars.transform.localPosition = Vector3.zero;
-                halfCars.transform.localRotation = Quaternion.identity;
-            }
+                    // reset position and rotation
+                    halfCars.transform.localPosition = Vector3.zero;
+                    halfCars.transform.localRotation = Quaternion.identity;
+                    
+                
+                }
+                
+                StartCoroutine(SpawnRaceCarCall());
+            });
         }
         
         [ClientRpc]
@@ -40,18 +53,25 @@ namespace Game
             ShowCar();
         }
         
-        private void ShowCar()
+        private async void ShowCar()
         {
-            UnityMainThread.wkr.AddJob(() =>
-            {
-                // Find objects with car tag and make them child of CustomisationManager.Instance.mainCarParent
-                
-                
-                
-                
-                CustomisationManager.Instance.showRoomCamera.gameObject.SetActive(true);
-                CustomisationManager.Instance.rideau.SetActive(false);
-            });
+           await UnityMainThread.wkr.AddJobAsync(async () =>
+           {
+               CustomisationManager.Instance.showRoomCamera.gameObject.SetActive(true);
+               CustomisationManager.Instance.rideau.SetActive(false);
+
+               await Task.Delay(5000);
+               
+               
+               SpawnRace();
+
+           });
+        }
+
+        private IEnumerator SpawnRaceCarCall()
+        {
+            yield return new WaitForSeconds(5);
+            ServerBehaviour.Instance.SpawnRaceCar();
         }
 
 

@@ -32,8 +32,9 @@ internal class UnityMainThread : MonoBehaviour
     }
 
     // Properly supports awaitable jobs
-    internal void AddJobAsync(Func<Task> newJob)
+    internal Task AddJobAsync(Func<Task> newJob)
     {
         asyncJobs.Enqueue(newJob);
+        return Task.CompletedTask;
     }
 }

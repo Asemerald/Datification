@@ -1,8 +1,9 @@
 using System.Collections;
 using Cinemachine;
+using Unity.Netcode;
 using UnityEngine;
 
-public class CarController : MonoBehaviour
+public class CarController : NetworkBehaviour
 {
     [SerializeField] private CarInputs inputs;
 
@@ -45,6 +46,10 @@ public class CarController : MonoBehaviour
     
     private void Start()
     {
+       
+        
+        //Spawn Child
+        
         rampCam.enabled = false;
         rampZone = 0;
         
@@ -53,6 +58,26 @@ public class CarController : MonoBehaviour
         
         //setup FX
         DisableAllFX();
+
+        if (!NetworkManager.Singleton.IsServer) return;
+        
+        SpawnChildServerRpc();
+        
+        // transform position = 0 1 -250
+        transform.position = new Vector3(0, 1, -250);
+    }
+    
+    [ServerRpc]
+    private void SpawnChildServerRpc()
+    {
+        // For each child with a NetworkObject, spawn it
+        foreach (Transform child in transform)
+        {
+            if (child.TryGetComponent(out NetworkObject networkObject))
+            {
+                networkObject.Spawn();
+            }
+        }
     }
 
     private void Update()
