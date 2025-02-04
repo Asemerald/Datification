@@ -10408,6 +10408,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &1282151570539576349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2747140384987735483, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_Name
+      value: PS_Fire_Boost_V2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025778574253031828, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f105c311c9a950d4ca43ce557199c278, type: 3}
 --- !u!198 &1714615170212756301
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -35033,63 +35090,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b68240dd579aa64f8816f276e2338ad, type: 3}
---- !u!1001 &6515360389991505501
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1833218966524662778, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_Name
-      value: PS_Fire_Boost_V2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850045592740296661, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4d5b01ce61c41a44a851f21531cdd04e, type: 3}
 --- !u!199 &6634728526175318770
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -49861,7 +49861,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -54581,7 +54581,7 @@ SceneRoots:
   - {fileID: 7548599778813308476}
   - {fileID: 7356894006134370496}
   - {fileID: 1846305790436050253}
-  - {fileID: 6515360389991505501}
+  - {fileID: 1282151570539576349}
   - {fileID: 2262233750826415184}
   - {fileID: 2120371812355926112}
   - {fileID: 3586525842421865603}
