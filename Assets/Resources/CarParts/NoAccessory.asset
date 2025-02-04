@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fb2fbd907b4818ad07ab2902b2a70a, type: 3}
   m_Name: NoAccessory
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 581e5fddc22ca564896c4ccfa5aabfce, type: 3}
   type: 0
-  id: 0
-  name: 
+  id: 99
+  name: "NullPi\xE8ceR\xE9f\xE9rence"
   LeftMesh: {fileID: 0}
   RightMesh: {fileID: 0}
