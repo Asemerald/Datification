@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -3832751957706949365, guid: 80fb2cb3e289a8e409c4636af3eb73df, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 153835dec3dab1340ac68dc3df8bed75, type: 2}
+      objectReference: {fileID: 2100000, guid: 5fe8bf63e94a51e44b1cf7648d1d9651, type: 2}
     - target: {fileID: 919132149155446097, guid: 80fb2cb3e289a8e409c4636af3eb73df, type: 3}
       propertyPath: m_Name
       value: SM_YellowFlag
