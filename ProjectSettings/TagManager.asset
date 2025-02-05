@@ -13,6 +13,7 @@ TagManager:
   - Bubble
   - MainCameraRight
   - MainCameraLeft
+  - raceCar
   layers:
   - Default
   - TransparentFX
