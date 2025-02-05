@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 1
   id: 14
   name: Roues FastFood
-  LeftMesh: {fileID: 1794080225748450555, guid: db7bcad922f1af04f940089c46ec4fd5, type: 3}
-  RightMesh: {fileID: 7828791080496004253, guid: fed8ee680cfd1c1448368d9758dbb0d8, type: 3}
+  LeftMesh: {fileID: 1794080225748450555, guid: 6426af6c78a5bc24d802842dfeff5370, type: 3}
+  RightMesh: {fileID: 7828791080496004253, guid: 7bec2df96d3553e4298b35f770dd0ffa, type: 3}
