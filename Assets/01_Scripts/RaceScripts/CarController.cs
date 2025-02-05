@@ -200,19 +200,16 @@ public class CarController : NetworkBehaviour
             // 2. faire la moyenne des deux valeurs
             
             case 1 : 
-                Debug.Log("Lancement moyen");
                 RaceManager.Instance.typeOfLaunchString = "Lancement moyen !";
                 canLaunch = false;
                 TriggerEndAnimation();
                 break;
             case 2 : 
-                Debug.Log("Bon Lancement");
                 DisplayZone("Bon Lancement !");
                 canLaunch = false;
                 TriggerEndAnimation();
                 break;
             case 3 : 
-                Debug.Log("Lancement parfait");
                 DisplayZone("Lancement parfait !");
                 canLaunch = false;
                 TriggerEndAnimation();
