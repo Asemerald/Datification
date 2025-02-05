@@ -20,7 +20,7 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
 
      [SerializeField] private TMP_Text finalScoreText;
      [HideInInspector] public string typeOfLaunchString;
-     
+     [SerializeField] private AudioSource audioSource;
      
      
      public RaceStep currentRaceStep;
@@ -128,6 +128,9 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
 
      IEnumerator BeforeStart()
      {
+          //Audio
+          audioSource.Play();
+          
           DebugCurrentRaceStep();
           carController.enabled = false;
           
@@ -177,6 +180,10 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           finalScoreText.text = typeOfLaunchString;
           finalScorePanel.SetActive(true);
           endRaceButton.SetActive(true);
+          
+          //Audio
+          audioSource.Stop();
+
      }
 
      #endregion

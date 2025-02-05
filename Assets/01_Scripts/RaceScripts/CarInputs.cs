@@ -142,7 +142,7 @@ public class CarInputs : NetworkBehaviour
     private void SwitchFX()
     {
         //Audio call
-        AudioManager.Instance.PlaySound(8, 0.5f);
+        AudioManager.Instance.PlaySound(8, 0.8f);
         
         if (left)
         {
