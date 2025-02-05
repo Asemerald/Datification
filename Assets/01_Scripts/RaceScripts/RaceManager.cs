@@ -154,10 +154,12 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           yield return new WaitForSeconds(trafficLightAnimDuration-trafficLightsEndTime);
           currentRaceStep = RaceStep.DuringRace;
           
-          if (!NetworkManager.Singleton || NetworkManager.Singleton.IsHost)
+          /*if (!NetworkManager.Singleton || NetworkManager.Singleton.IsHost)
           {
                carController.enabled = true;
-          }
+          }*/
+          
+          carController.enabled = true;
      }
      private void DuringRace()
      {

@@ -12,7 +12,7 @@ public class CarCollision : MonoBehaviour
     {
         if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
         {
-            enabled = false;
+            //enabled = false;
         }
         
         raceManager = RaceManager.Instance;
