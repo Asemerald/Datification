@@ -39,7 +39,7 @@ public class SpeedIndicator : MonoBehaviour
         while (controller == null)
         {
             controller = FindObjectOfType<CarController>();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
         }
         
         carSpawned = true;

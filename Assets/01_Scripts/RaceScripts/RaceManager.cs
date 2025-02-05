@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
@@ -42,6 +43,16 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
      
      private void Start()
      {
+         // Check if there is a network manager, if not return  
+         if (!NetworkManager.Singleton)
+         {
+              Debug.LogWarning("Offline");
+             StartCoroutine(WaitForInitialize());
+             clientConnected = true;
+             return;
+         }
+             
+         
           // Check if the client is connected
           clientConnected = false;
           CheckClientConnection();
@@ -138,8 +149,12 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           
           trafficLights.SetActive(true);
           yield return new WaitForSeconds(trafficLightAnimDuration-trafficLightsEndTime);
-          carController.enabled = true;
           currentRaceStep = RaceStep.DuringRace;
+          
+          if (NetworkManager.Singleton.IsHost)
+          {
+               carController.enabled = true;
+          }
      }
      private void DuringRace()
      {
