@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -30,6 +31,12 @@ public class CarInputs : NetworkBehaviour
 
     private void Start()
     {
+        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            enabled = false;
+            return;
+        }
+        
         controller = GetComponent<CarController>();
     }
     
@@ -55,8 +62,47 @@ public class CarInputs : NetworkBehaviour
         {
             controller.LaunchRamp();
         }*/
+        if (NetworkManager.Singleton)
+        {
+            if (GameManager.Instance.leftPlayerInput.Value && GameManager.Instance.rightPlayerInput.Value)
+            {
+                if (activeState != States.allActive)
+                {
+                    SwitchFX();
+                    activeState = States.allActive;
+                }
+            }
+            else if (!GameManager.Instance.leftPlayerInput.Value && GameManager.Instance.rightPlayerInput.Value)
+            {
+                if (activeState != States.rightActive)
+                {
+                    SwitchFX();
+                    activeState = States.rightActive;
+                }
+            }
+            else if (GameManager.Instance.leftPlayerInput.Value && !GameManager.Instance.rightPlayerInput.Value)
+            {
+                if (activeState != States.leftActive)
+                {
+                    SwitchFX();
+                    activeState = States.leftActive;
+                }
+            }
+            else
+            {
+                if (activeState != States.noActive)
+                {
+                    SwitchFX();
+                    activeState = States.noActive;
+                }
+            }
         
+            anim.SetInteger("States", (int)activeState);
+            return;
+        }
 
+        // Handle offline
+        
         if (left && right)
         {
             if (activeState != States.allActive)

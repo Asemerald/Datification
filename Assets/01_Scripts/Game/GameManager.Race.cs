@@ -1,20 +1,26 @@
-﻿using UnityEngine;
+﻿using Unity.Netcode;
+using UnityEngine;
 
 namespace Game
 {
     public partial class GameManager
     {
-        
-        
-        /*private void SpawnRace()
+        public NetworkVariable<bool> rightPlayerInput = new NetworkVariable<bool>();
+        public NetworkVariable<bool> leftPlayerInput = new NetworkVariable<bool>();
+
+        [ServerRpc (RequireOwnership = false)]
+        public void SetInputServerRpc(bool inputValue, bool hasRightCar)
         {
-            UnityMainThread.wkr.AddJob(() =>
+            if (hasRightCar)
             {
-                ServerBehaviour.Instance.racePrefab.SetActive(true);
-                ServerBehaviour.Instance.showReelPrefab.SetActive(false);
-            });
-        }*/
-        
-        
+                rightPlayerInput.Value = inputValue;
+            }
+            else
+            {
+                leftPlayerInput.Value = inputValue;
+            }
+        }
+
+
     }
 }
