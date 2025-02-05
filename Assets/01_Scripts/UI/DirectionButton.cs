@@ -6,7 +6,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DirectionButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+public class DirectionButton : NetworkBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     private CarInputs inputs;
 
@@ -22,7 +22,7 @@ public class DirectionButton : MonoBehaviour, IPointerUpHandler, IPointerDownHan
         {
             if (NetworkManager.Singleton)
             {
-                GameManager.Instance.SetInputServerRpc(false, false);
+                GameManager.Instance.SetInputServerRpc(false, true);
                 return;
             }
             
@@ -33,7 +33,7 @@ public class DirectionButton : MonoBehaviour, IPointerUpHandler, IPointerDownHan
         {
             if (NetworkManager.Singleton)
             {
-                GameManager.Instance.SetInputServerRpc(false, true);
+                GameManager.Instance.SetInputServerRpc(false, false);
                 return;
             }
             
@@ -48,7 +48,7 @@ public class DirectionButton : MonoBehaviour, IPointerUpHandler, IPointerDownHan
         {
             if (NetworkManager.Singleton)
             {
-                GameManager.Instance.SetInputServerRpc(true, false);
+                GameManager.Instance.SetInputServerRpc(true, true);
                 return;
             }
             
@@ -59,7 +59,7 @@ public class DirectionButton : MonoBehaviour, IPointerUpHandler, IPointerDownHan
         {
             if (NetworkManager.Singleton)
             {
-                GameManager.Instance.SetInputServerRpc(true, true);
+                GameManager.Instance.SetInputServerRpc(true, false);
                 return;
             }
             
