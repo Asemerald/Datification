@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CarInputs : MonoBehaviour
+public class CarInputs : NetworkBehaviour
 {
     public enum States
     {
@@ -31,7 +32,7 @@ public class CarInputs : MonoBehaviour
     {
         controller = GetComponent<CarController>();
     }
-
+    
     void Update()
     {
         if (RaceManager.Instance.currentRaceStep == RaceManager.RaceStep.BeforeStart || RaceManager.Instance.currentRaceStep == RaceManager.RaceStep.StartRace)

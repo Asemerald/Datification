@@ -3,7 +3,7 @@ using UnityEngine;
 
 public partial class RaceManager
 {
-    private bool clientConnected = false;
+    public bool clientConnected = false;
     
     [ServerRpc (RequireOwnership = false)]
     private void StartRaceServerRpc()
