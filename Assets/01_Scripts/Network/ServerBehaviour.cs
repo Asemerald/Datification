@@ -42,13 +42,13 @@ public class ServerBehaviour : NetworkInstanceBase<ServerBehaviour>
         maincar.TrySetParent(raceCar, false);
     }*/
 
-    public void SpawnRaceCar()
+    /*public void SpawnRaceCar()
     {
         if (!IsServer) return;
         
         var raceCar = NetworkManager.SpawnManager.InstantiateAndSpawn(raceCarPrefab);
         raceCar.transform.position = new Vector3(0, 1, -250);
-    }
+    }*/
     
     
 }

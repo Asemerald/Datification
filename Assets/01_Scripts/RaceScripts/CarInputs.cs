@@ -33,8 +33,14 @@ public class CarInputs : NetworkBehaviour
     {
         if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
         {
-            enabled = false;
-            return;
+            if (NetworkObject.IsSpawned)
+            {
+                enabled = false;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         
         controller = GetComponent<CarController>();

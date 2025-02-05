@@ -15941,7 +15941,8 @@ GameObject:
   - component: {fileID: 5540459282989928068}
   - component: {fileID: 62839763368843421}
   - component: {fileID: 3300212564233972713}
-  - component: {fileID: 297095670219918632}
+  - component: {fileID: 6879199525385408756}
+  - component: {fileID: 9207534223958186218}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -16070,7 +16071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891d90af99cb72a4999c303ebd0126f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &297095670219918632
+--- !u!114 &6879199525385408756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16079,7 +16080,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3385126055192490704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97616b67982a4be48d957d421e422433, type: 3}
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 62839763368843421}
+--- !u!114 &9207534223958186218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3385126055192490704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UseUnreliableDeltas: 0
@@ -16099,9 +16114,8 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
-  Interpolate: 0
+  Interpolate: 1
   SlerpPosition: 0
-  StaleDataHandling: 1
 --- !u!1 &3423028800918911966
 GameObject:
   m_ObjectHideFlags: 0
@@ -31335,6 +31349,8 @@ GameObject:
   - component: {fileID: 1135128052577851632}
   - component: {fileID: 2306202587869164338}
   - component: {fileID: 5341873882281758547}
+  - component: {fileID: 3840886708122485233}
+  - component: {fileID: 3958690324885817628}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -31445,6 +31461,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891d90af99cb72a4999c303ebd0126f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3840886708122485233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090572966448278504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 4060916089
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &3958690324885817628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090572966448278504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1284392527
+    DestinationState: -325980415
+    TransitionDuration: 0.25
+    TriggerNameHash: -1750792084
+    TransitionIndex: 0
+  m_Animator: {fileID: 2306202587869164338}
 --- !u!1 &5149520460914653182
 GameObject:
   m_ObjectHideFlags: 0

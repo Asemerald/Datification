@@ -46,9 +46,16 @@ public class CarController : NetworkBehaviour
     
     private void Start()
     {
-       
+        if (!NetworkManager.Singleton || !NetworkManager.Singleton.IsServer)
+        {
+            return;
+        }
         
-        //Spawn Child
+        //Spawn 
+        if (NetworkManager.Singleton)
+        {
+            SpawnServerRpc();
+        }
         
         rampCam.enabled = false;
         rampZone = 0;
@@ -59,10 +66,22 @@ public class CarController : NetworkBehaviour
         //setup FX
         DisableAllFX();
 
-        if (!NetworkManager.Singleton || !NetworkManager.Singleton.IsServer) return;
+        
         
         // transform position = 0 1 -250
         transform.position = new Vector3(0, 1, -250);
+    }
+    
+    [ServerRpc]
+    private void SpawnServerRpc()
+    {
+        NetworkObject.Spawn();
+        
+        // Spawn all childrens
+        foreach (NetworkObject child in transform)
+        {
+            child.Spawn();
+        }
     }
     
 
