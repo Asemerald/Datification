@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 994864300dfdcf34083878715079928e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.411124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994864300dfdcf34083878715079928e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994864300dfdcf34083878715079928e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 172.34235
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 994864300dfdcf34083878715079928e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 994864300dfdcf34083878715079928e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 034b55a0adb2ae4448ad98a31d84bd25, type: 2}
+      objectReference: {fileID: 2100000, guid: 27270f1680415364dbcc7377d1ca48b8, type: 2}
     - target: {fileID: 919132149155446097, guid: 994864300dfdcf34083878715079928e, type: 3}
       propertyPath: m_Name
       value: Prefab_SM_CarLeft

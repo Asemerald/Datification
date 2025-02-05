@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 2
   id: 13
   name: Phare FastFood
-  LeftMesh: {fileID: 1732878674031061169, guid: 9ee5a0edc5e36794c88ee9566fd1d596, type: 3}
-  RightMesh: {fileID: 8842289654321652894, guid: 7b68240dd579aa64f8816f276e2338ad, type: 3}
+  LeftMesh: {fileID: 1732878674031061169, guid: bcfbc5f3dfd8ea74fac31d788d8c7ce0, type: 3}
+  RightMesh: {fileID: 8842289654321652894, guid: 1e5a6d4415e6c5b4b877b09b77ebaacc, type: 3}

@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 0
   id: 15
   name: Carrosserie FastFood
-  LeftMesh: {fileID: 4746676071428799347, guid: cab3fec59517cac43b2f2fa39bba3889, type: 3}
-  RightMesh: {fileID: 4970221850165945641, guid: 094ea73c7e8393c45b1943844c3ce2f8, type: 3}
+  LeftMesh: {fileID: 4746676071428799347, guid: c338272973f33a943ae9567a44a8d537, type: 3}
+  RightMesh: {fileID: 4970221850165945641, guid: 27f3fa9af600ec3428c6233bd1ae9834, type: 3}
