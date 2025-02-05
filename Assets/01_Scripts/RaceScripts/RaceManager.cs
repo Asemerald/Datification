@@ -177,7 +177,7 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           DebugCurrentRaceStep();
           slideIndicator.SetActive(false);
           yield return new WaitForSeconds(finalJumpDuration);
-          finalScoreText.text = typeOfLaunchString;
+          finalScoreText.text = $"{typeOfLaunchString} Score : {ScoreFormula()}m";
           finalScorePanel.SetActive(true);
           endRaceButton.SetActive(true);
           
@@ -193,6 +193,35 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           if (debugOn) Debug.Log(currentRaceStep);
      }
 
+     private int ScoreFormula()
+     {
+          //customisation
+          float customizationMult = 1;
+
+          //race speed 
+          float raceSpeed = Mathf.RoundToInt(carController.currentSpeed) * 2.5f;
+
+          //ramp timing
+          float rampScore = 0;
+          switch (carController.rampZone)
+          {
+               case 1 :
+                    rampScore = 1.5f;
+                    break;
+               case 2 : 
+                    rampScore = 2;
+                    break;
+               case 3 : 
+                    rampScore = 3;
+                    break;
+               case 4 : 
+                    rampScore = 1;
+                    break;
+               default :
+                    break;
+          }
+          return Mathf.RoundToInt(customizationMult * raceSpeed * rampScore);
+     }
      public void RestartScene()
      {
           SceneManager.LoadScene(0);
