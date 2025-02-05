@@ -59,7 +59,7 @@ public class CarController : NetworkBehaviour
         //setup FX
         DisableAllFX();
 
-        if (!NetworkManager.Singleton.IsServer) return;
+        if (!NetworkManager.Singleton || !NetworkManager.Singleton.IsServer) return;
         
         // transform position = 0 1 -250
         transform.position = new Vector3(0, 1, -250);
