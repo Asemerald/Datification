@@ -356,6 +356,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4852382046635431700, guid: 06216e4368b01a142888123faa2123ed, type: 3}
   m_PrefabInstance: {fileID: 2140848080}
   m_PrefabAsset: {fileID: 0}
+--- !u!111 &1107518450
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107518448}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6ce80a9a634b96e41a92c6593c23d908, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6ce80a9a634b96e41a92c6593c23d908, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1120100363 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1540468595585966799, guid: 8b80742a95cf1d54d95e026d91d2610a, type: 3}
@@ -600,7 +616,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 3100461922258886045, guid: 06216e4368b01a142888123faa2123ed, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4852382046635431700, guid: 06216e4368b01a142888123faa2123ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1107518450}
   m_SourcePrefab: {fileID: 100100000, guid: 06216e4368b01a142888123faa2123ed, type: 3}
 --- !u!114 &2140848082 stripped
 MonoBehaviour:
