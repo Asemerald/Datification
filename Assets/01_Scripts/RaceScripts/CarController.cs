@@ -78,10 +78,10 @@ public class CarController : NetworkBehaviour
         NetworkObject.Spawn();
         
         // Spawn all childrens
-        foreach (NetworkObject child in transform)
+        /*foreach (NetworkObject child in transform)
         {
             child.Spawn();
-        }
+        }*/
     }
     
 
