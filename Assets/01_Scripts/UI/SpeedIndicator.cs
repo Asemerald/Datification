@@ -50,7 +50,15 @@ public class SpeedIndicator : MonoBehaviour
         if (!carSpawned) return;
         
         //playerAccelerationState = AccelerationState.Normal;
-         currentSpeed = controller.currentSpeed;
+        if (controller.speedBeforeRamp == 0)
+        {
+            currentSpeed = controller.currentSpeed;
+        }
+        else
+        {
+            currentSpeed = controller.speedBeforeRamp;
+        }
+         
          speedText.text = $"{Mathf.RoundToInt((currentSpeed * 2.5f))}km/h"; 
         
     

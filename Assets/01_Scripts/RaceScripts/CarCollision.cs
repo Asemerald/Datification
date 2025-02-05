@@ -39,7 +39,11 @@ public class CarCollision : MonoBehaviour
 
         if (other.gameObject.CompareTag("RampZone"))
         {
-            GetComponentInParent<CarController>().rampZone++;
+            if (GetComponentInParent<CarController>().canLaunch)
+            {
+                GetComponentInParent<CarController>().rampZone++;
+            }
+            
         }
     }
 }

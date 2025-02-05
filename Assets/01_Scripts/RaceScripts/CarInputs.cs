@@ -28,6 +28,7 @@ public class CarInputs : NetworkBehaviour
 
     private CarController controller;
     private float startDragY;
+    private bool switchStep;
 
     private void Start()
     {
@@ -55,6 +56,12 @@ public class CarInputs : NetworkBehaviour
         
         if (startEnding)
         {
+            if (!switchStep)
+            {
+                controller.speedBeforeRamp = controller.currentSpeed;
+                switchStep = true;
+            }
+            
             left = true;
             right = true;
         }

@@ -16,6 +16,8 @@ public class CarController : NetworkBehaviour
     
     public float currentSpeed;
     private float targetSpeed;
+
+    public float speedBeforeRamp;
     
     
     [Space(15f)]
@@ -46,8 +48,9 @@ public class CarController : NetworkBehaviour
     
     private void Start()
     {
-        if (!NetworkManager.Singleton || !NetworkManager.Singleton.IsServer)
+        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
         {
+            Debug.Log("NetworkSingleton return");
             return;
         }
         
@@ -105,7 +108,6 @@ public class CarController : NetworkBehaviour
             targetSpeed = 50;
             currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 1f * Time.deltaTime);
             
-            Debug.Log("Change FOV");
         }
         else
         {
