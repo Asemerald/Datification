@@ -414,6 +414,14 @@ PrefabInstance:
       propertyPath: m_NormalizedViewPortRect.height
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2086573934614698185, guid: 9412d637fd6ef2e49bbabdb377a2bbbe, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086573934614698185, guid: 9412d637fd6ef2e49bbabdb377a2bbbe, type: 3}
+      propertyPath: audioClips.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: f662bab193f414941abc81e27ee3f83c, type: 3}
     - target: {fileID: 5131422046073535804, guid: 9412d637fd6ef2e49bbabdb377a2bbbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4557742

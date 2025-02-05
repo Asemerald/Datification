@@ -57,10 +57,17 @@ namespace Game
         
         private void ShowCar()
         {
-            UnityMainThread.wkr.AddJob(() =>
-           {
-               CustomisationManager.Instance.rideau.SetActive(false);
-           });
+            UnityMainThread.wkr.AddJobAsync(async () =>
+            {
+                AudioManager.Instance.PlaySound(4);
+                
+                //add delay 
+
+                await Task.Delay(1500);
+                
+                //appel de l'animation pour ouvrir les rideaux
+                CustomisationManager.Instance.rideau.GetComponent<Animation>().Play();
+            });
         }
 
         private IEnumerator GoToRaceScene()
