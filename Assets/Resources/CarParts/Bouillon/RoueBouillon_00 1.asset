@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fb2fbd907b4818ad07ab2902b2a70a, type: 3}
   m_Name: RoueBouillon_00 1
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: e507ced0ca3075f47aa4cd40fe480412, type: 3}
+  icon: {fileID: 21300000, guid: 2e249b4add8bfdc41b7b5387915ab7bf, type: 3}
   type: 1
   id: 12
   name: Roues Bouillon 01
