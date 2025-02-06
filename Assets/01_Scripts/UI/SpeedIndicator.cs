@@ -1,9 +1,10 @@
 using System.Collections;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
-public class SpeedIndicator : MonoBehaviour
+public class SpeedIndicator : NetworkBehaviour
 {
 
     [SerializeField] private Image speedIndicatorImage;
@@ -50,16 +51,54 @@ public class SpeedIndicator : MonoBehaviour
         if (!carSpawned) return;
         
         //playerAccelerationState = AccelerationState.Normal;
-        if (controller.speedBeforeRamp == 0)
+        if (NetworkManager.Singleton)
         {
-            currentSpeed = controller.currentSpeed;
+            if (controller.speedBeforeRampNetVar.Value == 0)
+            {
+                currentSpeed = controller.currentSpeed;
+            
+                // set the netvar if in network
+                if (NetworkManager.Singleton)
+                {
+                    currentSpeed = controller.currentSpeedNetVar.Value;
+                }
+            }
+            else
+            {
+                currentSpeed = controller.speedBeforeRamp;
+            
+                // set the netvar if in network
+                if (NetworkManager.Singleton)
+                {
+                    currentSpeed = controller.speedBeforeRampNetVar.Value;
+                }
+            }
         }
         else
         {
-            currentSpeed = controller.speedBeforeRamp;
+            if (controller.speedBeforeRamp == 0)
+            {
+                currentSpeed = controller.currentSpeed;
+            
+                // set the netvar if in network
+                if (NetworkManager.Singleton)
+                {
+                    currentSpeed = controller.currentSpeedNetVar.Value;
+                }
+            }
+            else
+            {
+                currentSpeed = controller.speedBeforeRamp;
+            
+                // set the netvar if in network
+                if (NetworkManager.Singleton)
+                {
+                    currentSpeed = controller.speedBeforeRampNetVar.Value;
+                }
+            }
         }
          
-         speedText.text = $"{Mathf.RoundToInt((currentSpeed * 2.5f))}km/h"; 
+        speedText.text = $"{Mathf.RoundToInt((currentSpeed * 2.5f))}km/h"; 
         
     
         UpdateIndicatorPosition();
