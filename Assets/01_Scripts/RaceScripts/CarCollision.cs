@@ -38,7 +38,15 @@ public class CarCollision : MonoBehaviour
         {
             if (GetComponentInParent<CarController>().canLaunch)
             {
-                GetComponentInParent<CarController>().rampZone++;
+                if (NetworkManager.Singleton)
+                {
+                    Debug.LogError("Incrementing ramp score");
+                    GetComponentInParent<CarController>().IncrementRampScoreServerRpc(NetworkManager.Singleton.IsServer);
+                }
+                else
+                {
+                    GetComponentInParent<CarController>().rampZone++;
+                }
             }
             
         }

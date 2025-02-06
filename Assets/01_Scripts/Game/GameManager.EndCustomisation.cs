@@ -73,6 +73,8 @@ namespace Game
         private IEnumerator GoToRaceScene()
         {
             yield return new WaitForSeconds(5);
+            
+            Debug.LogError("Go");
             // Go to Race Scene
             NetworkManager.Singleton.SceneManager.LoadScene("RaceScene", LoadSceneMode.Single);
         }

@@ -20,6 +20,7 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
 
      [SerializeField] private TMP_Text finalScoreText;
      [HideInInspector] public string typeOfLaunchString;
+     public NetworkVariable<int> typeOfLaunchStringNetVar = new NetworkVariable<int>(0);
      [SerializeField] private AudioSource audioSource;
      
      
@@ -180,7 +181,28 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           DebugCurrentRaceStep();
           slideIndicator.SetActive(false);
           yield return new WaitForSeconds(finalJumpDuration);
-          finalScoreText.text = $"{typeOfLaunchString} \r\n Score : {ScoreFormula()}m";
+          if (!NetworkManager.Singleton)
+          {
+               finalScoreText.text = $"{typeOfLaunchString} \r\n Score : {ScoreFormula()}m";
+          }
+          else
+          {
+               switch (typeOfLaunchStringNetVar.Value)
+               {
+                    case 1:
+                         finalScoreText.text = $"Pas mal ! \r\n Score : {ScoreFormula()}m";
+                         break;
+                    case 2:
+                         finalScoreText.text = $"Très bien ! \r\n Score : {ScoreFormula()}m";
+                         break;
+                    case 3:
+                         finalScoreText.text = $"Impressionnant ! \r\n Score : {ScoreFormula()}m";
+                         break;
+                    default:
+                         finalScoreText.text = $"À revoir... \r\n Score : {ScoreFormula()}m";
+                         break;
+               }
+          }
           finalScorePanel.SetActive(true);
           endRaceButton.SetActive(true);
           speedIndicator.SetActive(false);
@@ -201,33 +223,86 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
      {
           //customisation
           float customizationMult = 1;
+          float raceSpeed;
 
-          //race speed 
-          float raceSpeed = Mathf.RoundToInt(carController.speedBeforeRamp) * 2.5f;
+          if (NetworkManager.Singleton)
+          {
+               //race speed 
+               raceSpeed = Mathf.RoundToInt(carController.speedBeforeRampNetVar.Value) * 2.5f;
+          }
+          else
+          {
+               //race speed 
+               raceSpeed = Mathf.RoundToInt(carController.speedBeforeRamp) * 2.5f;
+          }
           
 
           //ramp timing
           float rampScore = 0;
-          switch (carController.rampZone)
+          if (NetworkManager.Singleton)
           {
-               case 1 :
-                    rampScore = 1.5f;
-                    break;
-               case 2 : 
-                    rampScore = 2;
-                    break;
-               case 3 : 
-                    rampScore = 3;
-                    break;
-               default :
-                    rampScore = 1;
-                    break;
+               int betterRampZone;
+               // make betterrampzon the max value between rampzoneclient and rampzoneserver
+               if (carController.rampScoreClient.Value == 3 || carController.rampScoreHost.Value == 3)
+               {
+                    betterRampZone = 3;
+               }
+               else if(carController.rampScoreClient.Value == 2 || carController.rampScoreHost.Value == 2)
+               {
+                    betterRampZone = 2;
+               }
+               else if (carController.rampScoreClient.Value == 1 || carController.rampScoreHost.Value == 1)
+               {
+                    betterRampZone = 1;
+               }
+               else if (carController.rampScoreClient.Value == 4 || carController.rampScoreHost.Value == 4)
+               {
+                    betterRampZone = 4;
+               }
+               else
+               {
+                    betterRampZone = 0;
+               }
+               
+               switch (betterRampZone)
+               {
+                    case 1 :
+                         rampScore = 1.5f;
+                         break;
+                    case 2 : 
+                         rampScore = 2;
+                         break;
+                    case 3 : 
+                         rampScore = 3;
+                         break;
+                    default :
+                         rampScore = 1;
+                         break;
+               }
+          }
+          else
+          {
+               switch (carController.rampZone)
+               {
+                    case 1 :
+                         rampScore = 1.5f;
+                         break;
+                    case 2 : 
+                         rampScore = 2;
+                         break;
+                    case 3 : 
+                         rampScore = 3;
+                         break;
+                    default :
+                         rampScore = 1;
+                         break;
+               }
           }
           
           return Mathf.RoundToInt(customizationMult * raceSpeed * rampScore);
      }
      public void RestartScene()
      {
-          SceneManager.LoadScene(0);
+          //NetworkManager.Singleton.SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
      }
 }
