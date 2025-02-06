@@ -33,6 +33,9 @@ public class CarController : NetworkBehaviour
     [Header("Ramp")] 
     public int rampZone;
     public bool canLaunch;
+    
+    public NetworkVariable<int> rampScoreHost = new NetworkVariable<int>(0);
+    public NetworkVariable<int> rampScoreClient = new NetworkVariable<int>(0);
 
     [Header("Characters")] 
     [SerializeField] private Animator animatorJ1;
@@ -86,6 +89,20 @@ public class CarController : NetworkBehaviour
         {
             child.Spawn();
         }*/
+    }
+    
+    [ServerRpc (RequireOwnership = false)]
+    public void IncrementRampScoreServerRpc(bool isHost)
+    {
+        //if is host
+        if (isHost)
+        {
+            rampScoreHost.Value++;
+        }
+        else
+        {
+            rampScoreClient.Value++;
+        }
     }
     
 
@@ -142,11 +159,23 @@ public class CarController : NetworkBehaviour
 
     private void CheckRampZone()
     {
-        if (rampZone == 4 && canLaunch)
+        if (!NetworkManager.Singleton)
         {
-            DisplayZone("À revoir...");
-            canLaunch = false;
-            TriggerEndAnimation();
+            if (rampZone == 4 && canLaunch)
+            {
+                DisplayZone("À revoir...");
+                canLaunch = false;
+                TriggerEndAnimation();
+            }
+        }
+        else
+        {
+            if (rampScoreClient.Value == 4 && rampScoreHost.Value == 4 && canLaunch)
+            {
+                DisplayZone("À revoir...");
+                canLaunch = false;
+                TriggerEndAnimation();
+            }
         }
     }
 
@@ -237,36 +266,110 @@ public class CarController : NetworkBehaviour
     public void LaunchRamp()
     {
         if (!canLaunch) return;
-        
-        switch (rampZone)
+
+        if (!NetworkManager.Singleton)
         {
-            //Partager cette valeur sur le serveur et
-            // 1. vérifier lequel des deux joueurs à la meilleure valeur
-            // 2. faire la moyenne des deux valeurs
+            switch (rampZone)
+            {
+                //Partager cette valeur sur le serveur et
+                // 1. vérifier lequel des deux joueurs à la meilleure valeur
+                // 2. faire la moyenne des deux valeurs
             
-            case 1 : 
-                RaceManager.Instance.typeOfLaunchString = "Pas mal !";
-                canLaunch = false;
-                TriggerEndAnimation();
-                break;
-            case 2 : 
-                DisplayZone("Très bien !");
-                canLaunch = false;
-                TriggerEndAnimation();
-                break;
-            case 3 : 
-                DisplayZone("Impressionnant !");
-                canLaunch = false;
-                TriggerEndAnimation();
-                break;
-            default :
-                break;
+                case 1 : 
+                    DisplayZone("Pas mal !");
+                    canLaunch = false;
+                    TriggerEndAnimation();
+                    break;
+                case 2 : 
+                    DisplayZone("Très bien !");
+                    canLaunch = false;
+                    TriggerEndAnimation();
+                    break;
+                case 3 : 
+                    DisplayZone("Impressionnant !");
+                    canLaunch = false;
+                    TriggerEndAnimation();
+                    break;
+                default :
+                    break;
+            }
+        }
+        else
+        {
+            int betterRampZone;
+            // make betterrampzon the max value between rampzoneclient and rampzoneserver
+            if (rampScoreClient.Value == 3 || rampScoreHost.Value == 3)
+            {
+                betterRampZone = 3;
+            }
+            else if(rampScoreClient.Value == 2 || rampScoreHost.Value == 2)
+            {
+                betterRampZone = 2;
+            }
+            else if (rampScoreClient.Value == 1 || rampScoreHost.Value == 1)
+            {
+                betterRampZone = 1;
+            }
+            else if (rampScoreClient.Value == 4 || rampScoreHost.Value == 4)
+            {
+                betterRampZone = 4;
+            }
+            else
+            {
+                betterRampZone = 0;
+            }
+            
+            switch (betterRampZone)
+            {
+                //Partager cette valeur sur le serveur et
+                // 1. vérifier lequel des deux joueurs à la meilleure valeur
+                // 2. faire la moyenne des deux valeurs
+            
+                case 1 : 
+                    DisplayZone("Pas mal !");
+                    canLaunch = false;
+                    TriggerEndAnimation();
+                    break;
+                case 2 : 
+                    DisplayZone("Très bien !");
+                    canLaunch = false;
+                    TriggerEndAnimation();
+                    break;
+                case 3 : 
+                    DisplayZone("Impressionnant !");
+                    canLaunch = false;
+                    TriggerEndAnimation();
+                    break;
+                default :
+                    break;
+            }
         }
     }
 
     private void DisplayZone(string displayedText)
     {
-        RaceManager.Instance.typeOfLaunchString = displayedText;
+        if (!NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            RaceManager.Instance.typeOfLaunchString = displayedText;
+        }
+        else
+        {
+            switch (displayedText)
+            {
+                case "Pas mal !":
+                    RaceManager.Instance.typeOfLaunchStringNetVar.Value = 1;
+                    break;
+                case "Très bien !":
+                    RaceManager.Instance.typeOfLaunchStringNetVar.Value = 2;
+                    break;
+                case "Impressionnant !":
+                    RaceManager.Instance.typeOfLaunchStringNetVar.Value = 3;
+                    break;
+                default:
+                    RaceManager.Instance.typeOfLaunchStringNetVar.Value = 0;
+                    break;
+            }
+        }
     }
 
     private void TriggerEndAnimation()
