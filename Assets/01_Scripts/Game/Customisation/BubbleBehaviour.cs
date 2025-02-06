@@ -93,7 +93,7 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         if (IsDroppedOnCar(eventData))
         {
             //Audio call
-            AudioManager.Instance.PlaySound(1, 1);
+            AudioManager.Instance.PlaySound(0, 1);
             
             CustomisationManager.Instance.SetLastCarPart(carPartData);
             GameManager.Instance.SpawnSingleBubble(CustomisationManager.Instance.LastCarPartScriptable);
@@ -107,7 +107,7 @@ public class BubbleBehaviour : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         else
         {
             //Audio call
-            AudioManager.Instance.PlaySound(0, 1);
+            AudioManager.Instance.PlaySound(1, 1);
         }
     }
 

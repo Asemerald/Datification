@@ -36,7 +36,7 @@ public class CarInputs : NetworkBehaviour
         {
             if (NetworkObject.IsSpawned)
             {
-                enabled = false;
+                //enabled = false;
             }
             else
             {
@@ -49,6 +49,11 @@ public class CarInputs : NetworkBehaviour
     
     void Update()
     {
+        /*if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            return;
+        }*/
+        
         if (RaceManager.Instance.currentRaceStep == RaceManager.RaceStep.BeforeStart || RaceManager.Instance.currentRaceStep == RaceManager.RaceStep.StartRace)
             return;
         
@@ -60,6 +65,13 @@ public class CarInputs : NetworkBehaviour
             {
                 controller.speedBeforeRamp = controller.currentSpeed;
                 switchStep = true;
+            }
+            
+            if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+            {
+                GameManager.Instance.leftPlayerInput.Value = true;
+                GameManager.Instance.rightPlayerInput.Value = true;
+                return;
             }
             
             left = true;

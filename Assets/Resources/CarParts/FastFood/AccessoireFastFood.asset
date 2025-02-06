@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 3
   id: 16
   name: Accessoire FastFood
-  LeftMesh: {fileID: 1286438451228693633, guid: abca5723f84cff941aff4fe6d3b2c2e6, type: 3}
-  RightMesh: {fileID: 4282703393990371734, guid: b430505065ee2ac469d230339fddb543, type: 3}
+  LeftMesh: {fileID: 1286438451228693633, guid: 51a66902b3784384281cda78c3f18039, type: 3}
+  RightMesh: {fileID: 4282703393990371734, guid: 10368028e867f2a4dab0fb754d163a33, type: 3}

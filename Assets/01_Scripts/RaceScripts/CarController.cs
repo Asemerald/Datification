@@ -46,14 +46,9 @@ public class CarController : NetworkBehaviour
     [SerializeField] private ParticleSystem fxBoostLeft; 
     [SerializeField] private ParticleSystem fxBoostRight;
     
+    
     private void Start()
     {
-        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
-        {
-            Debug.Log("NetworkSingleton return");
-            return;
-        }
-        
         //Spawn 
         if (NetworkManager.Singleton)
         {
@@ -70,6 +65,10 @@ public class CarController : NetworkBehaviour
         DisableAllFX();
 
         
+        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            return;
+        }
         
         // transform position = 0 1 -250
         transform.position = new Vector3(0, 1, -250);
@@ -90,6 +89,8 @@ public class CarController : NetworkBehaviour
 
     private void Update()
     {
+        
+        
         if (!inputs.secondStage)
         {
             RaceUpdate();
@@ -103,6 +104,11 @@ public class CarController : NetworkBehaviour
 
     private void RaceUpdate()
     {
+        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            return;
+        }
+        
         if (inputs.startEnding)
         {
             targetSpeed = 50;
