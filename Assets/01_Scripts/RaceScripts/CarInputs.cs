@@ -64,6 +64,12 @@ public class CarInputs : NetworkBehaviour
             if (!switchStep)
             {
                 controller.speedBeforeRamp = controller.currentSpeed;
+                
+                if (NetworkManager.Singleton && NetworkManager.Singleton.IsServer)
+                {
+                    controller.speedBeforeRampNetVar.Value = controller.currentSpeed;
+                }
+                
                 switchStep = true;
             }
             

@@ -15,9 +15,11 @@ public class CarController : NetworkBehaviour
     [SerializeField] private float accelMultiplier = 2;
     
     public float currentSpeed;
+    public NetworkVariable<float> currentSpeedNetVar = new NetworkVariable<float>(0);
     private float targetSpeed;
 
     public float speedBeforeRamp;
+    public NetworkVariable<float> speedBeforeRampNetVar = new NetworkVariable<float>(0);
     
     
     [Space(15f)]
@@ -114,10 +116,21 @@ public class CarController : NetworkBehaviour
             targetSpeed = 50;
             currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 1f * Time.deltaTime);
             
+            // set the netvar if in network
+            if (NetworkManager.Singleton)
+            {
+                currentSpeedNetVar.Value = currentSpeed;
+            }
+            
         }
         else
         {
             currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelMultiplier * Time.deltaTime);
+            // set the netvar if in network
+            if (NetworkManager.Singleton)
+            {
+                currentSpeedNetVar.Value = currentSpeed;
+            }
         }
         
         
@@ -194,10 +207,10 @@ public class CarController : NetworkBehaviour
         AudioManager.Instance.PlaySound(9, 0.5f);
         
         // return if online and client
-        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        /*if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
         {
             return;
-        }
+        }*/
         
         inputs.animCar.SetTrigger("Boost");
         
