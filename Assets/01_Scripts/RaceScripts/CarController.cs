@@ -89,10 +89,7 @@ public class CarController : NetworkBehaviour
 
     private void Update()
     {
-        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
-        {
-            return;
-        }
+        
         
         if (!inputs.secondStage)
         {
@@ -107,6 +104,11 @@ public class CarController : NetworkBehaviour
 
     private void RaceUpdate()
     {
+        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            return;
+        }
+        
         if (inputs.startEnding)
         {
             targetSpeed = 50;
