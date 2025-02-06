@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 2
   id: 9
   name: Phare Bouillon
-  LeftMesh: {fileID: 450169513402400540, guid: d963b83ed4c9a6749bf94b938ddd2f13, type: 3}
-  RightMesh: {fileID: 8628451434873416925, guid: c638141580310994ba749e824e69dbbd, type: 3}
+  LeftMesh: {fileID: 8628451434873416925, guid: c638141580310994ba749e824e69dbbd, type: 3}
+  RightMesh: {fileID: 450169513402400540, guid: d963b83ed4c9a6749bf94b938ddd2f13, type: 3}

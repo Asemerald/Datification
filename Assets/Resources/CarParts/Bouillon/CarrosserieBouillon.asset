@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 0
   id: 10
   name: Carrosserie Bouillon
-  LeftMesh: {fileID: 4785666418409227375, guid: 691ccc4899b59374cbd8e76868115f80, type: 3}
-  RightMesh: {fileID: 8033029682249563243, guid: c7949a78801ee814598f1a6117deb438, type: 3}
+  LeftMesh: {fileID: 8033029682249563243, guid: c7949a78801ee814598f1a6117deb438, type: 3}
+  RightMesh: {fileID: 4785666418409227375, guid: 691ccc4899b59374cbd8e76868115f80, type: 3}
