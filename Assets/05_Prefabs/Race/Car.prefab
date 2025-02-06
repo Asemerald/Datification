@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 5540459282989928068}
   - component: {fileID: 62839763368843421}
   - component: {fileID: 3300212564233972713}
-  - component: {fileID: 6879199525385408756}
   - component: {fileID: 9207534223958186218}
   m_Layer: 0
   m_Name: Car
@@ -148,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 590543579
+  GlobalObjectIdHash: 1092924936
   InScenePlacedSourceGlobalObjectIdHash: 2053333724
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -174,6 +173,7 @@ MonoBehaviour:
   baseSpeed: 30
   accelMultiplier: 5
   currentSpeed: 0
+  speedBeforeRamp: 0
   boosterSpeedAdded: 10
   mainCam: {fileID: 7701925862411066908}
   rampCam: {fileID: 3176145392113794601}
@@ -239,20 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891d90af99cb72a4999c303ebd0126f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6879199525385408756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3385126055192490704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 62839763368843421}
 --- !u!114 &9207534223958186218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +368,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 130282281277294967, guid: dcb1c17ed16e83942bf52fa29ac99cf6, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 590543579
+      value: 581801088
       objectReference: {fileID: 0}
     - target: {fileID: 6800987207336285850, guid: dcb1c17ed16e83942bf52fa29ac99cf6, type: 3}
       propertyPath: m_Follow
