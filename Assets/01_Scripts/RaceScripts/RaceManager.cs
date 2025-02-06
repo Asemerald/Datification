@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Threading.Tasks;
+using Game;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -33,8 +35,8 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
      [SerializeField] private GameObject finalScorePanel;
      [SerializeField] private GameObject endRaceButton;
      [SerializeField] private GameObject speedIndicator;
-     [SerializeField] private GameObject controlTouchScreenRight;
-     [SerializeField] private GameObject controlTouchScreenLeft;
+     [SerializeField] private Animator controlTouchScreenRight;
+     [SerializeField] private Animator controlTouchScreenLeft;
      
      [Space,Header("Timings")]
      [SerializeField] private float trafficLightsEndTime = .5f;
@@ -76,8 +78,6 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           slideIndicator.SetActive(false);
           finalScorePanel.SetActive(false);
           endRaceButton.SetActive(false);
-          controlTouchScreenRight.SetActive(false);
-          controlTouchScreenLeft.SetActive(false);
           
 
           //Gets the duration of the traffic light animation to give the car control at the right timing
@@ -136,17 +136,32 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           DebugCurrentRaceStep();
           carController.enabled = false;
           
-          /*APPARITION INDICATION TOUCH SCREEN J1 LEFT - A CHANGER EN FONCTION DU JOUEUR!
-          controlTouchScreenLeft.SetActive(true);
-          yield return new WaitForSeconds(2f);
-          controlTouchScreenLeft.SetActive(false);*/
+          UnityMainThread.wkr.AddJobAsync(async() =>
+          {
+               if (GameManager.Instance.hasRightCar)
+               {
+                    controlTouchScreenRight.gameObject.SetActive(true);
+                    controlTouchScreenRight.enabled = true;
+                    controlTouchScreenLeft.gameObject.SetActive(false);
+                    
+               }
+               else
+               {
+                    controlTouchScreenLeft.gameObject.SetActive(true);
+                    controlTouchScreenLeft.enabled = true;
+                    controlTouchScreenRight.gameObject.SetActive(false);
+               }
+               
+               await Task.Delay(2000);
+               
+               controlTouchScreenRight.gameObject.SetActive(false);
+               controlTouchScreenLeft.gameObject.SetActive(false);
+               
+               currentRaceStep = RaceStep.StartRace;
+          });
           
-          //APPARITION INDICATION TOUCH SCREEN J2 RIGHT 
-          controlTouchScreenRight.SetActive(true);
-          yield return new WaitForSeconds(2f);
-          controlTouchScreenRight.SetActive(false);
           
-          currentRaceStep = RaceStep.StartRace;
+          yield return null;
      }
      IEnumerator StartRace()
      {

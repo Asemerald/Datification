@@ -49,7 +49,16 @@ public class CarInputs : NetworkBehaviour
 
         if (NetworkManager.Singleton)
         {
-            GameManager.Instance.hasRightCar
+            if (GameManager.Instance.hasRightCar)
+            {
+                leftButton.SetActive(false);
+                rightButton.SetActive(true);
+            }
+            else
+            {
+                leftButton.SetActive(true);
+                rightButton.SetActive(false);
+            }
         }
         
         controller = GetComponent<CarController>();
