@@ -83,16 +83,17 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.09
+    - _Metallic: 0.11
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Roughness: 0.54
-    - _Saturation: 1
+    - _Saturation: 1.43
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UseRoughnessMAP: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.8235582, g: 0.8767713, b: 0.8773585, a: 1}

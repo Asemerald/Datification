@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 3
   id: 11
   name: Accessoire Bouillon
-  LeftMesh: {fileID: 8125690702757746954, guid: dd8ce0052364b5a42bed4c8109db9829, type: 3}
-  RightMesh: {fileID: 1984904468840072937, guid: 92e3b58edd6db4e44a88193025bf578b, type: 3}
+  LeftMesh: {fileID: 1984904468840072937, guid: 92e3b58edd6db4e44a88193025bf578b, type: 3}
+  RightMesh: {fileID: 8125690702757746954, guid: dd8ce0052364b5a42bed4c8109db9829, type: 3}

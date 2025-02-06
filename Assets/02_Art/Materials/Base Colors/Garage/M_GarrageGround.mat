@@ -44,7 +44,7 @@ Material:
     - _Roughness: 0
     - _Saturation: 1
     m_Colors:
-    - _Color: {r: 0.43231574, g: 0.6320754, b: 0.6301194, a: 1}
+    - _Color: {r: 0.22312212, g: 0.37596595, b: 0.4339623, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5093072375953543432
 MonoBehaviour:
