@@ -144,8 +144,7 @@ public class CarController : NetworkBehaviour
     {
         if (rampZone == 4 && canLaunch)
         {
-            Debug.Log("Lancement raté");
-            DisplayZone("Lancement raté !");
+            DisplayZone("À revoir...");
             canLaunch = false;
             TriggerEndAnimation();
         }
@@ -246,17 +245,17 @@ public class CarController : NetworkBehaviour
             // 2. faire la moyenne des deux valeurs
             
             case 1 : 
-                RaceManager.Instance.typeOfLaunchString = "Lancement moyen !";
+                RaceManager.Instance.typeOfLaunchString = "Pas mal !";
                 canLaunch = false;
                 TriggerEndAnimation();
                 break;
             case 2 : 
-                DisplayZone("Bon Lancement !");
+                DisplayZone("Très bien !");
                 canLaunch = false;
                 TriggerEndAnimation();
                 break;
             case 3 : 
-                DisplayZone("Lancement parfait !");
+                DisplayZone("Impressionnant !");
                 canLaunch = false;
                 TriggerEndAnimation();
                 break;
