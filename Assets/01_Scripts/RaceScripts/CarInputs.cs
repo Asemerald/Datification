@@ -20,6 +20,9 @@ public class CarInputs : NetworkBehaviour
     public States activeState;
     [HideInInspector] public bool left, right;
 
+    [SerializeField] private GameObject leftButton;
+    [SerializeField] private GameObject rightButton;
+
     [SerializeField] private Animator anim;
     public Animator animCar;
 
@@ -42,6 +45,11 @@ public class CarInputs : NetworkBehaviour
             {
                 Destroy(gameObject);
             }
+        }
+
+        if (NetworkManager.Singleton)
+        {
+            GameManager.Instance.hasRightCar
         }
         
         controller = GetComponent<CarController>();

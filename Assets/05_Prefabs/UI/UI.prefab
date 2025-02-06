@@ -880,10 +880,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2618646829795967956}
   - {fileID: 5057361536767813129}
   - {fileID: 6879126161493778228}
   - {fileID: 1537036525359651184}
-  - {fileID: 2618646829795967956}
   - {fileID: 8462340624184001237}
   - {fileID: 4683226221653061225}
   - {fileID: 4355989514970295766}
@@ -3347,6 +3347,10 @@ PrefabInstance:
     - target: {fileID: 5638210890883179579, guid: 93efc94e9457334488206e1abde7e11a, type: 3}
       propertyPath: m_Name
       value: TextWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638210890883179579, guid: 93efc94e9457334488206e1abde7e11a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6730525243832602778, guid: 93efc94e9457334488206e1abde7e11a, type: 3}
       propertyPath: m_fontColor32.rgba

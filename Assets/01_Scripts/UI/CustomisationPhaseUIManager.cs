@@ -40,7 +40,14 @@ public class CustomisationPhaseUIManager : InstanceBase<CustomisationPhaseUIMana
         themeText.text = theme;
         
         TextWindowParameterReset();
-        textWindowAnimator.SetBool("ThemeOn",isOn);
+        
+        UnityMainThread.wkr.AddJob(() =>
+        {
+            textWindowAnimator.gameObject.SetActive(true);
+            textWindowAnimator.SetBool("ThemeOn",isOn);
+        });
+        
+        
     }
     
     //Manages waiting text apparition

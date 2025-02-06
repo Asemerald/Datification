@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCarPreview : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class MainCarPreview : MonoBehaviour
     
     [SerializeField] Vector3 startPosition;
 
-    
+    private bool changed;
     void Start()
     {
         transform.position = startPosition;
@@ -18,7 +20,12 @@ public class MainCarPreview : MonoBehaviour
 
     private void Update()
     {
-        
+        if (SceneManager.GetActiveScene().name == "RaceScene" && !changed)
+        {
+            changed = true;
+            DisableAnimationComponents();
+        }
+
     }
 
     public void DisableAnimationComponents()
@@ -29,6 +36,15 @@ public class MainCarPreview : MonoBehaviour
             animationComponent.enabled = false;
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
+            
+            if (NetworkManager.Singleton && NetworkManager.Singleton.IsServer)
+            {
+                // find car with raceCartas
+                var cars = GameObject.FindGameObjectWithTag("raceCar").GetComponent<NetworkObject>();
+                
+                GetComponent<NetworkObject>().TrySetParent(cars, false);
+                
+            }
         });
     }
 }
