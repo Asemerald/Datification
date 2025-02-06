@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 1
   id: 12
   name: Roues Bouillon 01
-  LeftMesh: {fileID: 5495983340438294734, guid: 92ee1ed8e6b36ec4e995a5d13da26548, type: 3}
-  RightMesh: {fileID: 7470696585288100383, guid: 8711234e3302afc499d5a5d29a479b0b, type: 3}
+  LeftMesh: {fileID: 7470696585288100383, guid: 8711234e3302afc499d5a5d29a479b0b, type: 3}
+  RightMesh: {fileID: 5495983340438294734, guid: 92ee1ed8e6b36ec4e995a5d13da26548, type: 3}
