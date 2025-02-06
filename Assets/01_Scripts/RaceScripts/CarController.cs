@@ -55,7 +55,7 @@ public class CarController : NetworkBehaviour
             SpawnServerRpc();
         }
         
-        rampCam.enabled = false;
+        rampCam.Priority = 5;
         rampZone = 0;
         
         canBoost = true;
@@ -193,6 +193,12 @@ public class CarController : NetworkBehaviour
         //Audio call
         AudioManager.Instance.PlaySound(9, 0.5f);
         
+        // return if online and client
+        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            return;
+        }
+        
         inputs.animCar.SetTrigger("Boost");
         
         animatorJ1.SetTrigger("isBoosting");
@@ -212,7 +218,7 @@ public class CarController : NetworkBehaviour
 
     public void SwitchCameras()
     {
-        rampCam.enabled = true;
+        rampCam.Priority = 11;
     }
     
     

@@ -67,11 +67,10 @@ public class CarInputs : NetworkBehaviour
                 switchStep = true;
             }
             
-            if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+            if (NetworkManager.Singleton && NetworkManager.Singleton.IsServer)
             {
                 GameManager.Instance.leftPlayerInput.Value = true;
                 GameManager.Instance.rightPlayerInput.Value = true;
-                return;
             }
             
             left = true;
@@ -192,19 +191,32 @@ public class CarInputs : NetworkBehaviour
     {
         startEnding = true;
         controller.canLaunch = true;
+        
+        // return if online and client
+        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            return;
+        }
+        
         animCar.SetTrigger("Ending");
     }
     
     public void RampAnimationTrigger()
     {
+        controller.SwitchCameras();
+
+        if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
+        {
+            return;
+        }
+        
         anim.SetTrigger("Ramp");
         
         //Set animation speed equals to currentSpeed;
         anim.speed = controller.currentSpeed / 100;
         
-        controller.SwitchCameras();
-        
         secondStage = true;
+        
     }
 
     private void CheckDrag()
