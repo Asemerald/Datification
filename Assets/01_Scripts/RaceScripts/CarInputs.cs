@@ -47,6 +47,19 @@ public class CarInputs : NetworkBehaviour
         controller = GetComponent<CarController>();
     }
     
+    [ServerRpc ]
+    public void CallAnimServerRpc()
+    {
+        CallAnimClientRpc();
+    }
+
+    [ClientRpc]
+    private void CallAnimClientRpc()
+    {
+        RampAnimationTrigger();
+        RaceManager.Instance.CoroutineEndOfRace();
+    }
+    
     void Update()
     {
         /*if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
@@ -210,6 +223,7 @@ public class CarInputs : NetworkBehaviour
     public void RampAnimationTrigger()
     {
         controller.SwitchCameras();
+        Debug.LogError("ChangeCam  ");
 
         if (NetworkManager.Singleton && !NetworkManager.Singleton.IsServer)
         {

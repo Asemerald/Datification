@@ -24,8 +24,7 @@ public class CarCollision : MonoBehaviour
 
         if (other.gameObject.CompareTag("RampTrigger"))
         {
-            GetComponentInParent<CarInputs>().RampAnimationTrigger();
-            raceManager.CoroutineEndOfRace();
+            GetComponentInParent<CarInputs>().CallAnimServerRpc();
         }
 
         if (other.gameObject.CompareTag("MiddleTrigger"))
