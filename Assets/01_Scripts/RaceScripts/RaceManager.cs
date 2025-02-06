@@ -31,6 +31,7 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
      [SerializeField] private GameObject slideIndicator;
      [SerializeField] private GameObject finalScorePanel;
      [SerializeField] private GameObject endRaceButton;
+     [SerializeField] private GameObject speedIndicator;
      [SerializeField] private GameObject controlTouchScreenRight;
      [SerializeField] private GameObject controlTouchScreenLeft;
      
@@ -182,6 +183,7 @@ public partial class RaceManager : NetworkInstanceBase<RaceManager>
           finalScoreText.text = $"{typeOfLaunchString} \r\n Score : {ScoreFormula()}m";
           finalScorePanel.SetActive(true);
           endRaceButton.SetActive(true);
+          speedIndicator.SetActive(false);
           
           //Audio
           audioSource.Stop();
